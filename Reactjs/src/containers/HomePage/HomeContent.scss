@@ -1,0 +1,114 @@
+.bg-content-color {
+    background-color: rgb(223, 232, 240);
+
+    .row {
+
+        .col-12{
+
+            .row {
+
+                .col-6{
+
+                    .card-text {
+                        text-align: center;
+                        font-size: 30px;
+                        font-weight: 800;
+                        margin-top: 50px;
+                        // margin-bottom: 20px;
+                        color: green;
+
+                        a {
+                            color: #3c690b;
+                            text-decoration: none;
+                        }
+                        a:hover {
+                            color: #21a315;
+                        }
+                    }
+                                        
+                    .card:hover{
+                        background-color: rgb(85, 235, 160);
+                    }
+                    .card {
+                        border: solid white 2px;
+                        border-radius: 10px;
+                        background-color:rgb(180, 171, 171);
+
+                        .card-img {
+                            width: 400px;
+                            height: 300px;
+                            margin-left: 35px;
+                        }
+
+                        .card-content {
+                            background-color: rgb(185, 132, 52);
+                            border-radius: 0 0 10px 10px;
+
+                            .c-content:hover {
+                                color: rgb(9, 10, 10);
+                                border-radius: 0 0 10px 10px;
+                            }
+                            .c-content{
+                                padding-top: 15px;
+                                text-align: center;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.bg-intro {
+    background-color: rgb(175, 119, 175);
+
+    .intro-header {
+        padding-top: 20px;
+        color: white;
+        text-align: center;
+    }
+
+    .row{
+        
+        .col-2 {
+
+        }
+
+        .col-8 {
+
+            .intro-header {
+                padding-top: 20px;
+                color: white;
+                text-align: center;
+            }
+        }
+        .col-2 {
+
+        }
+    }
+
+    .row {
+        .col-3 {
+
+            .intro-img {
+                width: 150px;
+                height: 150px;
+                margin-left: 50px;
+            }
+
+            .intro-content {
+
+            }
+            
+        }
+
+        // .col-2 {
+
+        // }
+    }
+}
+
+
+

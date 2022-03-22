@@ -1,0 +1,181 @@
+
+.bg-login {
+    background-image: url("../../images/bg-login.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.text-intro {
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 82px;
+}
+
+.font {
+    font-family: 'Permanent Marker', cursive;
+    font-weight: 900;
+}
+
+a {
+    text-decoration: none;
+}
+
+.distance {
+    margin-top: 120px;
+
+}
+.login-wrap {
+    width: 400px;
+    height: 100%;
+    margin: 0 auto;
+    border: 1px solid red;
+}
+
+.dicrLogo {
+    display: block;
+    margin-bottom: 180px;
+}
+
+.row {
+    margin-bottom: 80px;
+}
+
+input, button {
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.HandleLogin {
+    /* cao 100% màn hình */
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: #ebec88; */
+    /* background-image: linear-gradient(to bottom right, #f3f3a4, #ebc3cf); */
+}
+
+div .login-form {
+    display: block;
+    /* margin-top: 50px; */
+    position: relative; /*Định vị trí tuyệt đối cho các thành phần. Phải sử dụng thêm các thuộc tính căn chỉnh tọa độ: top, left,... */
+}
+
+
+div .form-inner {
+    position: relative;
+    display: block;
+    /* width: fit-content; */
+    background-color: #fff;
+    padding: 45px;
+    border-width: 5px;
+    border-color: green;
+    border-style: groove;
+
+}
+
+form .form-inner h2 {
+    color: rgb(11, 90, 11);
+    /* color: linear-gradient(to right, #fece00 50%, #fece00 50%, #fe4880); */
+    text-align: center;
+    font-size: 28px;
+    /* font-weight: 500; */
+    margin-bottom: 30px;
+}
+
+form .form-inner .form-group {
+    display: block;
+    width: auto;
+    margin-bottom: 15px;
+}
+
+.form-inner .form-group label {
+    display: block;
+    color: rgb(66, 63, 63);
+    font-size: 16px;
+    margin-bottom: 5px;
+    transition: 15px;
+}
+
+.form-inner .form-group:focus-within label {   
+    color: #159747;
+}
+
+form .form-inner .form-group input {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #f3ebeb;
+    border-radius: 8px;
+    transition: 0.4s;
+    align-items: center;
+}
+
+form .form-inner .form-group input:focus {
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+form .form-inner input[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-image: linear-gradient(to right, #fece00 50%, #fece00 50%, #fe4880);
+    /* background-size: 200%; */
+    background-position: 0%;
+    transition: 0.4;
+    color: rgb(112, 68, 68);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* .wrap {
+    background: url("../../images/nen6.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+
+.btn {
+    float: right;
+}
+
+.image {
+    transform: rotate(-6deg);
+    right: 310px;
+    bottom: 330px;
+    position: absolute;
+}
+
+.text-icon {
+    align-items: center;
+}
+
+.btn-login {
+    width: 100%;
+    margin: 10px 0;
+    height: 35px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    background: linear-gradient(135deg, rgb(39, 128, 17) 0%, rgba(253, 187, 45, 1) 100%);
+    color: white;
+    font-size: 19px;
+}
+
+.btn-login:hover {
+    background: linear-gradient(135deg, rgb(34, 95, 16) 0%, rgb(184, 132, 21) 100%);
+    color: white;
+}
+
+.custom-icon {
+    position: relative;
+}
+
+i {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    cursor: pointer;
+}

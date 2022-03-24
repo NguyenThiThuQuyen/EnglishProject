@@ -5,13 +5,21 @@ import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import './HomeHeader.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormattedMessage } from 'react-intl';
+import { LANGUAGES } from '../../utils';
+import { changeLanguageApp } from '../../store/actions/appActions';
 class HomeHeader extends Component {
 
+    changeLanguage = (language) => {
+        this.props.changeLanguageAppRedux(language)
+    }
+
+
     render() {
-        console.log('check props: ', this.props)
+        let language = this.props.language;
+        console.log('check language: ', language)
         return (
             <React.Fragment>
-            <div className="home-header-container">
+            <div className="home-header-container sticky-top">
                 <div className="home-header-content">
                     <div className="left-content">
                         <FontAwesomeIcon  style={{ fontSize: "2rem", marginLeft: "1rem", cursor: "pointer"}} icon={faBars} />
@@ -36,8 +44,8 @@ class HomeHeader extends Component {
                             <FontAwesomeIcon  style={{ fontSize: "1rem", marginLeft: "1rem", cursor: "pointer"}} icon={faQuestionCircle} />
                             <FormattedMessage id="homeheader.support"/>
                         </div>
-                        <div className="language-vi">VietNam</div>
-                        <div className="language-en">English</div>
+                        <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span></div>
+                        <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
                     </div>
                 </div>                
             </div>
@@ -59,12 +67,14 @@ class HomeHeader extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        language: state.app.language,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+        changeLanguageAppRedux: (language) => dispatch(changeLanguageApp(language))
     };
 };
 

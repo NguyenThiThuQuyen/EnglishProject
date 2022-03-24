@@ -26,7 +26,6 @@ class UserManage extends Component {
 
     async componentDidMount() {
         await this.getAllUsersFromReact();
-        // console.log('get user from node.js : ', response)
     }
 
     getAllUsersFromReact = async() => {

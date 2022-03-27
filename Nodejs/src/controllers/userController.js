@@ -1,4 +1,4 @@
-// const res = require("express/lib/response")
+
 import userService from "../services/userService";
 
 let handleLogin = async(req, res) => {
@@ -32,13 +32,13 @@ let handleGetAllUsers = async(req, res) => {
     }
 
     let users = await userService.getAllUsers(id);
-    // console.log(users)
     return res.status(200).json({
         errCode: 0,
         errMessage: 'Ok',
         users
     })
 }
+
  let handleCreateNewUser = async(req, res) => {
      let message = await userService.createNewUser(req.body);
      console.log(message);
@@ -56,7 +56,7 @@ let handleGetAllUsers = async(req, res) => {
     return res.status(200).json(message);
  }
 
- let handleEditUser = async(req, res) => {
+let handleEditUser = async(req, res) => {
     let data = req.body;
     let message = await userService.updateUserData(data);
     return res.status(200).json(message)

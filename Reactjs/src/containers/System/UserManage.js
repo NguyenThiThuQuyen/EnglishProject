@@ -26,6 +26,7 @@ class UserManage extends Component {
 
     async componentDidMount() {
         await this.getAllUsersFromReact();
+        // console.log('get user from node.js : ', response)
     }
 
     getAllUsersFromReact = async() => {
@@ -133,7 +134,7 @@ class UserManage extends Component {
                 }
                 
                 <div className="title text-center">
-                    Manage users with Tui
+                USER MANAGEMENT
                 </div>
                 <div className="mx-1">
                     <button 
@@ -148,7 +149,7 @@ class UserManage extends Component {
                     <table className="table">
                     <tbody>
                         {/* <thead> */}
-                            <tr className='bg-primary'>
+                            <tr className='bg-user'>
                             <th scope="col">Email</th>
                             <th scope="col">First name</th>
                             <th scope="col">Last name</th>

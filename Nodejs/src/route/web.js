@@ -2,6 +2,7 @@ import express from "express"
 import { route } from "express/lib/router";
 import homeController from "../controllers/homeController";
 import userController from "../controllers/userController";
+import topicController from "../controllers/topicController";
 
 let router = express.Router();
 
@@ -24,6 +25,15 @@ let initWebRoutes = (app) => {
     router.delete('/api/delete-user', userController.handleDeleteUser);
 
     router.get('/allcode', userController.getAllCode);
+
+
+    //topic
+    router.get('/api/get-all-topics', topicController.handleGetAllTopics);
+    router.post('/api/create-new-topic', topicController.handleCreateNewTopic);
+    router.put('/api/edit-topic', topicController.handleEditTopic);
+    router.delete('/api/delete-topic', topicController.handleDeleteTopic);
+
+
 
     return app.use("/", router);
 }

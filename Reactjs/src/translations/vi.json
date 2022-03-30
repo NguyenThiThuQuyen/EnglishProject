@@ -12,20 +12,18 @@
         "title2": "Nền Tảng Học Tiếng Anh Trực Tuyến"
     },
     "menu": {
-        "system": {
-            "header": "Hệ thống",
-            "system-administrator": {
-                "header": "Quản trị hệ thống",
-                "user-manage": "Quản lý người sử dụng",
-                "user-redux": "Quản lý user redux",
-                "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
-            },
-            "system-parameter": {
-                "header": "Tham số hệ thống"
-            }
-        },
         "admin": {
-            "manage-user": "Quản lý người dùng"
+            "manage-user": "Người dùng",
+            "manage-student": "Quản lý học viên",
+            "manage-admin": "Quản lý admin",
+            "crud": "CRUD user",
+            "crud-redux": "CRUD redux",
+            "topic": "Chủ đề",
+            "manage-topic": "Quản lý chủ đề",
+            "list-lession": "Danh sách bài học",
+            "manage-list-lession": "Quản lý danh sách bài học",
+            "lession": "Bài học",
+            "manage-lession": "Quản lý bài học"
         }
     }
 

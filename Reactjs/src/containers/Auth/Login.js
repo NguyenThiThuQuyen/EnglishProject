@@ -6,7 +6,7 @@ import imglogin from '../../images/hinh1.png'
 import './Login.scss';
 import { FormatteMessage } from 'react-intl';
 import { handleLoginApi } from '../../services/userService';
-import { userLoginSuccess } from '../../store/actions';
+// import { userLoginSuccess } from '../../store/actions';
 
 class Login extends Component {
     constructor(props) {

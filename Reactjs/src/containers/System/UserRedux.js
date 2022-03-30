@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 class UserRedux extends Component {
-
-    state = {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            
+        }
     }
 
     componentDidMount() {
@@ -13,7 +15,14 @@ class UserRedux extends Component {
 
     render() {
         return (
-            <div className="text-center" >User Redux hoi dan it</div>
+            <div className='user-redux-container'>
+                <div className="title">
+                    User Redux hoi dan it
+                </div>
+                <div className="user-redux-body">
+                    <div className="">Thêm mới người dùng</div>
+                </div>
+            </div>
         )
     }
 

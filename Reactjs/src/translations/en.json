@@ -25,5 +25,18 @@
             "lession": "Lession",
             "manage-lession": "Lession manage"
         }
+    },
+    "manage-user": {
+        "add": "Add new user",
+        "email": "Email",
+        "password": "Password",
+        "firstname": "First Name",
+        "lastname": "Last Name",
+        "address": "Address",
+        "gender": "Gender",
+        "image": "Avatar",
+        "role": "Role",
+        "save": "Save",
+        "cancel": "Cancel"
     }
 }

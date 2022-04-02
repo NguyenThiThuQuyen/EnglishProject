@@ -64,8 +64,11 @@ let handleEditUser = async(req, res) => {
 
 let getAllCode = async(req, res) => {
     try {
+    //     setTimeout(async() => {
+    //         let data = await userService.getAllCodeService(req.query.type);
+    //         return res.status(200).json(data);
+    //     }, 5000)
         let data = await userService.getAllCodeService(req.query.type);
-        console.log(data)
         return res.status(200).json(data);
     }catch(e) {
         console.log('Get all code error:', e)

@@ -25,6 +25,20 @@
             "lession": "Bài học",
             "manage-lession": "Quản lý bài học"
         }
+    },
+
+    "manage-user": {
+        "add": "Thêm mới người dùng",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "firstname": "Tên",
+        "lastname": "Họ",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "image": "Ảnh đại diện",
+        "role": "Quyền người dùng",
+        "save": "Lưu",
+        "cancel": "Hủy"
     }
 
 }

@@ -38,7 +38,8 @@
         "image": "Ảnh đại diện",
         "role": "Quyền người dùng",
         "save": "Lưu",
-        "cancel": "Hủy"
+        "cancel": "Hủy",
+        "edit": "Lưu thay đổi"
     }
 
 }

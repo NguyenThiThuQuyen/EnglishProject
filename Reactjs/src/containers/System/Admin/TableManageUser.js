@@ -35,8 +35,8 @@ class TableManageUser extends Component {
     }
 
     handleEditUser = (user) => {
-        console.log("edit the user: ", user)
-        // this.props.editAUserRedux(user.id)
+        // console.log("edit the user: ", user)
+        this.props.handleEditUserFromParentKey(user)
     }
 
     render() {
@@ -44,15 +44,17 @@ class TableManageUser extends Component {
         // console.log("check state: ", this.state.usersRedux)
         let arrUsers = this.state.usersRedux;
         return (
-                    <table id="TableManageUser" className="table bg-table">
-                        <tbody>
-                            <tr className='bg-user'>
+                    <table id="TableManageUser" className="table table-striped">
+                         <thead className='bg-success text-white'>
+                            <tr>
                                 <th scope="col">Email</th>
                                 <th scope="col">First name</th>
                                 <th scope="col">Last name</th>
                                 <th scope="col">Address</th>
                                 <th scope="col">Action</th>
                             </tr>
+                        </thead>
+                        <tbody>
                             {arrUsers && arrUsers.length > 0 &&
                                 arrUsers.map((item, index) => {
                                     return (

@@ -37,6 +37,8 @@
         "image": "Avatar",
         "role": "Role",
         "save": "Save",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "edit": "Save changes"
+
     }
 }

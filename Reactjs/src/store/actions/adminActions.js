@@ -2,7 +2,8 @@ import actionTypes from './actionTypes';
 import { getAllCodeService,
         createNewUserService,
         getAllUsers,
-        deleteUserService } from "../../services/userService";
+        deleteUserService,
+        editUserService } from "../../services/userService";
 import { toast } from "react-toastify";
 
 
@@ -119,14 +120,14 @@ export const deleteAUser = (userId) => {
             let res = await deleteUserService(userId);
             if(res && res.errCode === 0){
                 toast.success("Delete the user succeed!")
-                dispatch(fetchAllUsersSuccess())
+                dispatch(deleteUserSuccess())
                 dispatch(fetchAllUsersStart())
             }else{
-                toast.error("Fetch all user error!")
+                toast.error("Delete the user error!")
                 dispatch(deleteUserFailed());
             }
         } catch(e) {
-            toast.error("Fetch all user error!")
+            toast.error("Delete the user error!")
             dispatch(deleteUserFailed());
             console.log('deleteUserFailed error', e)
         }
@@ -139,5 +140,34 @@ export const deleteUserSuccess = () => ({
 
 export const deleteUserFailed = () => ({
     type: actionTypes.FETCH_ALL_USERS_FAILD,
+})
+
+
+export const editAUser = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await editUserService(data);
+            if(res && res.errCode === 0){
+                toast.success("Update the user succeed!")
+                dispatch(editUserSuccess())
+                dispatch(fetchAllUsersStart())
+            }else{
+                toast.error("Update the user error!")
+                dispatch(editUserFailed());
+            }
+        } catch(e) {
+            toast.error("Update the user error!")
+            dispatch(editUserFailed());
+            console.log('editUserFailed error', e)
+        }
+    }
+}
+
+export const editUserSuccess = () => ({
+    type: actionTypes.EDIT_USER_SUCCESS,
+})
+
+export const editUserFailed = () => ({
+    type: actionTypes.EDIT_USER_FAILD,
 })
 

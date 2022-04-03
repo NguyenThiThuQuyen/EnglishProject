@@ -163,7 +163,7 @@ let deleteUser = (userId) => {
 let updateUserData = (data) => {
     return new Promise(async(resolve, reject) => {
         try{
-            if(!data.id){
+            if(!data.id || !data.roleId || !data.gender){
                 // console.log('check nodejs ', data)
                 resolve({
                     errCode: 2,
@@ -179,6 +179,9 @@ let updateUserData = (data) => {
                     user.firstName = data.firstName;
                     user.lastName = data.lastName;
                     user.address = data.address;
+                    user.roleId = data.roleId;
+                    user.gender = data.gender;
+
                     await user.save();
                     resolve({
                         errCode: 0,

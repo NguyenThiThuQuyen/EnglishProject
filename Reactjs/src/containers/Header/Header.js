@@ -18,7 +18,7 @@ class Header extends Component {
 
     render() {
         const { processLogout, language, userInfo } = this.props;
-        console.log('check userinfo', userInfo)
+        // console.log('check userinfo', userInfo)
         return (
             <React.Fragment>
                 <div className="home-header-container sticky-top">

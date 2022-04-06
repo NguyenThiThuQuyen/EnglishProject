@@ -4,7 +4,10 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 import imglogin from '../../images/hinh1.png'
 import './Login.scss';
+import {IconContext} from "react-icons";
 import { FormatteMessage } from 'react-intl';
+import { FaFacebook } from 'react-icons/fa';
+import { BsYoutube } from 'react-icons/bs';
 import { handleLoginApi } from '../../services/userService';
 // import { userLoginSuccess } from '../../store/actions';
 
@@ -118,6 +121,16 @@ class Login extends Component {
                                         {this.state.errMessage}
                                     </div>
                                     <button className='btn-login mt-5' onClick={() => {this.handleLogin()}}> LOGIN</button>
+                                    <div className="mt-3">
+                                        <IconContext.Provider
+                                            value={{ color: 'blue', size: '45px' }}
+                                            >
+                                            <div>
+                                                <FaFacebook />
+                                                <BsYoutube />
+                                            </div>
+                                        </IconContext.Provider>
+                                    </div>
                                 </div>
                             </div>
                         </div>

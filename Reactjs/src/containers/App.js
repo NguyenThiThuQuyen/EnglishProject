@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
+import Dictionary from './System/Guest/Dictionary/Dictionary';
 
 
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
@@ -45,7 +46,7 @@ class App extends Component {
             <Fragment>
                 <Router history={history}>
                     <div className="main-container">
-                        {this.props.isLoggedIn && <Header />}
+                        {this.props.isLoggedIn}
                         <span className="content-container">
                             <CustomScrollbars style={{ height: "100vh", width: "100%" }}>
                                 <Switch>
@@ -53,6 +54,7 @@ class App extends Component {
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
+                                    <Route path={path.DICTIONARY} component={Dictionary} />
                                 </Switch>
                             </CustomScrollbars>
                         </span>

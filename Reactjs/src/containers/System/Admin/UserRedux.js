@@ -8,7 +8,7 @@ import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils";
 import * as actions from "../../../store/actions";
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import TableManageUser from './TableManageUser'
+import TableManageUser from './TableManageUser';
 class UserRedux extends Component {
     constructor(props) {
         super(props);
@@ -185,7 +185,6 @@ class UserRedux extends Component {
         let language = this.props.language;
         let isGetGenders = this.props.isLoadingGender;
 
-
         let {
             email, password, firstName, lastName,
             address, gender, role, avatar
@@ -198,7 +197,7 @@ class UserRedux extends Component {
                 </div>
                 <div className="user-redux-body mt-5">
                     <div className="container">
-                        <div className="row">
+                        <div className="row boder-container">
                             <div className="col-12"><FormattedMessage id="manage-user.add"/></div>
                             <div className='col-12'>
                                 {isGetGenders === true ? 'Loading genders': ''}
@@ -315,6 +314,8 @@ class UserRedux extends Component {
                                     }
                                 </button>
                             </div>
+                        </div>
+                        <div className="row">
                             <div className="col-12 my-5">
                                 <TableManageUser
                                     handleEditUserFromParentKey={this.handleEditUserFromParent}

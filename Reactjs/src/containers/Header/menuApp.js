@@ -10,11 +10,6 @@ export const adminMenu = [
             },
             {
                 name: 'menu.admin.manage-student', link: '/system/user-student'
-                // subMenus: [
-                //     { name: 'menu.system.system-administrator.user-manage', link: '/system/user-manage' },
-                //     { name: 'menu.system.system-administrator.user-redux', link: '/system/user-redux' },
-                //     // { name: 'menu.system.system-administrator.register-package-group-or-account', link: '/system/register-package-group-or-account' },
-                // ]
             },
             {
                 name: 'menu.admin.manage-admin', link: '/system/user-admin'
@@ -26,7 +21,7 @@ export const adminMenu = [
         name: 'menu.admin.topic',
         menus: [
             {
-                name: 'menu.admin.manage-topic', link: '/system/manage-topic'
+                name: 'menu.admin.manage-topic', link: '/system/topic-redux'
             }
         ]
     },

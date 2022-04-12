@@ -163,7 +163,7 @@ class UserManage extends Component {
                                             <tr key={index}>
                                                 <td>{item.email}</td>
                                                 <td>{item.firstName}</td>
-                                                <td>{item.lastName}</td>
+                                                <td>{item.lastName}</td>  
                                                 <td>{item.address}</td>
                                                 <td>
                                                     <button className="btn" onClick={() => this.handleEditUser(item)}><FontAwesomeIcon style={{color: 'blue'}} icon={faPencilAlt} /></button>

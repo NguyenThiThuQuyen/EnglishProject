@@ -9,7 +9,22 @@
     },
     "banner": {
         "title1": "Welcome to",
-        "title2": "Online English Learning Platform"
+        "title2": "Online English Learning Platform",
+        "login": "LOGIN",
+        "register": "REGISTER"
+    },
+    "table-user": {
+        "email": "Email",
+        "firstname": "First Name",
+        "lastname": "Last Name",
+        "address": "Address",
+        "avatar": "Avatar",
+        "action": "Action"
+    },
+    "table-topic": {
+        "topic-name": "Topic name",
+        "topic-image": "Image",
+        "action": "Action"
     },
     "menu": {
         "admin": {
@@ -39,6 +54,13 @@
         "save": "Save",
         "cancel": "Cancel",
         "edit": "Save changes"
-
+    },
+    "manage-topic": {
+        "add": "Add new topic",
+        "topic-name": "Topic name",
+        "topic-image": "Image",
+        "save": "Save",
+        "cancel": "Cancel",
+        "edit": "Save changes"
     }
 }

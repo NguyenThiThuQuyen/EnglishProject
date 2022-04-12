@@ -11,6 +11,7 @@ const initialState = {
     started: true,
     language: 'en',
     systemMenuPath: '/system/user-manage',
+    userSystemMenuPath: '/system/dictionary',
     contentOfConfirmModal: {
         ...initContentOfConfirmModal
     }

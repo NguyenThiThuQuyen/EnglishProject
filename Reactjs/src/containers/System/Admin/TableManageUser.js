@@ -6,6 +6,7 @@ import * as actions from "../../../store/actions";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faArchive } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { LANGUAGES } from "../../../utils";
 
 
 class TableManageUser extends Component {
@@ -39,6 +40,8 @@ class TableManageUser extends Component {
         this.props.handleEditUserFromParentKey(user)
     }
 
+    
+
     render() {
         // console.log("check all users: ", this.props.listUsers)
         // console.log("check state: ", this.state.usersRedux)
@@ -47,22 +50,30 @@ class TableManageUser extends Component {
                     <table id="TableManageUser" className="table table-striped">
                          <thead className='bg-success text-white'>
                             <tr>
-                                <th scope="col">Email</th>
-                                <th scope="col">First name</th>
-                                <th scope="col">Last name</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Action</th>
+                                <th scope="col"><FormattedMessage id="table-user.email"/></th>
+                                <th scope="col"><FormattedMessage id="table-user.firstname"/></th>
+                                <th scope="col"><FormattedMessage id="table-user.lastname"/></th>
+                                <th scope="col"><FormattedMessage id="table-user.address"/></th>
+                                <th scope="col"><FormattedMessage id="table-user.avatar"/></th>
+                                <th scope="col"><FormattedMessage id="table-user.action"/></th>
                             </tr>
                         </thead>
                         <tbody>
                             {arrUsers && arrUsers.length > 0 &&
                                 arrUsers.map((item, index) => {
+                                    let imageBase64 =''
+                                    if (item.image) {
+                                        imageBase64 = new Buffer(item.image, 'base64').toString('binary')  
+                                    }
                                     return (
                                     <tr key = {index}>
                                         <td>{item.email}</td>
                                         <td>{item.firstName}</td>
                                         <td>{item.lastName}</td>
                                         <td>{item.address}</td>
+                                        <td>
+                                            <img src={imageBase64} className='img-img' style={{width: '80px', height: '80px'}}/>
+                                        </td>
                                         <td>
                                             <button 
                                                 className="btn"

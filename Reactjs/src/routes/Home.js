@@ -9,7 +9,9 @@ class Home extends Component {
         let linkToRedirect = isLoggedIn ? '/system/user-manage' : '/home';
 
         return (
-            <Redirect to={linkToRedirect} />
+            <React.Fragment>
+                <Redirect to={linkToRedirect} />
+            </React.Fragment>
         );
     }
 }

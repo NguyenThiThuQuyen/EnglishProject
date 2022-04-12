@@ -9,7 +9,22 @@
     },
     "banner": {
         "title1": "Chào mừng bạn đến với",
-        "title2": "Nền Tảng Học Tiếng Anh Trực Tuyến"
+        "title2": "Nền Tảng Học Tiếng Anh Trực Tuyến",
+        "login": "ĐĂNG NHẬP",
+        "register": "ĐĂNG KÝ"
+    },
+    "table-user": {
+        "email": "Email",
+        "firstname": "Tên",
+        "lastname": "Họ",
+        "address": "Địa chỉ",
+        "avatar": "Ảnh đại diện",
+        "action": "Hành động"
+    },
+    "table-topic": {
+        "topic-name": "Tên chủ đề",
+        "topic-image": "Hình ảnh",
+        "action": "Hành động"
     },
     "menu": {
         "admin": {
@@ -37,6 +52,15 @@
         "gender": "Giới tính",
         "image": "Ảnh đại diện",
         "role": "Quyền người dùng",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "edit": "Lưu thay đổi"
+    },
+
+    "manage-topic": {
+        "add": "Thêm mới chủ đề",
+        "topic-name": "Họ",
+        "topic-image": "Ảnh đại diện",
         "save": "Lưu",
         "cancel": "Hủy",
         "edit": "Lưu thay đổi"

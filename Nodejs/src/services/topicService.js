@@ -1,7 +1,6 @@
 import db from "../models/index";
 import bcrypt from "bcryptjs";
 
-
 let getAllTopics = (topicId) => {
     return new Promise(async(resolve, reject) => {
         try{
@@ -59,7 +58,9 @@ let updateTopicData = (data) => {
                 
                 if (topic) {
                     topic.topicName = data.topicName;
-                    topic.topicImage = data.topicImage;
+                    if(data.topicImage) {
+                        topic.topicImage = data.topicImage;
+                    }
                     await topic.save();
                     resolve({
                         errCode: 0,

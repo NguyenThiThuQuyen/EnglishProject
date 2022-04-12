@@ -7,12 +7,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../utils';
 import { changeLanguageApp } from '../../store/actions/appActions';
+
 class HomeHeader extends Component {
 
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language)
     }
-
 
     render() {
         let language = this.props.language;
@@ -47,17 +47,6 @@ class HomeHeader extends Component {
                         <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
                     </div>
                 </div>                
-            </div>
-            <div className="home-header-banner">
-                <div className="title1">
-                    <FormattedMessage id="banner.title1" /> 
-                    <a className='font header-logo' style={{color: 'green', fontSize:'55px', textDecoration: 'none'}} href=""> Italk</a>
-                </div>
-                <div className="title2"><FormattedMessage id="banner.title2" /></div>
-                <div className="btn-item mt-4">
-                    <button type="button" className="btn-log mr-4">ĐĂNG NHẬP</button>
-                    <button type="button" className="btn-register">ĐĂNG KÝ</button>
-                </div>
             </div>
         </React.Fragment>
         );

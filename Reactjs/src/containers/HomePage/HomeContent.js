@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './HomeContent.scss';
 
 import * as BsIcons from 'react-icons/bs';
-
+import { FormattedMessage } from 'react-intl';
 import img1 from '../../assets/images/hinh6.png'
 import img2 from '../../assets/images/hinh3.png'
 import img3 from '../../assets/images/hinh7.png'
@@ -18,6 +18,17 @@ class HomeContent extends Component {
     render() {
         return (
             <React.Fragment>
+                <div className="home-header-banner">
+                    <div className="title1">
+                        <FormattedMessage id="banner.title1" /> 
+                        <a className='font header-logo' style={{color: 'green', fontSize:'55px', textDecoration: 'none'}} href=""> Italk</a>
+                    </div>
+                    <div className="title2"><FormattedMessage id="banner.title2" /></div>
+                    <div className="btn-item mt-4">
+                        <button type="button" className="btn-log mr-4"><FormattedMessage id="banner.login"/></button>
+                        <button type="button" className="btn-register"><FormattedMessage id="banner.register"/></button>
+                    </div>
+                </div>
                 <div className="container-fluid bg-content-color p-0">
                 <div className="container">     
                     <div className="row">

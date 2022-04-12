@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
-import TopicManage from '../containers/System/Topic/TopicManage';
+// import TopicManage from '../containers/System/Topic/TopicManage';
+import TopicRedux from '../containers/System/Admin/Topic/TopicRedux';
 import UserManage from '../containers/System/UserManage';
 import UserRedux from '../containers/System/Admin/UserRedux';
 import Header from '../containers/Header/Header';
@@ -15,13 +16,9 @@ class System extends Component {
                 <div className="system-container">
                 <div className="system-list">
                     <Switch>
-                        {/* user */}
-                        <Route path="/system/topic-manage" component={TopicManage} />
-
-                        {/* topic */}
                         <Route path="/system/user-manage" component={UserManage} />
                         <Route path="/system/user-redux" component={UserRedux} />
-                        {/* <Route path="/system/register-package-group-or-account" component={RegisterPackageGroupOrAcc} /> */}
+                        <Route path="/system/topic-redux" component={TopicRedux} />
                         <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                     </Switch>
                 </div>
@@ -33,12 +30,14 @@ class System extends Component {
 
 const mapStateToProps = state => {
     return {
-        systemMenuPath: state.app.systemMenuPath
+        systemMenuPath: state.app.systemMenuPath,
+        isLoggedIn: state.user.isLoggedIn
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+
     };
 };
 

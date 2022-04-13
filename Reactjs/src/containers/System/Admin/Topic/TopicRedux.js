@@ -32,8 +32,13 @@ class TopicRedux extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot){
         if(prevProps.listTopics !== this.props.listTopics) {
+            // topicRedux: this.props.listTopics,
             this.setState({
-                topicRedux: this.props.listTopics
+                topicName: '',
+                topicImage: '',
+                action: CRUD_ACTIONS.CREATE,
+                previewImgURL: ''
+
             })
         }
     }

@@ -1,3 +1,14 @@
+export const studentMenu = [
+    {
+        name: 'homeheader.topic', link: '/topic'
+    },
+    {
+        name: 'homeheader.storystore', link: '/storystore'
+    },
+    {
+        name: 'homeheader.dictionary', link: '/dictionary'
+    }
+];
 export const adminMenu = [
     { //quản lý người dùng
         name: 'menu.admin.manage-user',

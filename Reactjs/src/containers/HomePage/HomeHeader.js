@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 import './HomeHeader.scss';
@@ -9,7 +10,6 @@ import { LANGUAGES } from '../../utils';
 import { changeLanguageApp } from '../../store/actions/appActions';
 
 class HomeHeader extends Component {
-
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language)
     }
@@ -26,25 +26,53 @@ class HomeHeader extends Component {
                     </div>
                     <div className="center-content">
                         <div className="child-content">
-                            <div><b><FormattedMessage id="homeheader.topic"/></b></div>
+                            <div>
+                                <Link to="/home" className='style-link active'>
+                                    <b><FormattedMessage id="homeheader.home"/></b>
+                                </Link>
+                            </div>
                         </div>
                         <div className="child-content">
-                            <div><b><FormattedMessage id="homeheader.storystore"/></b></div>
+                            <div>
+                                <Link to="/topic" className='style-link active'>
+                                    <b><FormattedMessage id="homeheader.topic"/></b>
+                                </Link>
+                            </div>
                         </div>
                         <div className="child-content">
-                            <div><b><FormattedMessage id="homeheader.dictionary"/></b></div>
+                            <div>
+                                <Link to="/storystore" className='style-link active'>
+                                    <b><FormattedMessage id="homeheader.storystore"/></b>
+                                </Link>
+                            </div>
                         </div>
                         <div className="child-content">
-                            <div><b><FormattedMessage id="homeheader.forum"/></b></div>
+                            <div>
+                                <Link to="/dictionary" className='style-link active'>
+                                    <b><FormattedMessage id="homeheader.dictionary"/></b>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="child-content">
+                            <div>
+                                <Link to="/forum" className='style-link active'>
+                                    <b><FormattedMessage id="homeheader.forum"/></b>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <div className="right-content">
-                        <div className="support">
-                            <FontAwesomeIcon  style={{ fontSize: "1rem", marginLeft: "1rem", cursor: "pointer"}} icon={faQuestionCircle} />
-                            <FormattedMessage id="homeheader.support"/>
+                        <div className="dropdown">
+                            <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <FontAwesomeIcon  style={{ fontSize: "1rem", paddingRight: '.5rem', cursor: "pointer"}} icon={faQuestionCircle} />
+                                <FormattedMessage id="homeheader.support"/>
+                            </a>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VIETNAMESE</span></div>
+                                <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>ENGLISH</span></div>
+                            </div>
                         </div>
-                        <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span></div>
-                        <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span></div>
+                        
                     </div>
                 </div>                
             </div>

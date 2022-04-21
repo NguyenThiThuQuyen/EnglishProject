@@ -1,6 +1,7 @@
 export const path = {
     HOME: '/',
     HOMEPAGE: '/home',
+    TOPIC: '/topic',
     DICTIONARY: '/dictionary',
     LOGIN: '/login',
     LOG_OUT: '/logout',
@@ -26,4 +27,9 @@ export const dateFormat = {
 export const YesNoObj = {
     YES: 'Y',
     NO: 'N'
+}
+
+export const USER_ROLE = {
+    ADMIN: 'R1',
+    STUDENT: 'R2'
 }

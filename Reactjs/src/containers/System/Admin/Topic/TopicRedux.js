@@ -3,7 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import './TopicRedux.scss'
+import './TopicRedux.scss';
 import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../../utils";
 import * as actions from "../../../../store/actions";
 import Lightbox from 'react-image-lightbox';
@@ -38,7 +38,6 @@ class TopicRedux extends Component {
                 topicImage: '',
                 action: CRUD_ACTIONS.CREATE,
                 previewImgURL: ''
-
             })
         }
     }
@@ -48,6 +47,7 @@ class TopicRedux extends Component {
         let file = data[0];
         if(file) {
             let base64 = await CommonUtils.getBase64(file)
+            // console.log('check image: ', base64)
             let objectUrl = URL.createObjectURL(file)
             this.setState({
                 previewImgURL: objectUrl,

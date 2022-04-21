@@ -3,13 +3,16 @@ import {getAllCodeService,
         createNewUserService,
         getAllUsers,
         deleteUserService,
-        editUserService }
+        editUserService,
+     }
     from "../../services/userService";
 
 import {createNewTopicService,
         getAllTopics,
         deleteTopicService,
-        editTopicService }
+        editTopicService,
+        getTopicHomeService,
+     }
     from "../../services/topicService";
 
 import { toast } from "react-toastify";
@@ -206,6 +209,10 @@ export const fetchAllTopicsStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllTopics("ALL");
+            console.log('check res: ', res)
+
+            let res1 = await getTopicHomeService('');
+            console.log('check res1 get topic: ', res1)
             if(res && res.errCode === 0){
                 dispatch(fetchAllTopicsSuccess(res.topics.reverse()))
             }else{
@@ -284,3 +291,28 @@ export const editTopicSuccess = () => ({
 export const editTopicFailed = () => ({
     type: actionTypes.EDIT_TOPIC_FAILD,
 })
+
+export const fetchTopTopic = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getTopicHomeService('2');
+            console.log('check res topic: ', res)
+            if(res && res.errCode === 0){
+                dispatch({
+                    type: actionTypes.FETCH_TOP_TOPICS_SUCCESS,
+                    dataTopics: res.data
+                })
+            }else {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_TOPICS_FAILD,
+                })
+            }
+
+        } catch(e) {
+            console.log('FETCH_TOP_TOPICS_FAILD: ', e)
+            dispatch({
+                type: actionTypes.FETCH_TOP_TOPICS_FAILD,
+            })
+        }
+    }
+}

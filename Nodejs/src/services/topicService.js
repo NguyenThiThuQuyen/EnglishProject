@@ -100,9 +100,38 @@ let deleteTopic = (topicId) => {
     })
 }
 
+let getTopicHome = (limitInput) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            let topics = await db.Topic.findAll({
+                limit: limitInput,
+                // where: { id: req.params.id }, 
+                order: [['createdAt', 'DESC']],
+                attributes: {
+                    exclude: ['topicImage']
+                },
+                // include: [
+                //     { model: db.Topic,
+                //         // as: 'genderData',
+                //         atributes: ['valueEn', 'valueVi'] }
+                // ],
+                // raw: true,
+                // nest: true,
+            })
+            resolve({
+                errCode: 0,
+                data: topics
+            })
+        }catch(e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     createNewTopic: createNewTopic,
     updateTopicData: updateTopicData,
     deleteTopic: deleteTopic,
     getAllTopics: getAllTopics,
+    getTopicHome: getTopicHome,
 }

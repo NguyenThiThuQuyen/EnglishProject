@@ -5,7 +5,8 @@ const initialState = {
     genders: [],
     roles: [],
     users: [],
-    topics: []
+    topics: [],
+    topTopics: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -40,6 +41,7 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state
             }
+            
         case actionTypes.FETCH_ROLE_FAILD:
             state.roles = []
             return {
@@ -71,7 +73,19 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             }
-        
+
+        case actionTypes.FETCH_TOP_TOPICS_SUCCESS:
+            state.topTopics = action.dataTopics;
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_TOP_TOPICS_FAILD:
+            state.topTopics = [];
+            return {
+                ...state,
+            }
+
         default:
             return state;
     }

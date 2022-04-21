@@ -13,7 +13,7 @@ function Dictionary() {
         try{
             const data = await axios.get(
                 `https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`
-            );
+        );
         setMeanings(data.data)
         }catch (error){
             console.log(error)

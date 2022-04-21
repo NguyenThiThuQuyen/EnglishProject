@@ -1,4 +1,6 @@
-
+Link {
+    color: black;
+}
     .home-header-container {
         height: 75px;
         width: 100%;
@@ -34,6 +36,24 @@
                 justify-content: space-between;
                 align-items: center;
                 cursor: pointer;
+
+                .child-content {
+                    
+                    .style-link {
+                        text-decoration: none;
+                        color: black;
+                        // &.active {
+                        //     opacity: 1;                        
+                        //     b {
+                        //         color: orange;
+                        //     }
+                        // }
+                        
+                    }
+                    .style-link:hover {
+                        color: green;
+                    }
+                }
             }
 
             .right-content {
@@ -50,8 +70,9 @@
                 }
 
                 .language-vi {
+                    padding-left: 20%;
                     cursor: pointer;
-                    opacity: 0.2;
+                    opacity: 0.8;
                     &.active {
                         opacity: 1;                        
                         span {
@@ -65,8 +86,9 @@
 
                 .language-en {
                     margin: 0 10px;
+                    padding-left: 20%;
                     cursor: pointer;
-                    opacity: 0.2;
+                    opacity: 0.8;
                     &.active {
                         opacity: 1;                        
                         span {

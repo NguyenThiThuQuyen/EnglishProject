@@ -40,8 +40,8 @@ class TableManageTopic extends Component {
     
 
     render() {
-        console.log('check list topic: ', this.props.listTopics)
-        console.log('check state: ', this.state.topicsRedux)
+        // console.log('check list topic: ', this.props.listTopics)
+        // console.log('check state: ', this.state.topicsRedux)
         let arrTopics = this.state.topicsRedux;
         return (
                     <table id="TableManageUser" className="table table-striped">

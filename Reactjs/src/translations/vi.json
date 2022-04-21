@@ -1,10 +1,11 @@
 {
     "homeheader": {
+        "home": "TRANG CHỦ",
         "topic": "CHỦ ĐỀ",
         "storystore": "KHO TRUYỆN",
         "dictionary": "TỪ ĐIỂN",
         "forum": "DIỄN ĐÀN",
-        "support": "HỖ TRỢ",
+        "support": "NGÔN NGỮ",
         "welcome": "Xin chào, "
     },
     "banner": {

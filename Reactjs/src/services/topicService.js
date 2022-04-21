@@ -22,10 +22,16 @@ const editTopicService = (inputData) => {
     return axios.put('/api/edit-topic', inputData);
 }
 
+const getTopicHomeService = (limit) => {
+    return axios.get(`/api/topic-home?limit=${limit}`)
+}
+
 
 export {
     getAllTopics, 
     createNewTopicService, 
     deleteTopicService,
-    editTopicService
+    editTopicService,
+    getTopicHomeService,
+
 }

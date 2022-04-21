@@ -36,6 +36,22 @@
             color:white;
             font-size: 16px;
             background-color: rgb(14, 61, 14);
+
+            .style-link {
+                text-decoration: none;
+                color: white;
+                // &.active {
+                //     opacity: 1;                        
+                //     b {
+                //         color: orange;
+                //     }
+                // }
+                
+            }
+            .style-link:hover {
+
+                color: black;
+            }
         }
 
         .btn-log:hover {
@@ -51,6 +67,22 @@
             color:black;
             font-size: 16px;
             background-color: rgb(197, 212, 197);
+
+            .style-link {
+                text-decoration: none;
+                color: black;
+                // &.active {
+                //     opacity: 1;                        
+                //     b {
+                //         color: orange;
+                //     }
+                // }
+                
+            }
+            .style-link:hover {
+
+                color: white;
+            }
         }
 
         .btn-register:hover {

@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+// import { adminMenu, studentMenu } from './menuApp'
+import { adminMenu } from './menuApp'
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
-import { adminMenu } from './menuApp';
 import { FormattedMessage } from 'react-intl';
-
+import _ from 'lodash';
 import './Header.scss';
-import { LANGUAGES } from "../../utils";
+import { LANGUAGES, USER_ROLE } from "../../utils";
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            menuApp: []
+        }
+    }
     handleChangeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language)
     }
+
+    // componentDidMount() {
+    //     let { userInfo } = this.props;
+    //     let menu = [];
+    //     if (userInfo && !_.isEmpty(userInfo)) {
+    //         let role = userInfo.roleId;
+    //         if(role === USER_ROLE.ADMIN) {
+    //             menu = adminMenu;
+    //         }
+
+    //         if(role === USER_ROLE.STUDENT) {
+    //             menu = studentMenu;
+    //         }
+    //     }
+    //     this.setState({
+    //         menuApp: menu
+    //     })
+    // }
 
     render() {
         const { processLogout, language, userInfo } = this.props;
@@ -29,6 +51,7 @@ class Header extends Component {
                         <div className="center-content">
                             {/* thanh navigator */}
                             <Navigator menus={adminMenu} />
+                            {/* <Navigator menus={this.state.menuApp} /> */}
                         </div>
                         <div className="right-content">
                             <span className='welcome'>

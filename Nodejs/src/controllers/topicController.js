@@ -45,10 +45,28 @@ let handleDeleteTopic =  async(req, res) => {
     return res.status(200).json(message);
  }
 
+ //export ra interface
+ let getTopicHome = async(req, res) => {
+    let limit = req.query.limit;
+    if(!limit) limit = 10;
+    try {
+        // console.log('check res: ', response)
+        let response = await topicService.getTopicHome(limit);
+        return res.status(200).json(response);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server...'
+        })
+    }
+}
+
 
 module.exports = {
     handleCreateNewTopic: handleCreateNewTopic,
     handleEditTopic: handleEditTopic,
     handleDeleteTopic: handleDeleteTopic,
     handleGetAllTopics: handleGetAllTopics,
+    getTopicHome: getTopicHome,
 }

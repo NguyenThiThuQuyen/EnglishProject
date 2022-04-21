@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './HomeContent.scss';
-
+import { Link } from "react-router-dom";
 import * as BsIcons from 'react-icons/bs';
 import { FormattedMessage } from 'react-intl';
 import img1 from '../../assets/images/hinh6.png'
@@ -25,8 +25,16 @@ class HomeContent extends Component {
                     </div>
                     <div className="title2"><FormattedMessage id="banner.title2" /></div>
                     <div className="btn-item mt-4">
-                        <button type="button" className="btn-log mr-4"><FormattedMessage id="banner.login"/></button>
-                        <button type="button" className="btn-register"><FormattedMessage id="banner.register"/></button>
+                        <button type="button" className="btn-log mr-4">
+                            <Link to="/login" className='style-link'>
+                                <FormattedMessage id="banner.login"/>
+                            </Link>
+                        </button>
+                        <button type="button" className="btn-register">
+                            <Link to="" className='style-link'>
+                                <FormattedMessage id="banner.register"/>
+                            </Link>
+                        </button>
                     </div>
                 </div>
                 <div className="container-fluid bg-content-color p-0">

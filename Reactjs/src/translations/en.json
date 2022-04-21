@@ -1,10 +1,11 @@
 {
     "homeheader": {
+        "home": "HOME PAGE",
         "topic" : "TOPIC",
         "storystore": "STORY STORE",
         "dictionary": "DICTIONRY",
         "forum": "FORUM",
-        "support": "SUPPORT",
+        "support": "LANGUAGE",
         "welcome": "Welcome, "
     },
     "banner": {

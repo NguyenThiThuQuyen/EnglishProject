@@ -6,7 +6,6 @@ import topicController from "../controllers/topicController";
 import lessionListController from "../controllers/lessionListController";
 
 let router = express.Router();
-
 let initWebRoutes = (app) => {
     router.get('/', homeController.getHomePage);
     router.get('/hoidanit', (req, res) => {
@@ -38,8 +37,10 @@ let initWebRoutes = (app) => {
 
 
     //lession list
+    router.get('/api/get-all-lession-lists', lessionListController.handleGetAllLessionLists);
     router.post('/api/create-new-lession-list', lessionListController.handleCreateNewLessionList);
-
+    router.put('/api/edit-lession-list', lessionListController.handleEditLessionList);
+    
 
     return app.use("/", router);
 }

@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Topic.hasMany(models.LessionList, {
-        foreignKey: 'lessionListId', 
-        as: 'lessionListData'})
+        foreignKey: 'topicId', 
+        as: 'topicData'})
     }
   };
   Topic.init({

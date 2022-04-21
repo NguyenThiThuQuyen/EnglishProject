@@ -1,37 +1,38 @@
 import db from "../models/index";
 import bcrypt from "bcryptjs";
 
-// let getAllTopics = (topicId) => {
-//     return new Promise(async(resolve, reject) => {
-//         try{
-//             let topics = '';
-//             if(topicId === 'ALL') {
-//                 topics = await db.Topic.findAll({
-//                     attributes:{
-//                         exclude: ['password']
-//                     }
-//                 })
-//             }
-//             if(topicId && topicId !== 'ALL') {
-//                 topics = await db.Topic.findOne({
-//                     where: { id: topicId},
-//                     attributes:{
-//                         exclude: ['password']
-//                     }
-//                 })
-//             }
-//             resolve(topics)
-//         }catch(e) {
-//             reject(e)
-//         }
-//     })
-// }
+let getAllLessionLists = (lessionListId) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            let lessionLists = '';
+            if(lessionListId === 'ALL') {
+                lessionLists = await db.LessionList.findAll({
+                    // attributes:{
+                    //     exclude: ['password']
+                    // }
+                })
+            }
+            if(lessionListId && lessionListId !== 'ALL') {
+                lessionLists = await db.LessionList.findOne({
+                    where: { id: lessionListId},
+                    // attributes:{
+                    //     exclude: ['password']
+                    // }
+                })
+            }
+            resolve(lessionLists)
+        }catch(e) {
+            reject(e)
+        }
+    })
+}
 
 let createNewLessionList = async (data) => {
     return new Promise(async(resolve, reject) => {
         try{
             await db.LessionList.create({
                 name: data.name,
+                topicId: data.topicId
             })
             resolve('create a new lession list succeed')
         }catch(e){
@@ -40,43 +41,40 @@ let createNewLessionList = async (data) => {
     })
 }
 
-// let updateTopicData = (data) => {
-//     return new Promise(async(resolve, reject) => {
-//         try{
-//             if(!data.id){
-//                 // console.log('check nodejs ', data)
-//                 resolve({
-//                     errCode: 2,
-//                     errMessage: 'Missing required parameters'
-//                 })
-//             }else{
-//                 let topic = await db.Topic.findOne({
-//                     where: {id: data.id},
-//                     raw: false
-//                 })
+let updateLessionListData = (data) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            if(!data.id || !data.topicId){
+                resolve({
+                    errCode: 2,
+                    errMessage: 'Missing required parameters'
+                })
+            }else{
+                let lessionList = await db.LessionList.findOne({
+                    where: {id: data.id},
+                    raw: false
+                })
                 
-//                 if (topic) {
-//                     topic.topicName = data.topicName;
-//                     if(data.topicImage) {
-//                         topic.topicImage = data.topicImage;
-//                     }
-//                     await topic.save();
-//                     resolve({
-//                         errCode: 0,
-//                         message: 'Update the topic succeeds!'
-//                     });
-//                 }else {
-//                     resolve({
-//                         errCode: 1,
-//                         errMessage: `Topic not found!`
-//                     });
-//                 }
-//             }
-//         }catch(e){
-//             reject(e);
-//         }
-//     })
-// }
+                if (lessionList) {
+                    lessionList.name = data.name;
+                    lessionList.topicId = data.topicId;
+                    await lessionList.save();
+                    resolve({
+                        errCode: 0,
+                        message: 'Update the lession list succeeds!'
+                    });
+                }else {
+                    resolve({
+                        errCode: 1,
+                        errMessage: `Lession list not found!`
+                    });
+                }
+            }
+        }catch(e){
+            reject(e);
+        }
+    })
+}
 
 // let deleteTopic = (topicId) => {
 //     return new Promise (async(resolve, reject) => {
@@ -126,8 +124,6 @@ let createNewLessionList = async (data) => {
 
 module.exports = {
     createNewLessionList: createNewLessionList,
-    // updateTopicData: updateTopicData,
-    // deleteTopic: deleteTopic,
-    // getAllTopics: getAllTopics,
-    // getTopicHome: getTopicHome,
+    updateLessionListData: updateLessionListData,
+    getAllLessionLists: getAllLessionLists,
 }

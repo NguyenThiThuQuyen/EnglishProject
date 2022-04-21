@@ -1,0 +1,28 @@
+.row {
+
+    .col-3 {
+
+    }
+    .col-6{
+
+        .card-img {
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+            align-items: center;
+        }
+
+        .card-content {
+            
+            .c-content{
+                padding-top: 100px;
+                // text-align: center;
+                color: rgb(34, 20, 20);
+            }
+        }
+    }
+    
+    .col-3 {
+        
+    }
+}

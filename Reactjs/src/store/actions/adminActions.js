@@ -295,7 +295,7 @@ export const editTopicFailed = () => ({
 export const fetchTopTopic = () => {
     return async (dispatch, getState) => {
         try {
-            let res = await getTopicHomeService('2');
+            let res = await getTopicHomeService('');
             console.log('check res topic: ', res)
             if(res && res.errCode === 0){
                 dispatch({

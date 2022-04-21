@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       LessionList.belongsTo(models.Topic, {
-        foreignKey: 'lessionListId',
-        as: 'lessionListData'})
+        foreignKey: 'topicId',
+        targetKey: 'id',
+        as: 'topicData'})
     }
   };
   LessionList.init({

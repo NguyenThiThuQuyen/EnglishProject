@@ -107,9 +107,9 @@ let getTopicHome = (limitInput) => {
                 limit: limitInput,
                 // where: { id: req.params.id }, 
                 order: [['createdAt', 'DESC']],
-                attributes: {
-                    exclude: ['topicImage']
-                },
+                // attributes: {
+                //     exclude: ['topicImage']
+                // },
                 // include: [
                 //     { model: db.Topic,
                 //         // as: 'genderData',

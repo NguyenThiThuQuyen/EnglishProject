@@ -2,24 +2,24 @@ import lessionListService from "../services/lessionListService";
 
 const path = require('path')
 
-// let handleGetAllTopics = async(req, res) => {
-//     let id = req.query.id; //all, id
+let handleGetAllLessionLists = async(req, res) => {
+    let id = req.query.id; //all, id
 
-//     if(!id) {
-//         return res.status(200).json({
-//             errCode: 0,
-//             errMessage: 'Missing required parmeters',
-//             topics: []
-//         })
-//     }
+    if(!id) {
+        return res.status(200).json({
+            errCode: 0,
+            errMessage: 'Missing required parmeters',
+            lessionLists: []
+        })
+    }
 
-//     let topics = await topicService.getAllTopics(id);
-//     return res.status(200).json({
-//         errCode: 0,
-//         errMessage: 'Ok',
-//         topics
-//     })
-// }
+    let lessionLists = await lessionListService.getAllLessionLists(id);
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'Ok',
+        lessionLists
+    })
+}
 
 let handleCreateNewLessionList = async(req, res) => {
     let message = await lessionListService.createNewLessionList(req.body);
@@ -28,11 +28,11 @@ let handleCreateNewLessionList = async(req, res) => {
 }
 
 
-// let handleEditTopic = async(req, res) => {
-//     let data = req.body;
-//     let message = await topicService.updateTopicData(data);
-//     return res.status(200).json(message)
-// }
+let handleEditLessionList = async(req, res) => {
+    let data = req.body;
+    let message = await lessionListService.updateLessionListData(data);
+    return res.status(200).json(message)
+}
 
 // let handleDeleteTopic =  async(req, res) => {
 //     if(!req.body.id){
@@ -65,6 +65,8 @@ let handleCreateNewLessionList = async(req, res) => {
 
 module.exports = {
     handleCreateNewLessionList: handleCreateNewLessionList,
+    handleEditLessionList: handleEditLessionList,
+    handleGetAllLessionLists: handleGetAllLessionLists,
     // handleEditTopic: handleEditTopic,
     // handleDeleteTopic: handleDeleteTopic,
     // handleGetAllTopics: handleGetAllTopics,

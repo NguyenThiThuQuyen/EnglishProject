@@ -27,6 +27,11 @@
         "topic-image": "Image",
         "action": "Action"
     },
+    "table-lesson-list": {
+        "name": "Lesson list name",
+        "topicId": "Topic name",
+        "action": "Action"
+    },
     "menu": {
         "admin": {
             "manage-user": "Users manage",
@@ -36,10 +41,10 @@
             "crud-redux": "CRUD redux",
             "topic": "Topic",
             "manage-topic": "Topics manage",
-            "list-lession": "Lession list",
-            "manage-list-lession": "Lession list manage",
-            "lession": "Lession",
-            "manage-lession": "Lession manage"
+            "lesson-list": "Lession list",
+            "manage-lesson-list": "Lession list manage",
+            "lesson": "Lession",
+            "manage-lesson": "Lession manage"
         }
     },
     "manage-user": {
@@ -60,6 +65,14 @@
         "add": "Add new topic",
         "topic-name": "Topic name",
         "topic-image": "Image",
+        "save": "Save",
+        "cancel": "Cancel",
+        "edit": "Save changes"
+    },
+    "manage-lesson-list": {
+        "add": "Add new lesson list",
+        "name": "Lesson list name",
+        "topicId": "Topic name",
         "save": "Save",
         "cancel": "Cancel",
         "edit": "Save changes"

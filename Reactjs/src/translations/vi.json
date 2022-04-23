@@ -27,6 +27,11 @@
         "topic-image": "Hình ảnh",
         "action": "Hành động"
     },
+    "table-lesson-list": {
+        "name": "Tên",
+        "topicId": "Tên chủ đề",
+        "action": "Hành động"
+    },
     "menu": {
         "admin": {
             "manage-user": "Người dùng",
@@ -36,10 +41,10 @@
             "crud-redux": "CRUD redux",
             "topic": "Chủ đề",
             "manage-topic": "Quản lý chủ đề",
-            "list-lession": "Danh sách bài học",
-            "manage-list-lession": "Quản lý danh sách bài học",
-            "lession": "Bài học",
-            "manage-lession": "Quản lý bài học"
+            "lesson-list": "Danh sách bài học",
+            "manage-lesson-list": "Quản lý danh sách bài học",
+            "lesson": "Bài học",
+            "manage-lesson": "Quản lý bài học"
         }
     },
 
@@ -62,6 +67,15 @@
         "add": "Thêm mới chủ đề",
         "topic-name": "Họ",
         "topic-image": "Ảnh đại diện",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "edit": "Lưu thay đổi"
+    },
+
+    "manage-lesson-list": {
+        "add": "Thêm mới danh sách bài học",
+        "name": "Tên",
+        "topicId": "Tên chủ đề",
         "save": "Lưu",
         "cancel": "Hủy",
         "edit": "Lưu thay đổi"

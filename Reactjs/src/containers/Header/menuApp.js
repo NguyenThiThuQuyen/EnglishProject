@@ -38,19 +38,19 @@ export const adminMenu = [
     },
 
     { //quản lý danh sách bài học
-        name: 'menu.admin.list-lession',
+        name: 'menu.admin.lesson-list',
         menus: [
             {
-                name: 'menu.admin.manage-list-lession', link: '/system/manage-list-lession'
+                name: 'menu.admin.manage-lesson-list', link: '/system/lesson-list-redux'
             }
         ]
     },
 
     { //quản lý bài học
-        name: 'menu.admin.lession',
+        name: 'menu.admin.lesson',
         menus: [
             {
-                name: 'menu.admin.manage-lession', link: '/system/manage-lession'
+                name: 'menu.admin.manage-lesson', link: '/system/manage-lesson'
             }
         ]
     }

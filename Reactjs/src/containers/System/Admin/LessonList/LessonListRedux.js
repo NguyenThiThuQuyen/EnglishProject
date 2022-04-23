@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { faUpload } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import './UserRedux.scss'
-import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils";
-import * as actions from "../../../store/actions";
-import Lightbox from 'react-image-lightbox';
+import './LessonListRedux.scss'
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../../utils";
+import * as actions from "../../../../store/actions";
 import 'react-image-lightbox/style.css';
-import TableManageUser from './TableManageUser';
-class UserRedux extends Component {
+import TableManageLessonList from './TableManageLessonList';
+class LessonListRedux extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,99 +24,52 @@ class UserRedux extends Component {
     async componentDidMount() {
         this.props.getTopicStart();
         this.props.getLessonListStart();
+        this.props.fetchLessonListRedux();
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot){
-        if(prevProps.genderRedux !== this.props.genderRedux){
-            let arrGenders = this.props.genderRedux
+        if(prevProps.topicRedux !== this.props.topicRedux){
+            let arrTopics = this.props.topicRedux
             this.setState({
-                genderArr: arrGenders,
-                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : ''
+                topicArr: arrTopics,
+                topic: arrTopics && arrTopics.length > 0 ? arrTopics[0].topicId : ''
             })
         }
 
-        if(prevProps.roleRedux !== this.props.roleRedux){
-            let arrRoles = this.props.roleRedux;
+        if(prevProps.listLessonLists !== this.props.listLessonLists) {
+            let arrTopics = this.props.topicRedux;
             this.setState({
-                roleArr: arrRoles,
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : ''
-            })
-
-        }
-
-        if(prevProps.listUsers !== this.props.listUsers) {
-            let arrGenders = this.props.genderRedux;
-            let arrRoles = this.props.roleRedux;
-            this.setState({
-                email: '',
-                password: '',
-                firstName: '',
-                lastName: '',
-                address: '',
-                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : '',
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : '',
-                avatar: '',
+                name: '',
+                topicId: arrTopics && arrTopics.length > 0 ? arrTopics[0].topicId : '',
                 action: CRUD_ACTIONS.CREATE,
-                previewImgURL: ''
             })
         }
     }
 
-    handleOnchangeImage = async(event) => {
-        let data = event.target.files;
-        let file = data[0];
-        if(file) {
-            let base64 = await CommonUtils.getBase64(file)
-            let objectUrl = URL.createObjectURL(file)
-            this.setState({
-                previewImgURL: objectUrl,
-                avatar:base64
-            })
-        }
-    }
-
-    openPreviewImage = () => {
-        if (!this.state.previewImgURL) return;
-        this.setState({
-            isOpen: true
-        })
-    }
-
-    handleSaveUser = () => {
+    handleSaveLessonList = () => {
         let isValid = this.checkValidateInput();
         if(isValid === false) return;
         let { action } = this.state;
 
         if(action === CRUD_ACTIONS.CREATE){
-            //fire redux create user
-            this.props.createNewUser({
-                email: this.state.email,
-                password: this.state.password,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                address: this.state.address,
-                gender: this.state.gender,
-                roleId: this.state.role,
-                avatar: this.state.avatar
+            //fire redux create lesson list
+            this.props.createNewLessonList({
+                name: this.state.name,
+                topicId: this.state.topicId,
             })
         }
         if(action === CRUD_ACTIONS.EDIT){
-            //fire redux edit user
-            this.props.editAUserRedux({
-                id: this.state.userEditId,
-                email: this.state.email,
-                password: this.state.password,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                address: this.state.address,
-                gender: this.state.gender,
-                roleId: this.state.role,
-                avatar: this.state.avatar
+            //fire redux edit lesson list
+            this.props.editALessonListRedux({
+                id: this.state.lessonListEditId,
+                name: this.state.name,
+                topicId: this.state.topicId,
             })
         }
         // this.props.fetchUserRedux();
         setTimeout(() => {
-            this.props.fetchUserRedux();
+            this.props.fetchLessonListRedux();
         }, 1000)
         
     }
@@ -127,7 +77,7 @@ class UserRedux extends Component {
 
     checkValidateInput = () => {
         let isValid = true;
-        let arrCheck = ['email', 'password', 'firstName', 'lastName', 'address']
+        let arrCheck = ['name']
         for(let i=0; i<arrCheck.length; i++){
             if(!this.state[arrCheck[i]]){
                 isValid = false;
@@ -146,182 +96,86 @@ class UserRedux extends Component {
         }); 
     }
 
-    handleEditUserFromParent = (user) => {
-        let imageBase64 = '';
-        if(user.image){
-            imageBase64 = new Buffer(user.image, 'base64').toString('binary');
-        }
-        // console.log("check edit user from parent: ", user)
+    handleEditLessonListFromParent = (lessonList) => {
+        console.log("check edit lesson list from parent: ", lessonList)
         this.setState({
-            email: user.email,
-            password: 'HARDCODE',
-            firstName: user.firstName,
-            lastName: user.lastName,
-            address: user.address,
-            gender: user.gender,
-            role: user.roleId,
-            avatar: '',
-            previewImgURL: imageBase64,
+            name: lessonList.name,
+            topicId: lessonList.topicId,
             action: CRUD_ACTIONS.EDIT,
-            userEditId: user.id,
-        }, () => {
-            console.log("check base64: ", this.state)
+            lessonListEditId: lessonList.id,
         })
     }
 
     render() {
-        let genders = this.state.genderArr;
-        let roles = this.state.roleArr;
+        let topics = this.state.topicArr;
         let language = this.props.language;
-        let isGetGenders = this.props.isLoadingGender;
+        let isGetTopics = this.props.isLoadingTopic;
+        let listTopicArr = this.props.listTopics
+        console.log("check listTopicArr", listTopicArr)
 
-        let {
-            email, password, firstName, lastName,
-            address, gender, role, avatar
-        } = this.state;
+        let { name } = this.state;
 
         return (
-            <div className='user-redux-container'>
+            <div className='lesson-list-redux-container'>
                 <div className="title">
-                    User Redux
+                    Lesson List Redux
                 </div>
-                <div className="user-redux-body mt-5">
+                <div className="lesson-list-redux-body mt-5">
                     <div className="container">
                         <div className="row boder-container">
-                            <div className="col-12"><FormattedMessage id="manage-user.add"/></div>
+                            <div className="col-12"><FormattedMessage id="manage-lesson-list.add"/></div>
                             <div className='col-12'>
-                                {isGetGenders === true ? 'Loading genders': ''}
+                                {isGetTopics === true ? 'Loading topics': ''}
                             </div>
                             <div className="form-group col-6 mt-2">
-                                <label><FormattedMessage id="manage-user.email"/></label>
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    onChange={(event) => {this.onChangeInput(event, "email")}}
-                                    value={email}
-                                    disabled={this.state.action === CRUD_ACTIONS.EDIT ? true : false}
-                                />
-                            </div>
-                            <div className="form-group col-6 mt-2">
-                                <label><FormattedMessage id="manage-user.password"/></label>
-                                <div className="custom-icon">
-                                    <input
-                                        className="form-control" 
-                                        type='password'
-                                        onChange={(event) => {this.onChangeInput(event, "password")}}
-                                        value={password}
-                                        disabled={this.state.action === CRUD_ACTIONS.EDIT ? true : false}
-                                    />
-                                </div>
-                            </div>
-                            <div className="form-group col-6 mt-2">
-                                <label><FormattedMessage id="manage-user.firstname"/></label>
+                                <label><FormattedMessage id="manage-lesson-list.name"/></label>
                                 <input 
                                     type="text" 
                                     className="form-control"
-                                    onChange={(event) => {this.onChangeInput(event, "firstName")}}
-                                    value={firstName}
-                                />
-                            </div>
-                            <div className="form-group col-6 mt-2">
-                                <label><FormattedMessage id="manage-user.lastname"/></label>
-                                <input 
-                                    type="text" 
-                                    className="form-control"
-                                    onChange={(event) => {this.onChangeInput(event, "lastName")}}
-                                    value={lastName}
-                                />
-                            </div>
-                            <div className="form-group col-12 mt-2">
-                                <label><FormattedMessage id="manage-user.address"/></label>
-                                <input 
-                                    type="text" 
-                                    className="form-control"
-                                    onChange={(event) => {this.onChangeInput(event, "address")}}
-                                    value={address}
+                                    onChange={(event) => {this.onChangeInput(event, "name")}}
+                                    value={name}
                                 />
                             </div>
                             <div className="form-group col-4 mt-2">
-                                <label><FormattedMessage id="manage-user.gender"/></label>
+                                <label><FormattedMessage id="manage-lesson-list.topicId"/></label>
                                 <select className='form-control'
-                                    onChange={(event) => { this.onChangeInput(event, 'gender') }}
-                                    value={gender}
+                                    onChange={(event) => { this.onChangeInput(event, 'topicId') }}
+                                //    value={topicId}
                                 >
-                                    {genders && genders.length > 0 &&
-                                        genders.map((item, index) => {
+                                    {listTopicArr && listTopicArr.length > 0 &&
+                                        listTopicArr.map((item, index) => {
                                             return (
-                                                <option key={index} value={item.keyMap}>
-                                                    {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
+                                                <option key={index} value={item.id}>
+                                                    {item.topicName}
                                                 </option>
                                             )
                                         })
                                     }
                                 </select>
                             </div>
-                            <div className="form-group col-4 mt-2">
-                                <label><FormattedMessage id="manage-user.role"/></label>
-                                <select className='form-control'
-                                    onChange={(event) => { this.onChangeInput(event, 'role') }}
-                                    value={role}
-                                >
-                                    {roles && roles.length > 0 &&
-                                        roles.map((item, index) => {
-                                            return (
-                                                <option key={index} value={item.key}>
-                                                    {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
-                                                </option>
-                                            )
-                                        })
-                                    }
-                                </select>
-                            </div>
-                            <div className="form-group col-4 mt-2">
-                                <label><FormattedMessage id="manage-user.image"/></label>
-                                <div className='preview-img-container'>
-                                    <input id="previewImg" type="file" hidden 
-                                        onChange = {(event) => this.handleOnchangeImage(event)}
-                                    />
-                                    <label className='label-upload' htmlFor="previewImg">
-                                        Tải ảnh 
-                                        <FontAwesomeIcon style={{  marginLeft: "6px" }} icon={ faUpload  } />
-                                    </label>
-                                    <div className='preview-image'
-                                        style={{ backgroundImage: `url(${this.state.previewImgURL})` }}
-                                        onClick={()=> this.openPreviewImage()}
-                                    >
-                                    </div>
-                                </div>                            
-                            </div>
+
                             <div className="col-12">
-                                <button className='btn btn-danger float-right'><FormattedMessage id="manage-user.cancel"/></button>
+                                <button className='btn btn-danger float-right'><FormattedMessage id="manage-lesson-list.cancel"/></button>
                                 <button className={this.state.action === CRUD_ACTIONS.EDIT ? 'btn btn-warning float-right mr-2' : 'btn btn-primary float-right mr-2'}
-                                    onClick={() => this.handleSaveUser()}
+                                    onClick={() => this.handleSaveLessonList()}
                                 >
                                     {this.state.action === CRUD_ACTIONS.EDIT ?
-                                        <FormattedMessage id="manage-user.edit"/>
+                                        <FormattedMessage id="manage-lesson-list.edit"/>
                                         :
-                                        <FormattedMessage id="manage-user.save"/>
+                                        <FormattedMessage id="manage-lesson-list.save"/>
                                     }
                                 </button>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-12 my-5">
-                                <TableManageUser
-                                    handleEditUserFromParentKey={this.handleEditUserFromParent}
+                                <TableManageLessonList
+                                    handleEditLessonListFromParentKey={this.handleEditLessonListFromParent}
                                     action={this.state.action}
                                 />
-
                             </div>
                         </div>
                     </div>
-                    
-                    {this.state.isOpen === true && 
-                        <Lightbox
-                            mainSrc={this.state.previewImgURL}
-                            onCloseRequest={() => this.setState({ isOpen: false })}
-                        />
-                    }
                 </div>
             </div>
         )
@@ -331,11 +185,8 @@ class UserRedux extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
-        genderRedux: state.admin.genders,
-        roleRedux: state.admin.roles,
-        isLoadingGender: state.admin.isLoadingGender,
-        listUsers: state.admin.users
-
+        listTopics: state.admin.topics,
+        listLessonLists: state.admin.lessonLists,
     };
 };
 
@@ -343,11 +194,10 @@ const mapDispatchToProps = dispatch => {
     return {
         getTopicStart: () => dispatch(actions.fetchAllTopicsStart()),
         getLessonListStart: () => dispatch(actions.fetchAllLessonListsStart()),
-        // createNewUser: (data) => dispatch(actions.createNewUser(data)),
-        // fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
-        // editAUserRedux: (data) => dispatch(actions.editAUser(data))
-        
+        createNewLessonList: (data) => dispatch(actions.createNewLessonList(data)),
+        fetchLessonListRedux: () => dispatch(actions.fetchAllLessonListsStart()),
+        editALessonListRedux: (data) => dispatch(actions.editALessonList(data))
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(LessonListRedux);

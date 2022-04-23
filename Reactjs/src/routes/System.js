@@ -5,6 +5,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import TopicRedux from '../containers/System/Admin/Topic/TopicRedux';
 import UserManage from '../containers/System/UserManage';
 import UserRedux from '../containers/System/Admin/UserRedux';
+import LessonListRedux from '../containers/System/Admin/LessonList/LessonListRedux';
 import Header from '../containers/Header/Header';
 
 class System extends Component {
@@ -19,6 +20,7 @@ class System extends Component {
                         <Route path="/system/user-manage" component={UserManage} />
                         <Route path="/system/user-redux" component={UserRedux} />
                         <Route path="/system/topic-redux" component={TopicRedux} />
+                        <Route path="/system/lesson-list-redux" component={LessonListRedux} />
                         <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                     </Switch>
                 </div>

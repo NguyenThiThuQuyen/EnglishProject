@@ -316,3 +316,21 @@ export const fetchTopTopic = () => {
         }
     }
 }
+
+export const fetchAllLessonListsStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllUsers("ALL");
+            if(res && res.errCode === 0){
+                dispatch(fetchAllUsersSuccess(res.users.reverse()))
+            }else{
+                toast.error("Fetch all users error!");
+                dispatch(fetchAllUsersFailed());
+            }
+        } catch(e) {
+            toast.error("Fetch all users error!");
+            dispatch(fetchAllUsersFailed());
+            console.log('fetchAllUsersStart error', e)
+        }
+    }
+}

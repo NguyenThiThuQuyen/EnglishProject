@@ -1,47 +1,52 @@
 import db from "../models/index";
 import bcrypt from "bcryptjs";
 
-let getAllLessionLists = (lessionListId) => {
+let getAllLessonLists = (lessonListId) => {
     return new Promise(async(resolve, reject) => {
         try{
-            let lessionLists = '';
-            if(lessionListId === 'ALL') {
-                lessionLists = await db.LessionList.findAll({
-                    // attributes:{
-                    //     exclude: ['password']
-                    // }
+            let lessonLists = '';
+            if(lessonListId === 'ALL') {
+                lessonLists = await db.LessonList.findAll({
+                    include:[
+                        {model: db.Topic, as: 'topicData', attributes: ['topicName', 'topicImage']}
+                    ],
+                    raw: true,
+                    nest: true,
+
                 })
             }
-            if(lessionListId && lessionListId !== 'ALL') {
-                lessionLists = await db.LessionList.findOne({
-                    where: { id: lessionListId},
-                    // attributes:{
-                    //     exclude: ['password']
-                    // }
+            if(lessonListId && lessonListId !== 'ALL') {
+                lessonLists = await db.LessonList.findOne({
+                    where: { id: lessonListId},
+                    include:[
+                        {model: db.Topic, as: 'topicData', attributes: ['topicName', 'topicImage']}
+                    ],
+                    raw: true,
+                    nest: true,
                 })
             }
-            resolve(lessionLists)
+            resolve(lessonLists)
         }catch(e) {
             reject(e)
         }
     })
 }
 
-let createNewLessionList = async (data) => {
+let createNewLessonList = async (data) => {
     return new Promise(async(resolve, reject) => {
         try{
-            await db.LessionList.create({
+            await db.LessonList.create({
                 name: data.name,
                 topicId: data.topicId
             })
-            resolve('create a new lession list succeed')
+            resolve('create a new lesson list succeed')
         }catch(e){
             reject(e);
         }
     })
 }
 
-let updateLessionListData = (data) => {
+let updateLessonListData = (data) => {
     return new Promise(async(resolve, reject) => {
         try{
             if(!data.id || !data.topicId){
@@ -50,7 +55,7 @@ let updateLessionListData = (data) => {
                     errMessage: 'Missing required parameters'
                 })
             }else{
-                let lessionList = await db.LessionList.findOne({
+                let lessionList = await db.LessonList.findOne({
                     where: {id: data.id},
                     raw: false
                 })
@@ -61,12 +66,12 @@ let updateLessionListData = (data) => {
                     await lessionList.save();
                     resolve({
                         errCode: 0,
-                        message: 'Update the lession list succeeds!'
+                        message: 'Update the lesson list succeeds!'
                     });
                 }else {
                     resolve({
                         errCode: 1,
-                        errMessage: `Lession list not found!`
+                        errMessage: `Lesson list not found!`
                     });
                 }
             }
@@ -76,26 +81,26 @@ let updateLessionListData = (data) => {
     })
 }
 
-// let deleteTopic = (topicId) => {
-//     return new Promise (async(resolve, reject) => {
-//         let foundTopic = await db.Topic.findOne({
-//             where: {id: topicId}
-//         })
-//         if(!foundTopic) {
-//             resolve({
-//                 errCode: 2,
-//                 errMessage: `The topic isn't exist`
-//             })
-//         }
-//         await db.Topic.destroy({
-//             where: {id: topicId}
-//         })
-//         resolve({
-//             errCode: 0,
-//             message: `The topic is deleted`
-//         })
-//     })
-// }
+let deleteLessonList = (lessonListId) => {
+    return new Promise (async(resolve, reject) => {
+        let foundLessonList = await db.LessonList.findOne({
+            where: {id: lessonListId}
+        })
+        if(!foundLessonList) {
+            resolve({
+                errCode: 2,
+                errMessage: `The lesson list isn't exist`
+            })
+        }
+        await db.LessonList.destroy({
+            where: {id: lessonListId}
+        })
+        resolve({
+            errCode: 0,
+            message: `The lesson list is deleted`
+        })
+    })
+}
 
 // let getTopicHome = (limitInput) => {
 //     return new Promise(async(resolve, reject) => {
@@ -123,7 +128,8 @@ let updateLessionListData = (data) => {
 // }
 
 module.exports = {
-    createNewLessionList: createNewLessionList,
-    updateLessionListData: updateLessionListData,
-    getAllLessionLists: getAllLessionLists,
+    createNewLessonList: createNewLessonList,
+    updateLessonListData: updateLessonListData,
+    getAllLessonLists: getAllLessonLists,
+    deleteLessonList: deleteLessonList,
 }

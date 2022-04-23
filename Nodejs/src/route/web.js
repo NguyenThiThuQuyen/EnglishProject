@@ -3,7 +3,7 @@ import { route } from "express/lib/router";
 import homeController from "../controllers/homeController";
 import userController from "../controllers/userController";
 import topicController from "../controllers/topicController";
-import lessionListController from "../controllers/lessionListController";
+import lessonListController from "../controllers/lessonListController";
 
 let router = express.Router();
 let initWebRoutes = (app) => {
@@ -36,10 +36,12 @@ let initWebRoutes = (app) => {
     router.get('/api/topic-home', topicController.getTopicHome);
 
 
-    //lession list
-    router.get('/api/get-all-lession-lists', lessionListController.handleGetAllLessionLists);
-    router.post('/api/create-new-lession-list', lessionListController.handleCreateNewLessionList);
-    router.put('/api/edit-lession-list', lessionListController.handleEditLessionList);
+    //lesson list
+    router.get('/api/get-all-lesson-lists', lessonListController.handleGetAllLessonLists);
+    router.post('/api/create-new-lesson-list', lessonListController.handleCreateNewLessonList);
+    router.put('/api/edit-lesson-list', lessonListController.handleEditLessonList);
+    router.delete('/api/delete-lesson-list', lessonListController.handleDeleteLessonList);
+
     
 
     return app.use("/", router);

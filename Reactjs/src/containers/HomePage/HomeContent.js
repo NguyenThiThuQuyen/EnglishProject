@@ -54,7 +54,10 @@ class HomeContent extends Component {
                                         <div className="card-content">
                                             <p className='c-content'>
                                                 <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
-                                                LEARN MORE 
+                                                
+                                                <Link to="/topic" className='style-link'>
+                                                    LEARN MORE
+                                                </Link> 
                                             </p>
                                         </div>
                                     </div>

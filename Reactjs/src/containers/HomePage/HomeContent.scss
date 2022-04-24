@@ -40,12 +40,6 @@
             .style-link {
                 text-decoration: none;
                 color: white;
-                // &.active {
-                //     opacity: 1;                        
-                //     b {
-                //         color: orange;
-                //     }
-                // }
                 
             }
             .style-link:hover {
@@ -146,6 +140,15 @@
                                 padding-top: 15px;
                                 text-align: center;
                                 color: white;
+
+                                .style-link {
+                                    text-decoration: none;
+                                    color: white;                                    
+                                }
+                                .style-link:hover {
+                                    color: black;
+                                }
+                                                                
                             }
                         }
                     }

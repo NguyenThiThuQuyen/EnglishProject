@@ -22,14 +22,15 @@ const editLessonListService = (inputData) => {
     return axios.put('/api/edit-lesson-list', inputData);
 }
 
-// const getTopicHomeService = (limit) => {
-//     return axios.get(`/api/topic-home?limit=${limit}`)
-// }
+const getLessonListHomeService = (limit) => {
+    return axios.get(`/api/lesson-list-home?limit=${limit}`)
+}
 
 
 export {
     getAllLessonLists,
     createNewLessonListService,
     deleteLessonListService,
-    editLessonListService
+    editLessonListService,
+    getLessonListHomeService
 }

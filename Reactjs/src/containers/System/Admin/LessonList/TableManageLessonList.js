@@ -44,8 +44,10 @@ class TableManageLessonList extends Component {
 
     render() {
         console.log("check all list lesson : ", this.props.listLessonLists)
+        
         // console.log("check state: ", this.state.usersRedux)
         let arrLessonLists = this.state.lessonlistsRedux;
+        console.log("check all : ", arrLessonLists)
         return (
                     <table id="TableManageLessonList" className="table table-striped">
                          <thead className='bg-success text-white'>
@@ -61,7 +63,7 @@ class TableManageLessonList extends Component {
                                     return (
                                     <tr key = {index}>
                                         <td>{item.name}</td>
-                                        <td>{item.topicId}</td>
+                                        <td>{item.topicData.topicName}</td>
                                         <td>
                                             <button 
                                                 className="btn"

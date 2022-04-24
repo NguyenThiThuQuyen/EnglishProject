@@ -1,10 +1,13 @@
+import { toast } from "react-toastify";
+import actionTypes from './actionTypes';
+
 import {createNewLessonListService,
     getAllLessonLists,
     deleteLessonListService,
     editLessonListService,
+    getLessonListHomeService
 } from '../../services/lessonListService';
-import { toast } from "react-toastify";
-import actionTypes from './actionTypes';
+
 
 //lesson list
 export const createNewLessonList = (data) => {
@@ -36,6 +39,10 @@ export const fetchAllLessonListsStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllLessonLists("ALL");
+            console.log('check res: ', res)
+            let res1 = await getLessonListHomeService('');
+            console.log('check res1 get lesson list: ', res1)
+
             if(res && res.errCode === 0){
                 dispatch(fetchAllLessonListsSuccess(res.lessonLists.reverse()))
             }else{
@@ -115,3 +122,29 @@ export const editLessonListSuccess = () => ({
 export const editLessonListFailed = () => ({
     type: actionTypes.EDIT_LESSON_LIST_FAILD,
 })
+
+
+export const fetchTopLessonList = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getLessonListHomeService('');
+            console.log('check res lesson list: ', res)
+            if(res && res.errCode === 0){
+                dispatch({
+                    type: actionTypes.FETCH_TOP_LESSON_LISTS_SUCCESS,
+                    dataLessonLists: res.data
+                })
+            }else {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_LESSON_LISTS_FAILD,
+                })
+            }
+
+        } catch(e) {
+            console.log('FETCH_TOP_LESSON_LISTS_FAILD: ', e)
+            dispatch({
+                type: actionTypes.FETCH_TOP_LESSON_LISTS_FAILD,
+            })
+        }
+    }
+}

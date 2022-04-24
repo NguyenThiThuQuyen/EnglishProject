@@ -33,7 +33,7 @@ class Topic extends Component {
     }
 
     render() {
-        // console.log('check topTopicsRedux: ', this.props.topTopicsRedux);
+        console.log('check topTopicsRedux: ', this.props.topTopicsRedux);
         let { language } = this.props
         let allTopics = this.state.arrTopics;
         return (
@@ -63,7 +63,9 @@ class Topic extends Component {
                                         <div className="col-6 card-content">
                                             <p className='c-content'>
                                                 <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
-                                                {language === LANGUAGES.VI ? nameVi : nameEn} 
+                                                <Link to="/lesson-list" className='style-link'>
+                                                    {language === LANGUAGES.VI ? nameVi : nameEn} 
+                                                </Link> 
                                             </p>
                                         </div>
                                     </div>  

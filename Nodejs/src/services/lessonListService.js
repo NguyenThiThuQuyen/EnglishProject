@@ -102,34 +102,32 @@ let deleteLessonList = (lessonListId) => {
     })
 }
 
-// let getTopicHome = (limitInput) => {
-//     return new Promise(async(resolve, reject) => {
-//         try{
-//             let topics = await db.Topic.findAll({
-//                 limit: limitInput,
-//                 order: [['createdAt', 'DESC']],
-//                 attributes: {
-//                     exclude: ['topicImage']
-//                 },
-//                 include: [
-//                     { model: db.Topic, as: 'genderData', atributes: ['valueEn', 'valueVi'] }
-//                 ],
-//                 raw: true,
-//                 nest: true,
-//             })
-//             resolve({
-//                 errCode: 0,
-//                 data: topics
-//             })
-//         }catch(e) {
-//             reject(e);
-//         }
-//     })
-// }
+let getLessonListHome = (limitInput) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            let lessonLists = await db.LessonList.findAll({
+                limit: limitInput,
+                order: [['createdAt', 'DESC']],
+                // include: [
+                //     { model: db.LessonList, as: 'genderData', atributes: ['valueEn', 'valueVi'] }
+                // ],
+                // raw: true,
+                // nest: true,
+            })
+            resolve({
+                errCode: 0,
+                data: lessonLists
+            })
+        }catch(e) {
+            reject(e);
+        }
+    })
+}
 
 module.exports = {
     createNewLessonList: createNewLessonList,
     updateLessonListData: updateLessonListData,
     getAllLessonLists: getAllLessonLists,
     deleteLessonList: deleteLessonList,
+    getLessonListHome: getLessonListHome,
 }

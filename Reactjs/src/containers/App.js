@@ -6,13 +6,12 @@ import { history } from '../redux'
 import { ToastContainer } from 'react-toastify';
 import Topic from './System/Guest/Topic/Topic';
 import Dictionary from './System/Guest/Dictionary/Dictionary';
+import LessonList from './System/Guest/LessonList/LessonList';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 import { path } from '../utils'
 import Home from '../routes/Home';
 import Login from './Auth/Login';
-import Header from './Header/Header';
 import System from '../routes/System';
-import { CustomToastCloseButton } from '../components/CustomToast';
 import HomePage from './HomePage/HomePage.js'
 import CustomScrollbars from '../components/CustomScrollbars';
 class App extends Component {
@@ -50,6 +49,7 @@ class App extends Component {
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.DICTIONARY} component={Dictionary} />
                                     <Route path={path.TOPIC} component={Topic} />
+                                    <Route path={path.LESSONLIST} component={LessonList} />
                                     {/* <Route path={'/student/'} component={userIsNotAuthenticated(Student)} /> */}
                                 </Switch>
                             </CustomScrollbars>

@@ -42,6 +42,9 @@ let initWebRoutes = (app) => {
     router.put('/api/edit-lesson-list', lessonListController.handleEditLessonList);
     router.delete('/api/delete-lesson-list', lessonListController.handleDeleteLessonList);
 
+    router.get('/api/lesson-list-home', lessonListController.getLessonListHome);
+
+
     
 
     return app.use("/", router);

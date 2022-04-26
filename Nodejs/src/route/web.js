@@ -4,6 +4,7 @@ import homeController from "../controllers/homeController";
 import userController from "../controllers/userController";
 import topicController from "../controllers/topicController";
 import lessonListController from "../controllers/lessonListController";
+// import vocabController from "../controllers/vocabController";
 
 let router = express.Router();
 let initWebRoutes = (app) => {
@@ -43,6 +44,13 @@ let initWebRoutes = (app) => {
     router.delete('/api/delete-lesson-list', lessonListController.handleDeleteLessonList);
 
     router.get('/api/lesson-list-home', lessonListController.getLessonListHome);
+
+    //vocab
+    // router.get('/api/get-all-vocab', vocabController.handleGetAllVocabs);
+    // router.post('/api/create-new-vocab', vocabController.handleCreateNewVocab);
+    // router.put('/api/edit-vocab', vocabController.handleEditVocab);
+    // router.delete('/api/delete-vocab', vocabController.handleDeleteVocab);
+
 
 
     

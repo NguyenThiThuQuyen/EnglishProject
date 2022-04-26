@@ -13,7 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       LessonList.belongsTo(models.Topic, {
         foreignKey: 'topicId',
         targetKey: 'id',
-        as: 'topicData'})
+        as: 'topicData'
+      })
+
+      LessonList.hasMany(models.LessonLessonList, {
+        foreignKey: 'lessonListId', 
+        as: 'lessonListData'
+    })
+      
     }
   };
   LessonList.init({

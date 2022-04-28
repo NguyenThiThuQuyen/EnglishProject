@@ -4,7 +4,8 @@ import homeController from "../controllers/homeController";
 import userController from "../controllers/userController";
 import topicController from "../controllers/topicController";
 import lessonListController from "../controllers/lessonListController";
-// import vocabController from "../controllers/vocabController";
+import lessonController from "../controllers/lessonController";
+import lessonLessonListController from "../controllers/lessonLessonListController";
 
 let router = express.Router();
 let initWebRoutes = (app) => {
@@ -44,6 +45,23 @@ let initWebRoutes = (app) => {
     router.delete('/api/delete-lesson-list', lessonListController.handleDeleteLessonList);
 
     router.get('/api/lesson-list-home', lessonListController.getLessonListHome);
+
+    //lesson
+    router.get('/api/get-all-lessons', lessonController.handleGetAllLessons);
+    router.post('/api/create-new-lesson', lessonController.handleCreateNewLesson);
+    router.put('/api/edit-lesson', lessonController.handleEditLesson);
+    router.delete('/api/delete-lesson', lessonController.handleDeleteLesson);
+
+    router.get('/api/lesson-home', lessonController.getLessonHome);
+
+    //lesson-lessonlist
+    router.get('/api/get-all-lessons-lessonlists', lessonLessonListController.handleGetAllLessonsLessonLists);
+    router.post('/api/create-new-lesson-lessonlist', lessonLessonListController.handleCreateNewLessonLessonList);
+    router.put('/api/edit-lesson-lessonlist', lessonLessonListController.handleEditLessonLessonList);
+    router.delete('/api/delete-lesson-lessonlist', lessonLessonListController.handleDeleteLessonLessonList);
+
+    // router.get('/api/lesson-home', lessonController.getLessonHome);
+
 
     //vocab
     // router.get('/api/get-all-vocab', vocabController.handleGetAllVocabs);

@@ -49,7 +49,10 @@ class LessonList extends Component {
                             <div className="card-content"  key={index}>
                                 <p className='c-content'>
                                     <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
-                                    {language === LANGUAGES.VI ? nameVi : nameEn} 
+                                    <Link to="/lesson" className='style-link'>
+                                        {language === LANGUAGES.VI ? nameVi : nameEn} 
+                                    </Link> 
+
                                 </p>
                             </div>
                         )

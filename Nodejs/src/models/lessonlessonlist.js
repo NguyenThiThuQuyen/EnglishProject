@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   LessonLessonList.init({
-    lessonName: DataTypes.STRING,
+    lessonId: DataTypes.STRING,
+    lessonListId: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'LessonLessonList',

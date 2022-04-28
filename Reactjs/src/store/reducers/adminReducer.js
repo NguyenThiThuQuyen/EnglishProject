@@ -9,6 +9,8 @@ const initialState = {
     topTopics: [],
     lessonLists: [],
     topLessonLists: [],
+    lessons: [],
+    topLessons: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -109,6 +111,29 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
             }
 
+        //lesson
+        case actionTypes.FETCH_ALL_LESSONS_SUCCESS:
+            state.lessons = action.lessons;
+            return {
+                ...state,
+            }
+    
+        case actionTypes.FETCH_ALL_LESSONS_FAILD:
+           state.lessons = [];
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_TOP_LESSONS_SUCCESS:
+            state.topLessons = action.dataLessons;
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_TOP_LESSONS_FAILD:
+            state.topLessons = [];
+            return {
+                ...state,
+            }
+        
         default:
             return state;
     }

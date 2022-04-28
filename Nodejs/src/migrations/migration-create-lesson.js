@@ -11,6 +11,9 @@ module.exports = {
       lessonName: {
         type: Sequelize.STRING
       },
+      lessonImage: {
+        type: Sequelize.BLOB('long')
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -32,6 +32,11 @@
         "topicId": "Tên chủ đề",
         "action": "Hành động"
     },
+    "table-lesson": {
+        "lesson-name": "Tên bài học",
+        "lesson-image": "Hình ảnh",
+        "action": "Hành động"
+    },
     "menu": {
         "admin": {
             "manage-user": "Người dùng",
@@ -65,7 +70,7 @@
 
     "manage-topic": {
         "add": "Thêm mới chủ đề",
-        "topic-name": "Họ",
+        "topic-name": "Tên chủ đề",
         "topic-image": "Ảnh đại diện",
         "save": "Lưu",
         "cancel": "Hủy",
@@ -76,6 +81,15 @@
         "add": "Thêm mới danh sách bài học",
         "name": "Tên",
         "topicId": "Tên chủ đề",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "edit": "Lưu thay đổi"
+    },
+
+    "manage-lesson": {
+        "add": "Thêm mới bài học",
+        "lesson-name": "Tên bài học",
+        "lesson-image": "Ảnh đại diện",
         "save": "Lưu",
         "cancel": "Hủy",
         "edit": "Lưu thay đổi"

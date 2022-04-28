@@ -50,7 +50,7 @@ export const adminMenu = [
         name: 'menu.admin.lesson',
         menus: [
             {
-                name: 'menu.admin.manage-lesson', link: '/system/manage-lesson'
+                name: 'menu.admin.manage-lesson', link: '/system/lesson-redux'
             }
         ]
     }

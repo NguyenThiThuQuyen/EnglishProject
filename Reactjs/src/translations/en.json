@@ -32,6 +32,11 @@
         "topicId": "Topic name",
         "action": "Action"
     },
+    "table-lesson": {
+        "lesson-name": "Lesson name",
+        "lesson-image": "Image",
+        "action": "Action"
+    },
     "menu": {
         "admin": {
             "manage-user": "Users manage",
@@ -73,6 +78,15 @@
         "add": "Add new lesson list",
         "name": "Lesson list name",
         "topicId": "Topic name",
+        "save": "Save",
+        "cancel": "Cancel",
+        "edit": "Save changes"
+    },
+
+    "manage-lesson": {
+        "add": "Add new lesson",
+        "lesson-name": "Lesson name",
+        "lesson-image": "Image",
         "save": "Save",
         "cancel": "Cancel",
         "edit": "Save changes"

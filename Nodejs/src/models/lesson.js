@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     })
     
     Lesson.hasMany(models.Vocab, {
-        foreignKey: 'lessonId', 
-        as: 'lessonData1'
+        foreignKey: 'vocabId', 
+        as: 'vocabData'
     })
 
     Lesson.hasMany(models.LessonAudio, {
@@ -45,6 +45,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Lesson.init({
     lessonName: DataTypes.STRING,
+    lessonImage: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Lesson',

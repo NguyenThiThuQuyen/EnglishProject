@@ -17,6 +17,11 @@ const initialState = {
 
     vocabs: [],
     topVocabs: [],
+
+    lessonLessonLists: [],
+    // lessonLessonLists: [],
+
+    search: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -160,6 +165,42 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_TOP_VOCABS_FAILD:
             state.topVocabs = [];
+            return {
+                ...state,
+            }
+
+        //lesson item
+        case actionTypes.FETCH_ALL_LESSON_ITEMS_SUCCESS:
+            state.lessonLessonLists = action.lessonLessonLists;
+            return {
+                ...state,
+            }
+    
+        case actionTypes.FETCH_ALL_LESSON_ITEMS_FAILD:
+           state.lessonLessonLists = [];
+            return {
+                ...state,
+            }
+        // case actionTypes.FETCH_TOP_LESSON_ITEMS_SUCCESS:
+        //     state.topLessons = action.dataLessons;
+        //     return {
+        //         ...state,
+        //     }
+        // case actionTypes.FETCH_TOP_LESSONS_FAILD:
+        //     state.topLessons = [];
+        //     return {
+        //         ...state,
+        //     }
+
+        //search
+        case actionTypes.FETCH_ALL_SEARCH_VOCABS_SUCCESS:
+            state.search = action.search;
+            return {
+                ...state,
+            }
+    
+        case actionTypes.FETCH_ALL_SEARCH_VOCABS_FAILD:
+           state.search = [];
             return {
                 ...state,
             }

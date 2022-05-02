@@ -62,5 +62,14 @@ export const adminMenu = [
                 name: 'menu.admin.manage-vocab', link: '/system/vocab-redux'
             }
         ]
+    },
+
+    { //quản lý bài học
+        name: 'menu.admin.lesson-item',
+        menus: [
+            {
+                name: 'menu.admin.manage-lesson-item', link: '/system/lesson-item-redux'
+            }
+        ]
     }
 ];

@@ -78,12 +78,14 @@ let getAllLessonLessonLists = (lessonLessonListId) => {
 let createNewLessonLessonList = async (data) => {
     return new Promise(async(resolve, reject) => {
         try{
-            // let check = await vocabService.getSearchVocabFromLession(data.lessonId);
-            if(check)
+            // let check = await getSearchVocabFromLession(data.lessonId);
+            // if(check === true){
+            // }
             await db.LessonLessonList.create({
                 lessonId: data.lessonId,
                 lessonListId: data.lessonListId,
             })
+            
             resolve('create a new lesson - lessonlist succeed')
         }catch(e){
             reject(e);

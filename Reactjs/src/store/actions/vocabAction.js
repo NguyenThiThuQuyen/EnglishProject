@@ -20,7 +20,7 @@ export const createNewVocab = (data) => {
             if(res && res.errCode === 0){
                 toast.success("Create a new vocab succeed!")
                 dispatch(saveVocabSuccess());
-                // dispatch(fetchAllVocabsStart());
+                dispatch(fetchAllVocabsStart());
             }else{
                 dispatch(saveVocabFailed());
             }

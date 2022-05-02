@@ -1,4 +1,5 @@
 import vocabService from "../services/vocabService";
+import lessonLessonListService from "../services/lessonLessonListService"
 
 const path = require('path')
 
@@ -11,15 +12,14 @@ let handleSearchVocab = async(req, res) => {
         return res.status(200).json({
             errCode: 1,
             errMessage: 'Missing required parmeters',
-            vocabs: []
+            search: []
         })
     }
-
-    let vocabs = await vocabService.getSearchVocabFromLession(id);
+    let search = await lessonLessonListService.getSearchVocabFromLession(id);
     return res.status(200).json({
         errCode: 0,
         errMessage: 'Ok',
-        vocabs
+        search
     })
 }
 

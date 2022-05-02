@@ -44,6 +44,12 @@
         "vocab-type": "Vocab type",
         "action": "Action"
     },
+    "table-lesson-item": {
+        "vocab": "Vocabulary",
+        "lesson-name": "Lesson name",
+        "lesson-type": "Language type",
+        "action": "Action"
+    },
     "menu": {
         "admin": {
             "manage-user": "Users manage",
@@ -58,7 +64,9 @@
             "lesson": "Lession",
             "manage-lesson": "Lession manage",
             "vocab": "Vocab",
-            "manage-vocab": "Vocab manage"
+            "manage-vocab": "Vocab manage",
+            "lesson-item": "Lesson item",
+            "manage-lesson-item": "Lesson item manage"
         }
     },
     "manage-user": {
@@ -108,6 +116,16 @@
         "lessonId": "Lesson name",
         "vocab-type": "Vocabulary Type",
         "word-meaning": "Word Meaning",
+        "save": "Save",
+        "cancel": "Cancel",
+        "edit": "Save changes"
+    },
+
+    "manage-lesson-item": {
+        "title": "LESSON ITEM MANAGE",
+        "add": "Add new lesson item",
+        "lessonId": "Lesson",
+        "lessonListId": "Lesson Type",
         "save": "Save",
         "cancel": "Cancel",
         "edit": "Save changes"

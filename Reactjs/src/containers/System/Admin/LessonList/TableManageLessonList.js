@@ -36,7 +36,7 @@ class TableManageLessonList extends Component {
     }
 
     handleEditLessonList = (lessonList) => {
-        // console.log("edit the lessonList: ", lessonList)
+        console.log("edit the lessonList: ", lessonList)
         this.props.handleEditLessonListFromParentKey(lessonList)
     }
 

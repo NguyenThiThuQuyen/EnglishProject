@@ -11,9 +11,11 @@ class LessonListRedux extends Component {
         super(props);
         this.state = {
             topicArr: [],
+            lessonListArr: [],
             isOpen: false,
 
             name: '',
+            topic: '',
             topicId: '',
 
             action: '',
@@ -24,24 +26,27 @@ class LessonListRedux extends Component {
     async componentDidMount() {
         this.props.getTopicStart();
         this.props.getLessonListStart();
-        this.props.fetchLessonListRedux();
 
     }
 
     componentDidUpdate(prevProps, prevState, snapshot){
-        if(prevProps.topicRedux !== this.props.topicRedux){
-            let arrTopics = this.props.topicRedux
+        if(prevProps.listTopics !== this.props.listTopics){
+            let arrTopics = this.props.listTopics
+            console.log("check arrTopics", arrTopics)
+
             this.setState({
                 topicArr: arrTopics,
-                topic: arrTopics && arrTopics.length > 0 ? arrTopics[0].topicId : ''
+                topicId: arrTopics && arrTopics.length > 0 ? arrTopics[0].id : ''
             })
         }
 
         if(prevProps.listLessonLists !== this.props.listLessonLists) {
-            let arrTopics = this.props.topicRedux;
+            let lessonListArr = this.props.listLessonLists;
+            console.log("check lessonListArr", lessonListArr)
             this.setState({
+                lessonListArr: lessonListArr,
                 name: '',
-                topicId: arrTopics && arrTopics.length > 0 ? arrTopics[0].topicId : '',
+                topic: lessonListArr && lessonListArr.length > 0 ? lessonListArr[0].topicId : '',
                 action: CRUD_ACTIONS.CREATE,
             })
         }
@@ -69,7 +74,7 @@ class LessonListRedux extends Component {
         }
         // this.props.fetchUserRedux();
         setTimeout(() => {
-            this.props.fetchLessonListRedux();
+            this.props.getLessonListStart();
         }, 1000)
         
     }
@@ -111,9 +116,13 @@ class LessonListRedux extends Component {
         let language = this.props.language;
         let isGetTopics = this.props.isLoadingTopic;
         let listTopicArr = this.props.listTopics
-        console.log("check listTopicArr", listTopicArr)
+        
+        let listLessonListArr = this.props.listLessonLists
 
-        let { name } = this.state;
+        console.log("check this.state.topicId", this.state.topicId)
+        console.log("check 1234", listLessonListArr)
+
+        let { name, topicId } = this.state;
 
         return (
             <div className='lesson-list-redux-container'>
@@ -139,7 +148,9 @@ class LessonListRedux extends Component {
                             <div className="form-group col-4 mt-2">
                                 <label><FormattedMessage id="manage-lesson-list.topicId"/></label>
                                 <select className='form-control'
-                                    onChange={(event) => { this.onChangeInput(event, 'topicId') }}
+                                    onChange={(event) => { this.onChangeInput(event, 'topicId') }
+                                }
+                                value={topicId}
                                 >
                                     {listTopicArr && listTopicArr.length > 0 &&
                                         listTopicArr.map((item, index) => {
@@ -186,15 +197,17 @@ const mapStateToProps = state => {
         language: state.app.language,
         listTopics: state.admin.topics,
         listLessonLists: state.admin.lessonLists,
+
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         getTopicStart: () => dispatch(actions.fetchAllTopicsStart()),
+
         getLessonListStart: () => dispatch(actions.fetchAllLessonListsStart()),
+        
         createNewLessonList: (data) => dispatch(actions.createNewLessonList(data)),
-        fetchLessonListRedux: () => dispatch(actions.fetchAllLessonListsStart()),
         editALessonListRedux: (data) => dispatch(actions.editALessonList(data))
     };
 };

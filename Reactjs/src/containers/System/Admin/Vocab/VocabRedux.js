@@ -49,20 +49,21 @@ class VocabRedux extends Component {
     // }
 
     componentDidUpdate(prevProps, prevState, snapshot){
-        if(prevProps.lessonRedux !== this.props.lessonRedux){
-            let arrLessons = this.props.lessonRedux
+        if(prevProps.listLessons !== this.props.listLessons){
+            let arrLessons = this.props.listLessons
             this.setState({
                 lessonArr: arrLessons,
-                lesson: arrLessons && arrLessons.length > 0 ? arrLessons[0].lessonId : ''
+                lessonId: arrLessons && arrLessons.length > 0 ? arrLessons[0].id: ''
             })
         }
 
         if(prevProps.listVocabs !== this.props.listVocabs) {
-            let arrLessons = this.props.lessonRedux;
-            let arrVocabs = this.props.VocabRedux;
+            let vocabArr = this.props.listVocabs;
             this.setState({
                 vocab: '',
-                lessonId: arrLessons && arrLessons.length > 0 ? arrLessons[0].lessonId : '',
+                wordmeaning: '',
+                vocabType: '',
+                lesson: vocabArr && vocabArr.length > 0 ? vocabArr[0].lessonId : '',
                 action: CRUD_ACTIONS.CREATE,
             })
         }
@@ -99,7 +100,6 @@ class VocabRedux extends Component {
         setTimeout(() => {
             this.props.fetchVocabRedux();
         }, 1000)
-        
     }
 
     checkValidateInput = () => {
@@ -120,16 +120,16 @@ class VocabRedux extends Component {
         copyState[id] = event.target.value;
         this.setState({
             ...copyState
-        }); 
+        });
     }
 
     handleEditVocabFromParent = (vocab) => {
-        // console.log("check edit", vocab)
+        console.log("check edit", vocab)
         this.setState({
             vocab: vocab.vocab,
             lessonId: vocab.lessonId,
-            wordmeaning: vocab.wordmeaning,
-            vocabType: vocab.vocabType,
+            wordmeaning: vocab.vocabData.wordmeaning,
+            vocabType: vocab.vocabData1.vocabType,
             action: CRUD_ACTIONS.EDIT,
             vocabEditId: vocab.id,
         })
@@ -138,13 +138,12 @@ class VocabRedux extends Component {
     render() {
         let language = this.props.language;
         let lessons = this.state.lessonArr;
-        // console.log("check lessons", )
-        // let isGetLessons = this.props.isLoadingLesson;
         let listLessonArr = this.props.listLessons;
         console.log("check listLessonArr", listLessonArr)
         let {
-            vocab, wordmeaning, vocabType
+            vocab, lessonId, wordmeaning, vocabType
         } = this.state;
+
         console.log("listVocabs",this.props.listVocabs)
         return (
             <div className='user-redux-container'>
@@ -167,7 +166,9 @@ class VocabRedux extends Component {
                             <div className="form-group col-6 mt-2">
                                 <label><FormattedMessage id="manage-vocab.lessonId"/></label>
                                 <select className='form-control'
-                                    onChange={(event) => { this.onChangeInput(event, 'lessonId') }}
+                                    onChange={(event) => { this.onChangeInput(event, 'lessonId') }
+                                }
+                                value={lessonId}
                                 >
                                     {listLessonArr && listLessonArr.length > 0 &&
                                         listLessonArr.map((item, index) => {

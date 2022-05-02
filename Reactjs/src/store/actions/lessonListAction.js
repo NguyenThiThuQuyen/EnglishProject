@@ -39,9 +39,9 @@ export const fetchAllLessonListsStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllLessonLists("ALL");
-            console.log('check res: ', res)
+            // console.log('check res: ', res)
             let res1 = await getLessonListHomeService('');
-            console.log('check res1 get lesson list: ', res1)
+            // console.log('check res1 get lesson list: ', res1)
 
             if(res && res.errCode === 0){
                 dispatch(fetchAllLessonListsSuccess(res.lessonLists.reverse()))

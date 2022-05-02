@@ -43,7 +43,7 @@ export const fetchAllTopicsStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllTopics("ALL");
-            console.log('check res: ', res)
+            // console.log('check res: ', res)
 
             let res1 = await getTopicHomeService('');
             console.log('check res1 get topic: ', res1)

@@ -100,7 +100,10 @@ let createNewVocab = async (data) => {
                     vocabId: createVocab.id
                 })                
             }
-            resolve('create a new vocab succeed')
+            resolve({
+                errCode: 0,
+                message: 'create a new vocab succeed!'
+            });
         }catch(e){
             reject(e);
         }
@@ -144,7 +147,10 @@ let updateVocabData = (data) => {
                     wordmeaning.vocabId = data.vocabId  
                     await wordmeaning.save();
                 }
-                resolve('Update the vocab succeeds!');
+                resolve({
+                    errCode: 0,
+                    message: 'Update the vocab succeeds!'
+                });
 
                 // else {
                 //     resolve({

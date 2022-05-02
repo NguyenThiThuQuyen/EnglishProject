@@ -150,7 +150,7 @@ class LessonRedux extends Component {
         let {
             lessonName, lessonImage
         } = this.state;
-        console.log("listTopics",this.props.listLessons)
+        console.log("listLessons 112",this.props.listLessons)
         return (
             <div className='user-redux-container'>
                 <div className="title">

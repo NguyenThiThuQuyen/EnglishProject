@@ -44,6 +44,12 @@
         "vocab-type": "Loại từ",
         "action": "Hành động"
     },
+    "table-lesson-item": {
+        "vocab": "Từ vựng",
+        "lesson-name": "Bài học",
+        "lesson-type": "Dạng ngôn ngữ",
+        "action": "Hành động"
+    },
     "menu": {
         "admin": {
             "manage-user": "Người dùng",
@@ -58,7 +64,9 @@
             "lesson": "Bài học",
             "manage-lesson": "Quản lý bài học",
             "vocab": "Từ vựng",
-            "manage-vocab": "Quản lý từ vựng"
+            "manage-vocab": "Quản lý từ vựng",
+            "lesson-item": "Chi tiết bài học",
+            "manage-lesson-item": "Quản lý chi tiết bài học"
         }
     },
 
@@ -115,6 +123,16 @@
         "vocab-type": "Loại từ",
         "lessonId": "Tên bài học",
         "word-meaning": "Nghĩa của từ",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "edit": "Lưu thay đổi"
+    },
+
+    "manage-lesson-item": {
+        "title": "QUẢN LÝ CHI TIẾT BÀI HỌC",
+        "add": "Thêm chi tiết bài học",
+        "lessonId": "Bài học",
+        "lessonListId": "Loại bài học",
         "save": "Lưu",
         "cancel": "Hủy",
         "edit": "Lưu thay đổi"

@@ -37,6 +37,13 @@
         "lesson-image": "Image",
         "action": "Action"
     },
+    "table-vocab": {
+        "vocab": "Vocabulary",
+        "lession-name": "Lesson name",
+        "wordmeaning": "Word meaning",
+        "vocab-type": "Vocab type",
+        "action": "Action"
+    },
     "menu": {
         "admin": {
             "manage-user": "Users manage",
@@ -49,7 +56,9 @@
             "lesson-list": "Lession list",
             "manage-lesson-list": "Lession list manage",
             "lesson": "Lession",
-            "manage-lesson": "Lession manage"
+            "manage-lesson": "Lession manage",
+            "vocab": "Vocab",
+            "manage-vocab": "Vocab manage"
         }
     },
     "manage-user": {
@@ -87,6 +96,18 @@
         "add": "Add new lesson",
         "lesson-name": "Lesson name",
         "lesson-image": "Image",
+        "save": "Save",
+        "cancel": "Cancel",
+        "edit": "Save changes"
+    },
+
+    "manage-vocab": {
+        "title": "VOCABULARY MANAGE",
+        "add": "Add new vocabulary",
+        "vocab": "Vocabulary",
+        "lessonId": "Lesson name",
+        "vocab-type": "Vocabulary Type",
+        "word-meaning": "Word Meaning",
         "save": "Save",
         "cancel": "Cancel",
         "edit": "Save changes"

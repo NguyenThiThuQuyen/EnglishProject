@@ -140,7 +140,6 @@ class LessonListRedux extends Component {
                                 <label><FormattedMessage id="manage-lesson-list.topicId"/></label>
                                 <select className='form-control'
                                     onChange={(event) => { this.onChangeInput(event, 'topicId') }}
-                                //    value={topicId}
                                 >
                                     {listTopicArr && listTopicArr.length > 0 &&
                                         listTopicArr.map((item, index) => {

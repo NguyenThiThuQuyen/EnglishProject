@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      vacabtype: {
+      vocabtype: {
         type: Sequelize.STRING
       },
       vocabId: {

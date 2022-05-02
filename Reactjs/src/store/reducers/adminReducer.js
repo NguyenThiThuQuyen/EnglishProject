@@ -5,12 +5,18 @@ const initialState = {
     genders: [],
     roles: [],
     users: [],
+
     topics: [],
     topTopics: [],
+
     lessonLists: [],
     topLessonLists: [],
+
     lessons: [],
     topLessons: [],
+
+    vocabs: [],
+    topVocabs: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -130,6 +136,30 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_TOP_LESSONS_FAILD:
             state.topLessons = [];
+            return {
+                ...state,
+            }
+
+        
+        //vocab
+        case actionTypes.FETCH_ALL_VOCABS_SUCCESS:
+            state.vocabs = action.vocabs;
+            return {
+                ...state,
+            }
+    
+        case actionTypes.FETCH_ALL_VOCABS_FAILD:
+           state.vocabs = [];
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_TOP_VOCABS_SUCCESS:
+            state.topVocabs = action.dataVocabs;
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_TOP_VOCABS_FAILD:
+            state.topVocabs = [];
             return {
                 ...state,
             }

@@ -11,21 +11,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
         Vocab.belongsTo(models.Lesson, {
-            foreignKey: 'vocabId',
+            foreignKey: 'lessonId',
             targetKey: 'id',
-            as: 'vocabData'
+            as: 'lessonData1'
         })
 
         Vocab.hasMany(models.WordMeaning, {
-          foreignKey: 'wordMeaningId', 
-          as: 'wordMeaningData'
+          foreignKey: 'vocabId', 
+          as: 'vocabData'
         })
 
         Vocab.hasMany(models.VocabType, {
-          foreignKey: 'vocabTypeId', 
-          as: 'vocabTypeData'
+          foreignKey: 'vocabId', 
+          as: 'vocabData1'
         })
-    }
+      }
     };
     Vocab.init({
         vocab: DataTypes.STRING,

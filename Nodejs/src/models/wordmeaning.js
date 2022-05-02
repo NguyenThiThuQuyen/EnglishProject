@@ -11,15 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
         WordMeaning.belongsTo(models.Vocab, {
-            foreignKey: 'wordMeaningId',
+            foreignKey: 'vocabId',
             targetKey: 'id',
-            as: 'wordMeaningData'
+            as: 'vocabData'
         })
     }
     };
     WordMeaning.init({
-        WordMeaning: DataTypes.STRING,
-        vocabId: DataTypes.STRING,
+      wordmeaning: DataTypes.STRING,
+      vocabId: DataTypes.STRING,
     }, {
     sequelize,
     modelName: 'WordMeaning',

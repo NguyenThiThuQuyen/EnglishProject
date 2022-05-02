@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     })
     
     Lesson.hasMany(models.Vocab, {
-        foreignKey: 'vocabId', 
-        as: 'vocabData'
+        foreignKey: 'lessonId', 
+        as: 'lessonData1'
     })
 
     Lesson.hasMany(models.LessonAudio, {

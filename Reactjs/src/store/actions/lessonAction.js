@@ -43,7 +43,7 @@ export const fetchAllLessonsStart = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getAllLessons("ALL");
-            console.log('check res: ', res)
+            console.log('check res fetchAllLessonsStart: ', res)
 
             let res1 = await getLessonHomeService('');
             console.log('check res1 get lesson: ', res1)

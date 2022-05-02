@@ -2,6 +2,7 @@ import topicService from "../services/topicService";
 
 const path = require('path')
 
+
 let handleGetAllTopics = async(req, res) => {
     let id = req.query.id; //all, id
 

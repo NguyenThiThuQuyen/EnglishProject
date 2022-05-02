@@ -6,6 +6,7 @@ import topicController from "../controllers/topicController";
 import lessonListController from "../controllers/lessonListController";
 import lessonController from "../controllers/lessonController";
 import lessonLessonListController from "../controllers/lessonLessonListController";
+import vocabController from "../controllers/vocabController";
 
 let router = express.Router();
 let initWebRoutes = (app) => {
@@ -64,12 +65,11 @@ let initWebRoutes = (app) => {
 
 
     //vocab
-    // router.get('/api/get-all-vocab', vocabController.handleGetAllVocabs);
-    // router.post('/api/create-new-vocab', vocabController.handleCreateNewVocab);
-    // router.put('/api/edit-vocab', vocabController.handleEditVocab);
-    // router.delete('/api/delete-vocab', vocabController.handleDeleteVocab);
-
-
+    router.get('/api/get-all-vocabs', vocabController.handleGetAllVocabs);
+    router.post('/api/create-new-vocab', vocabController.handleCreateNewVocab);
+    router.put('/api/edit-vocab', vocabController.handleEditVocab);
+    router.delete('/api/delete-vocab', vocabController.handleDeleteVocab);
+    router.get('/api/search-vocab', vocabController.handleSearchVocab);
 
     
 

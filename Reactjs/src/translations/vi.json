@@ -37,6 +37,13 @@
         "lesson-image": "Hình ảnh",
         "action": "Hành động"
     },
+    "table-vocab": {
+        "vocab": "Từ vựng",
+        "lession-name": "Bài học",
+        "wordmeaning": "Nghĩa của từ",
+        "vocab-type": "Loại từ",
+        "action": "Hành động"
+    },
     "menu": {
         "admin": {
             "manage-user": "Người dùng",
@@ -49,11 +56,14 @@
             "lesson-list": "Danh sách bài học",
             "manage-lesson-list": "Quản lý danh sách bài học",
             "lesson": "Bài học",
-            "manage-lesson": "Quản lý bài học"
+            "manage-lesson": "Quản lý bài học",
+            "vocab": "Từ vựng",
+            "manage-vocab": "Quản lý từ vựng"
         }
     },
 
     "manage-user": {
+        "title": "QUẢN LÝ NGƯỜI DÙNG",
         "add": "Thêm mới người dùng",
         "email": "Email",
         "password": "Mật khẩu",
@@ -69,6 +79,7 @@
     },
 
     "manage-topic": {
+        "title": "QUẢN LÝ CHỦ ĐỀ",
         "add": "Thêm mới chủ đề",
         "topic-name": "Tên chủ đề",
         "topic-image": "Ảnh đại diện",
@@ -78,6 +89,7 @@
     },
 
     "manage-lesson-list": {
+        "title": "QUẢN LÝ DANH SÁCH BÀI HỌC",
         "add": "Thêm mới danh sách bài học",
         "name": "Tên",
         "topicId": "Tên chủ đề",
@@ -87,9 +99,22 @@
     },
 
     "manage-lesson": {
+        "title": "QUẢN LÝ BÀI HỌC",
         "add": "Thêm mới bài học",
         "lesson-name": "Tên bài học",
         "lesson-image": "Ảnh đại diện",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "edit": "Lưu thay đổi"
+    },
+
+    "manage-vocab": {
+        "title": "QUẢN LÝ TỪ VỰNG",
+        "add": "Thêm từ vựng mới",
+        "vocab": "Từ vựng",
+        "vocab-type": "Loại từ",
+        "lessonId": "Tên bài học",
+        "word-meaning": "Nghĩa của từ",
         "save": "Lưu",
         "cancel": "Hủy",
         "edit": "Lưu thay đổi"

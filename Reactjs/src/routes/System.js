@@ -7,6 +7,7 @@ import UserManage from '../containers/System/UserManage';
 import UserRedux from '../containers/System/Admin/UserRedux';
 import LessonListRedux from '../containers/System/Admin/LessonList/LessonListRedux';
 import LessonRedux from '../containers/System/Admin/Lesson/LessonRedux';
+import VocabRedux from '../containers/System/Admin/Vocab/VocabRedux';
 import Header from '../containers/Header/Header';
 
 class System extends Component {
@@ -23,6 +24,7 @@ class System extends Component {
                         <Route path="/system/topic-redux" component={TopicRedux} />
                         <Route path="/system/lesson-list-redux" component={LessonListRedux} />
                         <Route path="/system/lesson-redux" component={LessonRedux} />
+                        <Route path="/system/vocab-redux" component={VocabRedux} />
                         <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                     </Switch>
                 </div>

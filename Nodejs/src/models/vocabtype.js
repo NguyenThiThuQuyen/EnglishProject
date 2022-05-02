@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
         VocabType.belongsTo(models.Vocab, {
-            foreignKey: 'VocabTypeId',
+            foreignKey: 'vocabId',
             targetKey: 'id',
-            as: 'vocabTypeData'
+            as: 'vocabData1'
         })
     }
     };

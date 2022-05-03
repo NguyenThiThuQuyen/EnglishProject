@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Lesson.scss';
+import './LessonItem.scss';
 import { Link } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
 import * as BsIcons from 'react-icons/bs';
@@ -9,61 +9,51 @@ import Footer from '../../../HomePage/Footer';
 import * as actions from '../../../../store/actions'
 import { LANGUAGES } from '../../../../utils'
 
-class Lesson extends Component {
+class LessonItem extends Component {
     constructor(props){
         super(props)
         this.state = {
-            arrLessons: []
+            arrLessonItems: []
         }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot){
-        if(prevProps.topLessonsRedux !== this.props.topLessonsRedux){
+        if(prevProps.topLessonItemsRedux !== this.props.topLessonItemsRedux){
             this.setState({
-                arrLessons: this.props.topLessonsRedux
+                arrLessonItems: this.props.topLessonItemsRedux
             })
         }
     }
 
     componentDidMount() {
-        this.props.loadTopLessons();
-        this.props.fetchAllLessonsStart();
-        // fetchAllLessonsStart: () => dispatch(actions.fetchAllLessonsStart())
-
+        this.props.loadTopLessonItems();
+        this.props.fetchAllLessonItemsStart();
     }
 
     render() {
-        console.log('check topLessonsRedux: ', this.props.topLessonsRedux);
+        console.log('check topLessonItemsRedux: ', this.props.topLessonItemsRedux);
         let { language } = this.props
-        let allLessons = this.state.arrLessons;
+        let allLessonItems = this.state.arrLessonItems;
+        console.log("check 123456:", allLessonItems)
         return (
             <div>
                 <HomeHeader />
-                <div className="container">     
+                {/* <div className="container">     
                     <div className="row">
                         <div className="col-3"></div>
                         <div className="col-6">
-                            {allLessons && allLessons.length > 0
-                                && allLessons.map((item, index) => {
-                                    let imageBase64 = '';
-                                    // console.log('check image: ', imageBase64)
-                                    if(item.lessonImage){
-                                        imageBase64 = new Buffer(item.lessonImage, 'base64').toString('binary');
-                                    }
+                            {allLessonItems && allLessonItems.length > 0
+                                && allLessonItems.map((item, index) => {
+                  
                                     let nameVi = `${item.lessonName}`;
                                     let nameEn = `${item.lessonName}`;
                                     return(
                                     <div className="row" key={index}>
-                                        <div className="col-6">
-                                            <img
-                                                className="card-img"
-                                                style={{ backgroundImage: `url(${imageBase64})` }}
-                                            />
-                                        </div>
+                                  
                                         <div className="col-6 card-content">
                                             <p className='c-content'>
                                                 <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
-                                                <Link to="/lesson-item" className='style-link'>
+                                                <Link to="" className='style-link'>
                                                     {language === LANGUAGES.VI ? nameVi : nameEn} 
                                                 </Link> 
                                             </p>
@@ -74,7 +64,7 @@ class Lesson extends Component {
                         </div>
                         <div className="col-3"></div>
                     </div>
-                </div>
+                </div> */}
             </div>
             );
         }
@@ -84,17 +74,15 @@ class Lesson extends Component {
         return {
             language: state.app.language,
             isLoggedIn: state.user.isLoggedIn,
-            topLessonsRedux: state.admin.topLessons
+            topLessonItemsRedux: state.admin.topLessonItems
         };
     };
     
     const mapDispatchToProps = dispatch => {
         return {
-            loadTopLessons: () => dispatch(actions.fetchTopLesson()),
-            fetchAllLessonsStart: () => dispatch(actions.fetchAllLessonsStart())
-
-            
+            loadTopLessonItems: () => dispatch(actions.fetchTopLessonItem()),
+            fetchAllLessonItemsStart: () => dispatch(actions.fetchAllLessonItemsStart())
         };
     };
     
-export default connect(mapStateToProps, mapDispatchToProps)(Lesson);
+export default connect(mapStateToProps, mapDispatchToProps)(LessonItem);

@@ -46,27 +46,28 @@ let handleDeleteLessonLessonList =  async(req, res) => {
  }
 
 // //export ra interface
-//  let getLessonListHome = async(req, res) => {
-//     let limit = req.query.limit;
-//     if(!limit) limit = 10;
-//     try {
-//         // console.log('check res: ', response)
-//         let response = await lessonLessonListService.getLessonListHome(limit);
-//         return res.status(200).json(response);
-//     } catch (e) {
-//         console.log(e);
-//         return res.status(200).json({
-//             errCode: -1,
-//             message: 'Error from server...'
-//         })
-//     }
-// }
+ let getLessonItemHome = async(req, res) => {
+    let limit = req.query.limit;
+    if(!limit) limit = 10;
+    try {
+        // console.log('check res: ', response)
+        let response = await lessonLessonListService.getLessonItemHome(limit);
+        return res.status(200).json(response);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server...'
+        })
+    }
+}
 
 
 module.exports = {
     handleCreateNewLessonLessonList: handleCreateNewLessonLessonList,
     handleGetAllLessonsLessonLists: handleGetAllLessonsLessonLists,
     handleEditLessonLessonList: handleEditLessonLessonList,
-    handleDeleteLessonLessonList: handleDeleteLessonLessonList
+    handleDeleteLessonLessonList: handleDeleteLessonLessonList,
+    getLessonItemHome: getLessonItemHome,
 
 }

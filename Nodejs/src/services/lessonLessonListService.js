@@ -39,17 +39,6 @@ let getAllLessonLessonLists = (lessonLessonListId) => {
                     raw: true,
                     nest: true,
                 })
-                // let lessonData = []
-                // lessonData = lessonLessonLists.lessonData
-                // let temp = lessonData.lessonData
-                // console.log("check id", lessonData)
-                // check = await db.Vocab.findAll({
-                //     include: [
-                //         {model: db.Vocab, as: 'lessonData1', attributes: ['vocab']},
-                //     ],
-                //     raw: true,
-                //     nest: true,
-                // })
             }
             if(lessonLessonListId && lessonLessonListId !== 'ALL') {
                 lessonLessonLists = await db.LessonLessonList.findOne({
@@ -159,33 +148,34 @@ let deleteLessonLessonList = (lessonLessonListId) => {
     })
 }
 
-// let getLessonListHome = (limitInput) => {
-//     return new Promise(async(resolve, reject) => {
-//         try{
-//             let lessonLists = await db.LessonList.findAll({
-//                 limit: limitInput,
-//                 order: [['createdAt', 'DESC']],
-//                 // include: [
-//                 //     { model: db.LessonList, as: 'genderData', atributes: ['valueEn', 'valueVi'] }
-//                 // ],
-//                 // raw: true,
-//                 // nest: true,
-//             })
-//             resolve({
-//                 errCode: 0,
-//                 data: lessonLists
-//             })
-//         }catch(e) {
-//             reject(e);
-//         }
-//     })
-// }
+let getLessonItemHome = (limitInput) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            let lessonItems = await db.LessonLessonList.findAll({
+                limit: limitInput,
+                order: [['createdAt', 'DESC']],
+                // include: [
+                //     { model: db.LessonList, as: 'genderData', atributes: ['valueEn', 'valueVi'] }
+                // ],
+                // raw: true,
+                // nest: true,
+            })
+            resolve({
+                errCode: 0,
+                data: lessonItems
+            })
+        }catch(e) {
+            reject(e);
+        }
+    })
+}
 
 module.exports = {
     createNewLessonLessonList: createNewLessonLessonList,
     getAllLessonLessonLists: getAllLessonLessonLists,
     updateLessonLessonListData: updateLessonLessonListData,
     deleteLessonLessonList: deleteLessonLessonList,
-    getSearchVocabFromLession: getSearchVocabFromLession
+    getSearchVocabFromLession: getSearchVocabFromLession,
+    getLessonItemHome: getLessonItemHome,
 
 }

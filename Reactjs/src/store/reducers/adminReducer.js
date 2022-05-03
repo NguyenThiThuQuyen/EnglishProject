@@ -19,7 +19,7 @@ const initialState = {
     topVocabs: [],
 
     lessonLessonLists: [],
-    // lessonLessonLists: [],
+    topLessonItems: [],
 
     search: [],
 }
@@ -181,16 +181,16 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             }
-        // case actionTypes.FETCH_TOP_LESSON_ITEMS_SUCCESS:
-        //     state.topLessons = action.dataLessons;
-        //     return {
-        //         ...state,
-        //     }
-        // case actionTypes.FETCH_TOP_LESSONS_FAILD:
-        //     state.topLessons = [];
-        //     return {
-        //         ...state,
-        //     }
+        case actionTypes.FETCH_TOP_LESSON_ITEMS_SUCCESS:
+            state.topLessonItems = action.dataLessonItems;
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_TOP_LESSON_ITEMS_FAILD:
+            state.topLessonItems = [];
+            return {
+                ...state,
+            }
 
         //search
         case actionTypes.FETCH_ALL_SEARCH_VOCABS_SUCCESS:

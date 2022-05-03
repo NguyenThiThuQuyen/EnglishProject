@@ -27,9 +27,9 @@ const editLessonItemService = (inputData) => {
     return axios.put('/api/edit-lesson-lessonlist', inputData);
 }
 
-// const getLessonItemHomeService = (limit) => {
-//     return axios.get(`/api/lesson-list-home?limit=${limit}`)
-// }
+const getLessonItemHomeService = (limit) => {
+    return axios.get(`/api/lesson-item-home?limit=${limit}`)
+}
 
 
 export {
@@ -37,6 +37,6 @@ export {
     createNewLessonItemService,
     deleteLessonItemService,
     editLessonItemService,
+    getLessonItemHomeService,
     getSearchVocabFromLessonService
-    // getLessonListHomeService
 }

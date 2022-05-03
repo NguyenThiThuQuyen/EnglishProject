@@ -5,6 +5,7 @@ export const path = {
     LESSON: '/lesson',
     LESSONLIST: '/lesson-list',
     DICTIONARY: '/dictionary',
+    LESSONITEM: '/lesson-item',
     LOGIN: '/login',
     LOG_OUT: '/logout',
     SYSTEM: '/system'

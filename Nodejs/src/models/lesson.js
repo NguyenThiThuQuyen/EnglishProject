@@ -37,11 +37,11 @@ module.exports = (sequelize, DataTypes) => {
 
     Lesson.hasMany(models.Question, {
       foreignKey: 'lessonId', 
-      as: 'lessonData5'
+      as: 'lessonDataFromQuestion'
   })
-
-    
-    }
+   
+  }
+  
   };
   Lesson.init({
     lessonName: DataTypes.STRING,

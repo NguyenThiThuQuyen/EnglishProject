@@ -13,12 +13,16 @@ module.exports = (sequelize, DataTypes) => {
         Question.belongsTo(models.Lesson, {
             foreignKey: 'lessonId',
             targetKey: 'id',
-            as: 'lessonData5'
+            as: 'lessonDataFromQuestion'
         })
     }
     };
     Question.init({
         question: DataTypes.STRING,
+        answerTrue: DataTypes.STRING,
+        answerFalse1: DataTypes.STRING,
+        answerFalse2: DataTypes.STRING,
+        answerFalse3: DataTypes.STRING,
         lessonId: DataTypes.STRING,
     }, {
     sequelize,

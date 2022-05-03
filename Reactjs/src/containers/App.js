@@ -8,6 +8,7 @@ import Topic from './System/Guest/Topic/Topic';
 import Dictionary from './System/Guest/Dictionary/Dictionary';
 import LessonList from './System/Guest/LessonList/LessonList';
 import Lesson from './System/Guest/Lesson/Lesson';
+import LessonItem from './System/Guest/LessonItem/LessonItem';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authentication';
 import { path } from '../utils'
 import Home from '../routes/Home';
@@ -52,6 +53,7 @@ class App extends Component {
                                     <Route path={path.TOPIC} component={Topic} />
                                     <Route path={path.LESSON} component={Lesson} />
                                     <Route path={path.LESSONLIST} component={LessonList} />
+                                    <Route path={path.LESSONITEM} component={LessonItem} />
                                     {/* <Route path={'/student/'} component={userIsNotAuthenticated(Student)} /> */}
                                 </Switch>
                             </CustomScrollbars>

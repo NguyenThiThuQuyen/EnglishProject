@@ -5,7 +5,8 @@ import {createNewLessonItemService,
     getAllLessonItems,
     editLessonItemService,
     deleteLessonItemService,
-    getSearchVocabFromLessonService
+    getSearchVocabFromLessonService,
+    getLessonItemHomeService,
 } from '../../services/lessonItemService';
 
 
@@ -156,27 +157,27 @@ export const editLessonItemFailed = () => ({
 })
 
 
-// export const fetchTopLessonList = () => {
-//     return async (dispatch, getState) => {
-//         try {
-//             let res = await getLessonListHomeService('');
-//             console.log('check res lesson list: ', res)
-//             if(res && res.errCode === 0){
-//                 dispatch({
-//                     type: actionTypes.FETCH_TOP_LESSON_LISTS_SUCCESS,
-//                     dataLessonLists: res.data
-//                 })
-//             }else {
-//                 dispatch({
-//                     type: actionTypes.FETCH_TOP_LESSON_LISTS_FAILD,
-//                 })
-//             }
+export const fetchTopLessonItem = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getLessonItemHomeService('');
+            console.log('check res lesson item: ', res)
+            if(res && res.errCode === 0){
+                dispatch({
+                    type: actionTypes.FETCH_TOP_LESSON_ITEMS_SUCCESS,
+                    dataLessonItems: res.data
+                })
+            }else {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_LESSON_ITEMS_FAILD,
+                })
+            }
 
-//         } catch(e) {
-//             console.log('FETCH_TOP_LESSON_LISTS_FAILD: ', e)
-//             dispatch({
-//                 type: actionTypes.FETCH_TOP_LESSON_LISTS_FAILD,
-//             })
-//         }
-//     }
-// }
+        } catch(e) {
+            console.log('FETCH_TOP_LESSON_ITEMS_FAILD: ', e)
+            dispatch({
+                type: actionTypes.FETCH_TOP_LESSON_ITEMS_FAILD,
+            })
+        }
+    }
+}

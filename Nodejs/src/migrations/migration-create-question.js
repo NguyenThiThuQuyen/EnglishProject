@@ -11,6 +11,18 @@ module.exports = {
       question: {
         type: Sequelize.STRING
       },
+      answerTrue: {
+        type: Sequelize.STRING
+      },
+      answerFalse1: {
+        type: Sequelize.STRING
+      },
+      answerFalse2: {
+        type: Sequelize.STRING
+      },
+      answerFalse3: {
+        type: Sequelize.STRING
+      }, 
       lessonId: {
         type: Sequelize.STRING
       },

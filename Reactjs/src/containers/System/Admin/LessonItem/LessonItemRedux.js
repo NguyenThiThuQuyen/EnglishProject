@@ -77,25 +77,11 @@ class LessonItemRedux extends Component {
                 lessonId: this.state.lessonId,
             })
         }
-        // this.props.fetchUserRedux();
         setTimeout(() => {
             this.props.fetchAllLessonItemsStart();
         }, 1000)
     }
 
-
-    // checkValidateInput = () => {
-    //     let isValid = true;
-    //     // let arrCheck = ['name']
-    //     for(let i=0; i<arrCheck.length; i++){
-    //         if(!this.state[arrCheck[i]]){
-    //             isValid = false;
-    //             alert('This input is required:' + arrCheck[i])
-    //             break;
-    //         }
-    //     }
-    //     return isValid;
-    // }
 
     onChangeInput = (event, id) => {
         let copyState = {...this.state};
@@ -124,9 +110,11 @@ class LessonItemRedux extends Component {
         let listLessonListArr = this.props.listLessonLists
         let listLessonArr = this.props.listLessons
         let listLessonItemArr = this.props.listLessonItems
-        
-        // console.log("check listLessonItemArr 1", listLessonItemArr)
 
+        let searchArr = this.props.search
+        console.log("searchArr 11245", searchArr)
+
+        // console.log("check listLessonItemArr 1", listLessonItemArr)
         // console.log("check listLessonListArr 2", listLessonListArr)
         // console.log("check listLessonArr 3", listLessonArr)
 
@@ -135,24 +123,13 @@ class LessonItemRedux extends Component {
         return (
             <div className='lesson-list-redux-container'>
                 <div className="title">
-                    Lesson List Redux
+                    <FormattedMessage id="manage-lesson-item.title"/>
                 </div>
                 <div className="lesson-list-redux-body mt-5">
                     <div className="container">
                         <div className="row boder-container">
-                            <div className="col-12"><FormattedMessage id="manage-lesson-list.add"/></div>
-                            {/* <div className='col-12'>
-                                {isGetTopics === true ? 'Loading topics': ''}
-                            </div> */}
-                            {/* <div className="form-group col-6 mt-2">
-                                <label><FormattedMessage id="manage-lesson-list.name"/></label>
-                                <input 
-                                    type="text" 
-                                    className="form-control"
-                                    onChange={(event) => {this.onChangeInput(event, "name")}}
-                                    value={name}
-                                />
-                            </div> */}
+                            <div className="col-12"><FormattedMessage id="manage-lesson-item.add"/></div>
+
                             <div className="form-group col-6 mt-2">
                                 <label><FormattedMessage id="manage-lesson-item.lessonListId"/></label>
                                 <select className='form-control'
@@ -161,8 +138,6 @@ class LessonItemRedux extends Component {
                                 >
                                     {listLessonListArr && listLessonListArr.length > 0 &&
                                         listLessonListArr.map((item, index) => {
-                                            // this.props.fetchAllSearchVocabsStart(item.lessonId)
-                                            // console.log("check tu vung", this.props.search)
                                             return (
                                                 <option key={index} value={item.id}>
                                                     {item.name}
@@ -172,6 +147,7 @@ class LessonItemRedux extends Component {
                                     }
                                 </select>
                             </div>
+
                             <div className="form-group col-6 mt-2">
                                 <label><FormattedMessage id="manage-lesson-item.lessonId"/></label>
                                 <select className='form-control'
@@ -191,18 +167,22 @@ class LessonItemRedux extends Component {
                             </div>
 
                             <div className="col-12">
-                                <button className='btn btn-danger float-right'><FormattedMessage id="manage-lesson-list.cancel"/></button>
+                                <button className='btn btn-danger float-right'><FormattedMessage id="manage-lesson-item.cancel"/></button>
                                 <button className={this.state.action === CRUD_ACTIONS.EDIT ? 'btn btn-warning float-right mr-2' : 'btn btn-primary float-right mr-2'}
                                     onClick={() => this.handleSaveLessonItem()}
                                 >
                                     {this.state.action === CRUD_ACTIONS.EDIT ?
-                                        <FormattedMessage id="manage-lesson-list.edit"/>
+                                        <FormattedMessage id="manage-lesson-item.edit"/>
                                         :
-                                        <FormattedMessage id="manage-lesson-list.save"/>
+                                        <FormattedMessage id="manage-lesson-item.save"/>
                                     }
                                 </button>
                             </div>
                         </div>
+
+
+                        
+
                         <div className="row">
                             <div className="col-12 my-5">
                                 <TableManageLessonItem

@@ -7,6 +7,13 @@ let getSearchVocabFromLession = (id) => {
         try{
             let search = await db.Vocab.findAll({
                 where: { lessonId: id },
+                include:[
+                    {model: db.Lesson, as: 'lessonData1', attributes: ['lessonName']},
+                    {model: db.WordMeaning, as: 'vocabData', attributes: ['wordmeaning']},
+                    {model: db.VocabType, as: 'vocabData1', attributes: ['vocabType']},
+                ],
+                raw: true,
+                nest: true,
             })
             console.log("check search", search)
             resolve(search)
@@ -24,7 +31,9 @@ let getAllLessonLessonLists = (lessonLessonListId) => {
             if(lessonLessonListId === 'ALL' ) {
                 lessonLessonLists = await db.LessonLessonList.findAll({
                     include:[
-                        {model: db.LessonList, as: 'lessonListData', attributes: ['name']},
+                        {model: db.LessonList, as: 'lessonListData', attributes: ['name', 'topicId'],
+                        include: [{model: db.Topic, as: 'topicData', attributes: ['topicName']}]
+                    },
                         {model: db.Lesson, as: 'lessonData', attributes: ['lessonName', 'id']},
                     ],
                     raw: true,
@@ -46,9 +55,10 @@ let getAllLessonLessonLists = (lessonLessonListId) => {
                 lessonLessonLists = await db.LessonLessonList.findOne({
                     where: { id: lessonLessonListId},
                     include:[
-                        {model: db.LessonList, as: 'lessonListData', attributes: ['name']},
-                        {model: db.Lesson, as: 'lessonData', attributes: ['lessonName']},
-                        
+                        {model: db.LessonList, as: 'lessonListData', attributes: ['name', 'topicId'],
+                        include: [{model: db.Topic, as: 'topicData', attributes: ['topicName']}]
+                    },
+                        {model: db.Lesson, as: 'lessonData', attributes: ['lessonName', 'id']},
                     ],
                     raw: true,
                     nest: true,

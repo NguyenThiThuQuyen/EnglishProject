@@ -45,9 +45,11 @@
         "action": "Hành động"
     },
     "table-lesson-item": {
-        "vocab": "Từ vựng",
+        "view-detail": "Xem chi tiết",
+        "detail": "Từ vựng",
         "lesson-name": "Bài học",
         "lesson-type": "Dạng ngôn ngữ",
+        "topic": "Chủ đề",
         "action": "Hành động"
     },
     "menu": {
@@ -133,7 +135,7 @@
         "add": "Thêm chi tiết bài học",
         "lessonId": "Bài học",
         "lessonListId": "Loại bài học",
-        "save": "Lưu",
+        "save": "Tạo",
         "cancel": "Hủy",
         "edit": "Lưu thay đổi"
     }

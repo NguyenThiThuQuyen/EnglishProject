@@ -45,9 +45,11 @@
         "action": "Action"
     },
     "table-lesson-item": {
-        "vocab": "Vocabulary",
+        "view-detail": "View details",
+        "detail": "Vocabularies",
         "lesson-name": "Lesson name",
         "lesson-type": "Language type",
+        "topic": "Topic",
         "action": "Action"
     },
     "menu": {
@@ -126,7 +128,7 @@
         "add": "Add new lesson item",
         "lessonId": "Lesson",
         "lessonListId": "Lesson Type",
-        "save": "Save",
+        "save": "Create",
         "cancel": "Cancel",
         "edit": "Save changes"
     }

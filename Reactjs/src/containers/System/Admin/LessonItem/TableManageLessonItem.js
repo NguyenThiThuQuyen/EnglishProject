@@ -6,6 +6,8 @@ import * as actions from "../../../../store/actions";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faArchive } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ModalLesson from "./ModalLesson"
+
 import { LANGUAGES } from "../../../../utils";
 
 
@@ -14,7 +16,9 @@ class TableManageLessonItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lessonItemsRedux: []
+            lessonItemsRedux: [],
+            isOpenModalLesson: false,
+            lessonId: ''
         }
     }
 
@@ -31,7 +35,6 @@ class TableManageLessonItem extends Component {
     }
 
     handleDeleteLessonItem = (lessonItem) => {
-        // console.log("delele the lessonList: ", lessonList)
         this.props.deleteALessonItem(lessonItem.id);
     }
 
@@ -43,35 +46,58 @@ class TableManageLessonItem extends Component {
     handleOnClickLessonName = (id) => {
         this.props.fetchAllSearchVocabsStart(id)
         console.log("search: ", this.props.search)
+        this.setState({
+            isOpenModalLesson: true,
+            lessonId: id
+        })
+    }
+
+    toggleLessonModal = () => {
+        this.setState({
+            isOpenModalLesson: !this.state.isOpenModalLesson,
+        })
     }
 
     render() {
-        // console.log("check all list lesson Item 22222 : ", this.props.listLessonItems)
-        
-        // console.log("check state: ", this.state.usersRedux)
         let arrLessonItems = this.state.lessonItemsRedux;
         console.log("check all 2222: ", arrLessonItems)
+        // console.log("check all 333: ", listLessonItems)
         return (
+            <div>
+                <ModalLesson 
+                    isOpen={this.state.isOpenModalLesson}
+                    toggleFromParent = {this.toggleLessonModal}
+                    lessonId = {this.state.lessonId}
+                    // createNewuser={this.createNewuser}
+                />
                     <table id="TableManageLessonItem" className="table table-striped">
                          <thead className='bg-success text-white'>
                             <tr>
                                 <th scope="col"><FormattedMessage id="table-lesson-item.lesson-name"/></th>
                                 <th scope="col"><FormattedMessage id="table-lesson-item.lesson-type"/></th>
-                                {/* <th scope="col"><FormattedMessage id="table-lesson-item.vocab"/></th> */}
+                                <th scope="col"><FormattedMessage id="table-lesson-item.topic"/></th>
+                                <th scope="col"><FormattedMessage id="table-lesson-item.detail"/></th>
                                 <th scope="col"><FormattedMessage id="table-lesson-item.action"/></th>
                             </tr>
                         </thead>
                         <tbody>
                             {arrLessonItems && arrLessonItems.length > 0 &&
                                 arrLessonItems.map((item, index) => {
+                                    console.log("item", item)
                                     return (
                                     <tr key = {index}>
-                                        <td
-                                            onClick={() => this.handleOnClickLessonName(item.lessonId)}
-                                        >{item.lessonData.lessonName}
+                                        <td>
+                                            {item.lessonData.lessonName}
                                         </td>
                                         <td>{item.lessonListData.name}</td>
-                                        {/* <td>{item.lessonData.vocabData.vocab}</td> */}
+                                        <td>{item.lessonListData.topicData.topicName}</td>
+                                        <td
+                                            onClick={() => this.handleOnClickLessonName(item.lessonId)}
+                                        >
+                                            <button className='btn btn-primary'>
+                                                <FormattedMessage id="table-lesson-item.view-detail"/>
+                                            </button>
+                                        </td>
                                         <td>
                                             <button 
                                                 className="btn"
@@ -92,6 +118,7 @@ class TableManageLessonItem extends Component {
                             }
                         </tbody>
                     </table>
+            </div>
         );
     }
 
@@ -100,8 +127,7 @@ class TableManageLessonItem extends Component {
 const mapStateToProps = state => {
     return {
         listLessonItems: state.admin.lessonLessonLists,
-        search: state.admin.search,
-
+        // search: state.admin.search,
     };
 };
 

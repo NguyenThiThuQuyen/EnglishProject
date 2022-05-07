@@ -32,13 +32,73 @@ let getAllLessonLists = (lessonListId) => {
     })
 }
 
+let checkLessonListName = (nameLessonList) => {
+    return new Promise(async(resolve, reject) => {
+        try
+        {   
+            let name = await db.LessonList.findOne({
+                where: {name: nameLessonList}
+            })
+            // console.log("check danh sách danh mục",name)
+            if(name)
+            {
+                resolve(true);
+            }
+            else
+            {
+                resolve(false);
+            }
+        }catch(e)
+        {
+            reject(e);
+        }
+    })
+}
+
 let createNewLessonList = async (data) => {
     return new Promise(async(resolve, reject) => {
         try{
-            await db.LessonList.create({
-                name: data.name,
-                topicId: data.topicId
-            })
+            if(data.topicId){
+                let temp = await db.LessonList.findAll({ //lấy được mảng theo khóa ngoại
+                    where: {topicId: data.topicId}
+                })
+                // console.log("check temp: ", temp.name)
+
+                //kiểm tra temp có tồn tại ko 
+                if(temp && temp.length >0)
+                {
+                    let check = ''
+                    temp.map((item =>{          //duyệt mảng temp
+
+                        if(data.name === item.name)     //so sánh tên nhập vào với từng dòng trong mảng theo tên
+                    {
+                        check = 'true'
+                    }
+                    }))
+                console.log("check mới", check )
+                    if(check === "true")
+                    {
+                        resolve({
+                            errCode: 1,
+                            errMessage: `Lesson list name was existed !`
+                        })
+                    }
+                    else
+                    {
+                        await db.LessonList.create({
+                            name: data.name,
+                            topicId: data.topicId
+                            })
+                            resolve({
+                                errCode: 0,
+                                errMessage: `create a new lesson list succeed !`
+                            })
+                    }
+                }
+            }
+        
+
+           
             resolve('create a new lesson list succeed')
         }catch(e){
             reject(e);
@@ -102,18 +162,15 @@ let deleteLessonList = (lessonListId) => {
     })
 }
 
-let getLessonListHome = (limitInput) => {
+let getLessonListHome = (topicId) => {
+    console.log("check toppicId", topicId)
     return new Promise(async(resolve, reject) => {
         try{
             let lessonLists = await db.LessonList.findAll({
-                limit: limitInput,
+                where: {topicId: topicId},
                 order: [['createdAt', 'DESC']],
-                // include: [
-                //     { model: db.LessonList, as: 'genderData', atributes: ['valueEn', 'valueVi'] }
-                // ],
-                // raw: true,
-                // nest: true,
             })
+            console.log('check 123123: ', lessonLists)
             resolve({
                 errCode: 0,
                 data: lessonLists
@@ -130,4 +187,5 @@ module.exports = {
     getAllLessonLists: getAllLessonLists,
     deleteLessonList: deleteLessonList,
     getLessonListHome: getLessonListHome,
+    checkLessonListName: checkLessonListName,
 }

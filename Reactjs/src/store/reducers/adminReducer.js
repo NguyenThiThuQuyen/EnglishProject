@@ -22,6 +22,8 @@ const initialState = {
     topLessonItems: [],
 
     search: [],
+
+    questions: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -204,6 +206,30 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             }
+
+        //question
+        case actionTypes.FETCH_ALL_QUESTIONS_SUCCESS:
+            state.questions = action.questions;
+            return {
+                ...state,
+            }
+    
+        case actionTypes.FETCH_ALL_QUESTIONS_FAILD:
+           state.questions = [];
+            return {
+                ...state,
+            }
+        // case actionTypes.FETCH_TOP_LESSON_LISTS_SUCCESS:
+        //     state.topLessonLists = action.dataLessonLists;
+        //     return {
+        //         ...state,
+        //     }
+
+        // case actionTypes.FETCH_TOP_LESSON_LISTS_FAILD:
+        //     state.topLessonLists = [];
+        //     return {
+        //         ...state,
+        //     }
         
         default:
             return state;

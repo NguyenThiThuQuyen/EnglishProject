@@ -3,7 +3,7 @@ export const path = {
     HOMEPAGE: '/home',
     TOPIC: '/topic',
     LESSON: '/lesson',
-    LESSONLIST: '/lesson-list',
+    LESSONLIST: '/lesson-list/:id',
     DICTIONARY: '/dictionary',
     LESSONITEM: '/lesson-item',
     LOGIN: '/login',

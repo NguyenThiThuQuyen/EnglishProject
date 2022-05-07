@@ -35,7 +35,6 @@ class ModalLesson extends Component {
         this.props.toggleFromParent()
     }
 
-
     checkValidateInput = () => {
         let isValid = true;
         let arrInput = ['vocab'];
@@ -56,11 +55,12 @@ class ModalLesson extends Component {
     render() {
         let searchArr = this.props.search;
         console.log('check search open modal 123 ', searchArr)
-        console.log("12344", this.props.lessonId)
+        console.log("12344", this.props)
+        // console.log("12344", this.props.id)
         return (
             <Modal 
-                isOpen={this.props.isOpen} 
-                toggle={() => {this.toggle()}} 
+                isOpen={this.props.isOpen}
+                toggle={() => {this.toggle()}}
                 className={'modal-user-container'}
                 size='lg'
                 // centered

@@ -1,6 +1,30 @@
 import db from "../models/index";
 import bcrypt from "bcryptjs";
 
+
+let getSearchVocabFromLessionInQuesson = (id) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            let searchFromQuestion = await db.Vocab.findAll({
+                where: { lessonId: id },
+                include:[
+                    {model: db.Lesson, as: 'lessonData1', attributes: ['lessonName']},
+                    {model: db.WordMeaning, as: 'vocabData', attributes: ['wordmeaning']},
+                    {model: db.VocabType, as: 'vocabData1', attributes: ['vocabType']},
+                ],
+                raw: true,
+                nest: true,
+            })
+            console.log("check searchFromQuestion", searchFromQuestion)
+            resolve(searchFromQuestion)
+        }
+        catch(e) {
+            reject(e)
+        }
+    })
+}
+
+
 let getAllQuestions = (questionId) => {
     return new Promise(async(resolve, reject) => {
         try{
@@ -116,5 +140,6 @@ module.exports = {
     createNewQuestion: createNewQuestion,
     getAllQuestions: getAllQuestions,
     updateQuestionData: updateQuestionData,
-    deleteQuestion: deleteQuestion
+    deleteQuestion: deleteQuestion,
+    getSearchVocabFromLessionInQuesson: getSearchVocabFromLessionInQuesson
 }

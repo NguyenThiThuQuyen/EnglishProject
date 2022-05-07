@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { adminMenu, studentMenu } from './menuApp'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { faSolid } from "@fortawesome/free-solid-svg-icons";
 import { adminMenu } from './menuApp'
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
@@ -54,25 +57,27 @@ class Header extends Component {
                             {/* <Navigator menus={this.state.menuApp} /> */}
                         </div>
                         <div className="right-content">
-                            <span className='welcome'>
+                            <div className="dropdown">
+                                <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                    <FontAwesomeIcon  style={{ fontSize: "1rem", paddingRight: '.5rem', cursor: "pointer"}} icon={faQuestionCircle} />
+                                    <FormattedMessage id="homeheader.support"/>
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.handleChangeLanguage(LANGUAGES.VI)}>VIETNAMESE</span></div>
+                                    <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.handleChangeLanguage(LANGUAGES.EN)}>ENGLISH</span></div>
+                                </div>
+                            </div>
+                            <span className='welcome mx-5'>
                                 <FormattedMessage id="homeheader.welcome"/>
                                 {userInfo && userInfo.firstName ? userInfo.firstName : 'huhu'}
                             </span>
-                            <span 
-                                className={language === LANGUAGES.VI ? "language-vi active" : "language-vi"} 
-                                onClick={() => this.handleChangeLanguage(LANGUAGES.VI)}>
-                                VN
-                            </span>
-                            <span 
-                                className={language === LANGUAGES.EN ? "language-en active" : "language-en"} 
-                                onClick={() => this.handleChangeLanguage(LANGUAGES.EN)}>
-                                EN
-                            </span>
+                        
                         </div>
                         {/* nút logout */}
                         <div className="btn btn-logout" onClick={processLogout}>
                             <i className="fas fa-sign-out-alt"></i>
                         </div>
+                        
                     </div>                
                 </div>
             </React.Fragment>

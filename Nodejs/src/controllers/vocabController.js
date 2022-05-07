@@ -1,5 +1,7 @@
 import vocabService from "../services/vocabService";
 import lessonLessonListService from "../services/lessonLessonListService"
+import questionService from "../services/questionService"
+
 
 const path = require('path')
 
@@ -20,6 +22,25 @@ let handleSearchVocab = async(req, res) => {
         errCode: 0,
         errMessage: 'Ok',
         search
+    })
+}
+
+
+let handleSearchVocabInQuestion = async(req, res) => {
+    let id = req.query.id; //all, id
+
+    if(!id) {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: 'Missing required parmeters',
+            searchFromQuestion: []
+        })
+    }
+    let searchFromQuestion = await questionService.getSearchVocabFromLessionInQuesson(id);
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'Ok',
+        searchFromQuestion
     })
 }
 
@@ -90,5 +111,6 @@ module.exports = {
     handleGetAllVocabs: handleGetAllVocabs,
     handleEditVocab: handleEditVocab,
     handleDeleteVocab: handleDeleteVocab,
-    handleSearchVocab: handleSearchVocab
+    handleSearchVocab: handleSearchVocab,
+    handleSearchVocabInQuestion: handleSearchVocabInQuestion
 }

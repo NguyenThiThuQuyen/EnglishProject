@@ -45,6 +45,8 @@
         "action": "Action"
     },
     "table-lesson-item": {
+        "question": "Question",
+        "create-question": "Tạo",
         "view-detail": "View details",
         "detail": "Vocabularies",
         "lesson-name": "Lesson name",

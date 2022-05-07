@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 import './LessonList.scss';
 import { Link } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
@@ -20,14 +21,21 @@ class LessonList extends Component {
     componentDidUpdate(prevProps, prevState, snapshot){
         if(prevProps.topLessonListsRedux !== this.props.topLessonListsRedux){
             this.setState({
-                arrLessonLists: this.props.topLessonListsRedux
+                arrLessonLists: this.props.topLessonListsRedux.data
             })
         }
     }
 
     componentDidMount() {
-        this.props.loadTopLessonLists();
-        this.props.fetchAllLessonListsStart();
+        this.props.loadTopLessonLists(this.props.match.params.id)
+        // this.props.loadTopLessonLists({
+        //     topicId: this.props.match.params.id,
+        //     test: '1'
+        // });
+        this.setState({
+            arrLessonLists: this.props.topLessonListsRedux
+        })
+        // this.props.fetchAllLessonListsStart();
 
     }
 
@@ -36,7 +44,7 @@ class LessonList extends Component {
         let { language } = this.props
         let allLessonLists = this.state.arrLessonLists;
         console.log('check allLessonLists: ',allLessonLists);
-
+        console.log('check 123456789: ', this.props.topLessonListsRedux)
         return (
             <div>
                 <HomeHeader />
@@ -73,11 +81,11 @@ class LessonList extends Component {
     
     const mapDispatchToProps = dispatch => {
         return {
-            loadTopLessonLists: () => dispatch(actions.fetchTopLessonList()),
-            fetchAllLessonListsStart: () => dispatch(actions.fetchAllLessonListsStart())
+            loadTopLessonLists: (topicId) => dispatch(actions.fetchTopLessonList(topicId)),
+            // fetchAllLessonListsStart: () => dispatch(actions.fetchAllLessonListsStart())
 
             
         };
     };
     
-export default connect(mapStateToProps, mapDispatchToProps)(LessonList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LessonList));

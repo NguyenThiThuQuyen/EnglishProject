@@ -22,8 +22,8 @@ const editLessonListService = (inputData) => {
     return axios.put('/api/edit-lesson-list', inputData);
 }
 
-const getLessonListHomeService = (limit) => {
-    return axios.get(`/api/lesson-list-home?limit=${limit}`)
+const getLessonListHomeService = (topicId) => {
+    return axios.get(`/api/lesson-list-home?topicId=${topicId}`)
 }
 
 

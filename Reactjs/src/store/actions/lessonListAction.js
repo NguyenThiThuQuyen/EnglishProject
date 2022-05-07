@@ -17,7 +17,12 @@ export const createNewLessonList = (data) => {
             if(res && res.errCode === 0){
                 toast.success("Create a new lesson list succeed!")
                 dispatch(saveLessonListSuccess())
-            }else{
+            }else 
+                if(res && res.errCode === 1){
+                    toast.error("Name was existed!")
+                    dispatch(saveLessonListFailed());  
+                }
+            else{
                 dispatch(saveLessonListFailed());
             }
         } catch(e) {
@@ -124,15 +129,15 @@ export const editLessonListFailed = () => ({
 })
 
 
-export const fetchTopLessonList = () => {
+export const fetchTopLessonList = (topicId) => {
     return async (dispatch, getState) => {
         try {
-            let res = await getLessonListHomeService('');
+            let res = await getLessonListHomeService(topicId);
             console.log('check res lesson list: ', res)
             if(res && res.errCode === 0){
                 dispatch({
                     type: actionTypes.FETCH_TOP_LESSON_LISTS_SUCCESS,
-                    dataLessonLists: res.data
+                    dataLessonLists: res.lessonLists
                 })
             }else {
                 dispatch({

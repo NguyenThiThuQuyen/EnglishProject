@@ -39,7 +39,7 @@ class Lesson extends Component {
         return (
             <div>
                 <HomeHeader />
-                <div className="container">     
+                <div className="container-fluid bg-lesson">     
                     <div className="row">
                         <div className="col-3"></div>
                         <div className="col-6">
@@ -53,14 +53,14 @@ class Lesson extends Component {
                                     let nameVi = `${item.lessonName}`;
                                     let nameEn = `${item.lessonName}`;
                                     return(
-                                    <div className="row" key={index}>
-                                        <div className="col-6">
+                                    <div className="row mt-5 bg-lesson-content" key={index}>
+                                        <div className="col-4">
                                             <img
                                                 className="card-img"
                                                 style={{ backgroundImage: `url(${imageBase64})` }}
                                             />
                                         </div>
-                                        <div className="col-6 card-content">
+                                        <div className="col-8 card-content">
                                             <p className='c-content'>
                                                 <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
                                                 <Link to="/lesson-item" className='style-link'>

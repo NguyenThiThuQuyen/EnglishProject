@@ -61,7 +61,6 @@ class HomeContent extends Component {
                                             </p>
                                         </div>
                                     </div>
-                                    
                                 </div>
                                 <div className="col-6">
                                     <p className="card-text"><a href="">STORY</a></p>

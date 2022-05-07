@@ -129,22 +129,6 @@ class LessonRedux extends Component {
         }); 
     }
 
-    handleEditTopicFromParent = (lesson) => {
-        let imageBase64 = '';
-        if(lesson.lessonImage){
-            imageBase64 = new Buffer(lesson.lessonImage, 'base64').toString('binary');
-        }
-        this.setState({
-            lessonName: lesson.lessonName,
-            lessonImage: '',
-            previewImgURL: imageBase64,
-            action: CRUD_ACTIONS.EDIT,
-            lessonEditId: lesson.id,
-        }, () => {
-            console.log("check base64: ", this.state)
-        })
-    }
-
     render() {
         let language = this.props.language;
         let {

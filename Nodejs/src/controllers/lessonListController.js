@@ -47,19 +47,23 @@ let handleDeleteLessonList =  async(req, res) => {
 
 //export ra interface
  let getLessonListHome = async(req, res) => {
-    let limit = req.query.limit;
-    if(!limit) limit = 10;
-    try {
-        // console.log('check res: ', response)
-        let response = await lessonListService.getLessonListHome(limit);
-        return res.status(200).json(response);
-    } catch (e) {
-        console.log(e);
+    let topicId = req.query.topicId; //all, topicId
+   // let topicId = req.body; //all, topicId
+
+    if(!topicId) {
         return res.status(200).json({
-            errCode: -1,
-            message: 'Error from server...'
+            errCode: 0,
+            errMessage: 'Missing required parmeters',
+            lessonLists: []
         })
     }
+
+    let lessonLists = await lessonListService.getLessonListHome(topicId);
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'Ok',
+        lessonLists
+    })
 }
 
 

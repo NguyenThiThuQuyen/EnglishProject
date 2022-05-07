@@ -45,6 +45,8 @@
         "action": "Hành động"
     },
     "table-lesson-item": {
+        "question": "Câu hỏi",
+        "create-question": "Tạo",
         "view-detail": "Xem chi tiết",
         "detail": "Từ vựng",
         "lesson-name": "Bài học",

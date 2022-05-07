@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManageLessonItem.scss';
+import { Link } from "react-router-dom";
 import * as actions from "../../../../store/actions";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faArchive } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ModalLesson from "./ModalLesson"
+import QuestionRedux from '../Question/QuestionRedux';
 
 import { LANGUAGES } from "../../../../utils";
 
@@ -18,7 +20,8 @@ class TableManageLessonItem extends Component {
         this.state = {
             lessonItemsRedux: [],
             isOpenModalLesson: false,
-            lessonId: ''
+            lessonId: '',
+            searchLessonId: ''
         }
     }
 
@@ -52,6 +55,12 @@ class TableManageLessonItem extends Component {
         })
     }
 
+    handleOnClickLessonNameFromQueson = (id) => {
+        console.log("search 123456: ", id)
+        let idtemp = id
+        this.state.searchLessonId = id
+    }
+
     toggleLessonModal = () => {
         this.setState({
             isOpenModalLesson: !this.state.isOpenModalLesson,
@@ -60,19 +69,25 @@ class TableManageLessonItem extends Component {
 
     render() {
         let arrLessonItems = this.state.lessonItemsRedux;
-        console.log("check all 2222: ", arrLessonItems)
-        // console.log("check all 333: ", listLessonItems)
+        console.log("check this.state.searchLessonId", this.state.searchLessonId)
+        let searchLessonId = this.state.searchLessonId
+        console.log("check all 2222: ", arrLessonItems);
         return (
             <div>
                 <ModalLesson 
                     isOpen={this.state.isOpenModalLesson}
                     toggleFromParent = {this.toggleLessonModal}
                     lessonId = {this.state.lessonId}
-                    // createNewuser={this.createNewuser}
                 />
+                {/* <div className="" hidden> */}
+                    <QuestionRedux 
+                        temp = {searchLessonId}
+                    />
+                {/* </div> */}
                     <table id="TableManageLessonItem" className="table table-striped">
                          <thead className='bg-success text-white'>
                             <tr>
+                                <th scope="col"><FormattedMessage id="table-lesson-item.question"/></th>
                                 <th scope="col"><FormattedMessage id="table-lesson-item.lesson-name"/></th>
                                 <th scope="col"><FormattedMessage id="table-lesson-item.lesson-type"/></th>
                                 <th scope="col"><FormattedMessage id="table-lesson-item.topic"/></th>
@@ -86,6 +101,15 @@ class TableManageLessonItem extends Component {
                                     console.log("item", item)
                                     return (
                                     <tr key = {index}>
+                                        <td>
+                                            <button className='btn btn-warning'
+                                            onClick={() => this.handleOnClickLessonNameFromQueson(item.lessonId)}
+                                            >
+                                                <Link to="/system/question-redux" className='style-link text-dark active'>
+                                                    <b><FormattedMessage id="table-lesson-item.create-question"/></b>
+                                                </Link>
+                                            </button>
+                                        </td>
                                         <td>
                                             {item.lessonData.lessonName}
                                         </td>

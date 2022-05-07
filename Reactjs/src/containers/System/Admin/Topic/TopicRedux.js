@@ -117,7 +117,7 @@ class TopicRedux extends Component {
 
     handleEditTopicFromParent = (topic) => {
         let imageBase64 = '';
-        if(topic.image){
+        if(topic.topicImage){
             imageBase64 = new Buffer(topic.topicImage, 'base64').toString('binary');
         }
         this.setState({

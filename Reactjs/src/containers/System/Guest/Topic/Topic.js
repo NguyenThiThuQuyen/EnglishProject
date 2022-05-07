@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Topic.scss';
+import { withRouter } from 'react-router';
 import { Link } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
 import * as BsIcons from 'react-icons/bs';
 import HomeHeader from '../../../HomePage/HomeHeader';
 import Footer from '../../../HomePage/Footer';
 import * as actions from '../../../../store/actions'
+import LessonList from '../LessonList/LessonList'
 import { LANGUAGES } from '../../../../utils'
 
 class Topic extends Component {
     constructor(props){
         super(props)
         this.state = {
-            arrTopics: []
+            arrTopics: [],
+            topicId: ''
         }
     }
 
@@ -32,6 +35,12 @@ class Topic extends Component {
 
     }
 
+    handleOnClickChooseId(topic) {
+        if(this.props.history){
+            this.props.history.push(`/lesson-list/${topic}`)
+        }
+    }
+
     render() {
         console.log('check topTopicsRedux: ', this.props.topTopicsRedux);
         let { language } = this.props
@@ -39,7 +48,7 @@ class Topic extends Component {
         return (
             <div>
                 <HomeHeader />
-                <div className="container">     
+                <div className="container-fluid bg-topic">     
                     <div className="row">
                         <div className="col-3"></div>
                         <div className="col-6">
@@ -53,19 +62,22 @@ class Topic extends Component {
                                     let nameVi = `${item.topicName}`;
                                     let nameEn = `${item.topicName}`;
                                     return(
-                                    <div className="row" key={index}>
-                                        <div className="col-6">
-                                            <img
-                                                className="card-img"
-                                                style={{ backgroundImage: `url(${imageBase64})` }}
-                                            />
+                                    <div className="row mt-5 bg-topic-content" key={index}>
+                                        <div className="col-4">
+                                            <div className="img">
+                                                <img src={imageBase64} className='img-topic'/>
+                                            </div>
                                         </div>
-                                        <div className="col-6 card-content">
-                                            <p className='c-content'>
+                                        <div className="col-8 card-content">
+                                            <p className='c-content'
+                                            onClick={() => this.handleOnClickChooseId(item.id)}
+                                            >
                                                 <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
-                                                <Link to="/lesson-list" className='style-link'>
+                                                {language === LANGUAGES.VI ? nameVi : nameEn} 
+
+                                                {/* <Link to="/lesson-list" className='style-link'>
                                                     {language === LANGUAGES.VI ? nameVi : nameEn} 
-                                                </Link> 
+                                                </Link>  */}
                                             </p>
                                         </div>
                                     </div>  
@@ -97,4 +109,4 @@ class Topic extends Component {
         };
     };
     
-export default connect(mapStateToProps, mapDispatchToProps)(Topic);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Topic));

@@ -9,6 +9,7 @@ import LessonListRedux from '../containers/System/Admin/LessonList/LessonListRed
 import LessonRedux from '../containers/System/Admin/Lesson/LessonRedux';
 import VocabRedux from '../containers/System/Admin/Vocab/VocabRedux';
 import LessonItemRedux from '../containers/System/Admin/LessonItem/LessonItemRedux'
+import QuestionRedux from '../containers/System/Admin/Question/QuestionRedux';
 
 import Header from '../containers/Header/Header';
 
@@ -28,6 +29,7 @@ class System extends Component {
                         <Route path="/system/lesson-redux" component={LessonRedux} />
                         <Route path="/system/vocab-redux" component={VocabRedux} />
                         <Route path="/system/lesson-item-redux" component={LessonItemRedux} />
+                        <Route path="/system/question-redux" component={QuestionRedux} />
                         <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                     </Switch>
                 </div>

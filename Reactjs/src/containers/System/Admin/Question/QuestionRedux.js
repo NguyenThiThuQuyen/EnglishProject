@@ -1,41 +1,32 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import './LessonItemRedux.scss'
+import './QuestionRedux.scss'
 import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../../utils";
 import * as actions from "../../../../store/actions";
 import 'react-image-lightbox/style.css';
-import TableManageLessonItem from './TableManageLessonItem';
-class LessonItemRedux extends Component {
+// import TableManageQuestion from './TableManageQuestion';
+class QuestionRedux extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lessonListArr: [],
             lessonArr: [],
             isOpen: false,
 
-            lessonListId: '',
+            searchLessonId: '',
             lessonId: '',
+            question: '',
 
             action: '',
-            lessonItemEditId: '',
+            questionEditId: '',
         }
     }
 
     async componentDidMount() {
         this.props.fetchAllLessonsStart();
-        this.props.fetchAllLessonListsStart();
-
     }
 
     componentDidUpdate(prevProps, prevState, snapshot){
-        if(prevProps.listLessonLists !== this.props.listLessonLists){
-            let arrLessonLists = this.props.listLessonLists
-            this.setState({
-                lessonListArr: arrLessonLists,
-                lessonListId: arrLessonLists && arrLessonLists.length > 0 ? arrLessonLists[0].id : ''
-            })
-        }
         if(prevProps.listLessons !== this.props.listLessons){
             let arrLessons = this.props.listLessons
             this.setState({
@@ -44,41 +35,46 @@ class LessonItemRedux extends Component {
             })
         }
 
-        if(prevProps.listLessonItems !== this.props.listLessonItems) {
-            let arrLessonLists = this.props.listLessonItems;
-            let arrLessons = this.props.listLessonItems;
+        if(prevProps.listQuestions !== this.props.listQuestions) {
+            let questionArr = this.props.listQuestions;
             this.setState({
-                // name: '',
-                lessonList: arrLessonLists && arrLessonLists.length > 0 ? arrLessonLists[0].lessonListId: '',
-                lessonId: arrLessons && arrLessons.length > 0 ? arrLessons[0].lessonId: '',
+                answerTrue: '',
+                answerFalse1: '',
+                answerFalse2: '',
+                answerFalse3: '',
+                question: questionArr && questionArr.length > 0 ? questionArr[0].lessonId: '',
                 action: CRUD_ACTIONS.CREATE,
             })
         }
     }
 
-    handleSaveLessonItem = () => {
+    handleSaveQuestion = () => {
         // let isValid = this.checkValidateInput();
         // if(isValid === false) return;
         let { action } = this.state;
         if(action === CRUD_ACTIONS.CREATE){
             //fire redux create lesson list
-            this.props.createNewLessonItem({
-                // name: this.state.name,
-                lessonListId: this.state.lessonListId,
+            this.props.createNewQuestion({
+                answerTrue: this.state.answerTrue,
+                answerFalse1: this.state.answerFalse1,
+                answerFalse2: this.state.answerFalse2,
+                answerFalse3: this.state.answerFalse3,
                 lessonId: this.state.lessonId,
             })
         }
         if(action === CRUD_ACTIONS.EDIT){
             //fire redux edit lesson list
-            this.props.editALessonItemRedux({
-                id: this.state.lessonItemEditId,
-                // name: this.state.name,
-                lessonListId: this.state.lessonListId,
+            this.props.editAQuestionRedux({
+                id: this.state.questionEditId,
+                answerTrue: this.state.answerTrue,
+                answerFalse1: this.state.answerFalse1,
+                answerFalse2: this.state.answerFalse2,
+                answerFalse3: this.state.answerFalse3,
                 lessonId: this.state.lessonId,
             })
         }
         setTimeout(() => {
-            this.props.fetchAllLessonItemsStart();
+            this.props.fetchAllQuestionsStart();
         }, 1000)
     }
 
@@ -91,34 +87,30 @@ class LessonItemRedux extends Component {
         }); 
     }
 
-    handleEditLessonItemFromParent = (lessonItem) => {
-        // console.log("check edit lesson list from parent: ", lessonItem)
+    handleEditQuestionFromParent = (question) => {
+        // console.log("check edit lesson list from parent: ", question)
         this.setState({
-            // name: lessonList.name,
-            lessonListId: lessonItem.lessonListId,
-            lessonId: lessonItem.lessonId,
+            answerTrue: question.answerTrue,
+            answerFalse1: question.answerFalse1,
+            answerFalse2: question.answerFalse2,
+            answerFalse3: question.answerFalse3,
+            lessonId: question.lessonId,
+
             action: CRUD_ACTIONS.EDIT,
-            lessonItemEditId: lessonItem.id,
+            questionEditId: question.id,
         })
     }
 
     render() {
-        let lessonLists = this.state.lessonListArr;
-        let lessons = this.state.lessonArr;
-        let language = this.props.language;
-
-        let listLessonListArr = this.props.listLessonLists
         let listLessonArr = this.props.listLessons
-        let listLessonItemArr = this.props.listLessonItems
 
-        let searchArr = this.props.search
-        // console.log("searchArr 11245", searchArr)
+        this.state.lessonId = this.props.temp
+        let {lessonId } = this.state;
+        console.log("helllllllllllllll", this.props)
+        // console.log("helllllllllllllll", this.props.searchLessonId)
 
-        // console.log("check listLessonItemArr 1", listLessonItemArr)
-        // console.log("check listLessonListArr 2", listLessonListArr)
-        // console.log("check listLessonArr 3", listLessonArr)
+        console.log("check listLessonArr 3", listLessonArr)
 
-        let { lessonListId, lessonId } = this.state;
 
         return (
             <div className='lesson-list-redux-container'>
@@ -129,23 +121,14 @@ class LessonItemRedux extends Component {
                     <div className="container">
                         <div className="row boder-container">
                             <div className="col-12"><FormattedMessage id="manage-lesson-item.add"/></div>
-
                             <div className="form-group col-6 mt-2">
-                                <label><FormattedMessage id="manage-lesson-item.lessonListId"/></label>
-                                <select className='form-control'
-                                    onChange={(event) => { this.onChangeInput(event, 'lessonListId') }}
-                                    value={lessonListId}
-                                >
-                                    {listLessonListArr && listLessonListArr.length > 0 &&
-                                        listLessonListArr.map((item, index) => {
-                                            return (
-                                                <option key={index} value={item.id}>
-                                                    {item.name}
-                                                </option>
-                                            )
-                                        })
-                                    }
-                                </select>
+                                <label><FormattedMessage id="manage-vocab.vocab-type"/></label>
+                                <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    onChange={(event) => {this.onChangeInput(event, "lessonId")}}
+                                    value={lessonId}
+                                />
                             </div>
 
                             <div className="form-group col-6 mt-2">
@@ -166,6 +149,7 @@ class LessonItemRedux extends Component {
                                 </select>
                             </div>
 
+
                             <div className="col-12">
                                 <button className='btn btn-danger float-right'><FormattedMessage id="manage-lesson-item.cancel"/></button>
                                 <button className={this.state.action === CRUD_ACTIONS.EDIT ? 'btn btn-warning float-right mr-2' : 'btn btn-primary float-right mr-2'}
@@ -183,14 +167,14 @@ class LessonItemRedux extends Component {
 
                         
 
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col-12 my-5">
                                 <TableManageLessonItem
                                     handleEditLessonItemFromParentKey={this.handleEditLessonItemFromParent}
                                     action={this.state.action}
                                 />
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
@@ -201,8 +185,8 @@ class LessonItemRedux extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
-        listLessonLists: state.admin.lessonLists,
         listLessons: state.admin.lessons,
+        // searchLessonId: state.admin.lessons,
         search: state.admin.search,
         listLessonItems: state.admin.lessonLessonLists,
 
@@ -223,4 +207,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LessonItemRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionRedux);

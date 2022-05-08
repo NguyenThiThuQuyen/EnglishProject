@@ -1,4 +1,5 @@
 import lessonService from "../services/lessonService";
+import lessonLessonListService from "../services/lessonLessonListService";
 
 const path = require('path')
 
@@ -24,6 +25,12 @@ let handleCreateNewLesson = async(req, res) => {
     console.log(message);
     return res.status(200).json(message);
 }
+
+// let handleCreateNewLesson = async(req, res) => {
+//     let message = await lessonLessonListService.createNewLesson(req.body);
+//     console.log(message);
+//     return res.status(200).json(message);
+// }
 
 
 let handleEditLesson = async(req, res) => {

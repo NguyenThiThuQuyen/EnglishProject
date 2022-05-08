@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { faUpload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './VocabRedux.scss';
+import { withRouter } from 'react-router';
 import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../../utils";
 import * as actions from "../../../../store/actions";
+import {getAllLessons} from "../../../../services/lessonService"
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import TableManageVocab from './TableManageVocab';
@@ -24,29 +26,27 @@ class VocabRedux extends Component {
             action: '',
             vocabEditId: '',
 
-            VocabRedux: ''
+            VocabRedux: '',
+            lessonName: ''
         }
     }
 
     async componentDidMount() {
         this.props.fetchVocabRedux();
-        this.props.getVocabStart();
+        this.props.getVocabStart(this.props.match.params.id);
         this.props.getLessonStart();
         this.props.fetchAllLessonsStart();
 
-    }
-
-    // componentDidUpdate(prevProps, prevState, snapshot){
-    //     if(prevProps.listVocabs !== this.props.listVocabs) {
-    //         // VocabRedux: this.props.listTopics,
-    //         this.setState({
-    //             vocab: '',
-    //             wordmeaning: '',
-    //             vocabType: '',
-    //             action: CRUD_ACTIONS.CREATE,
-    //         })
-    //     }
-    // }
+        this.setState({
+            arrLessonLists: this.props.topLessonListsRedux
+        })
+        // this.props.loadTopLessonLists(this.props.match.params.id)
+        let lessonName = await getAllLessons(this.props.match.params.id)
+        console.log('check name: ', lessonName.lessons.lessonName)
+        this.setState({
+            lessonName: lessonName.lessons.lessonName
+        })
+    } 
 
     componentDidUpdate(prevProps, prevState, snapshot){
         if(prevProps.listLessons !== this.props.listLessons){
@@ -139,9 +139,9 @@ class VocabRedux extends Component {
         let language = this.props.language;
         let lessons = this.state.lessonArr;
         let listLessonArr = this.props.listLessons;
-        console.log("check listLessonArr", listLessonArr)
+        console.log("check listLessonArr 11123", listLessonArr)
         let {
-            vocab, lessonId, wordmeaning, vocabType
+            vocab, lessonId, wordmeaning, vocabType, lessonName
         } = this.state;
 
         console.log("listVocabs",this.props.listVocabs)
@@ -154,21 +154,24 @@ class VocabRedux extends Component {
                     <div className="container">
                         <div className="row boder-container">
                             <div className="col-12"><FormattedMessage id="manage-vocab.add"/></div>
+
                             <div className="form-group col-6 mt-2">
-                                <label><FormattedMessage id="manage-vocab.vocab"/></label>
+                                <label><FormattedMessage id="manage-vocab.lessonId"/></label>
                                 <input 
                                     type="text" 
                                     className="form-control" 
-                                    onChange={(event) => {this.onChangeInput(event, "vocab")}}
-                                    value={vocab}
+                                    onChange={(event) => {this.onChangeInput(event, "lessonName")}}
+                                    value={lessonName}
+                                    disabled
                                 />
                             </div>
-                            <div className="form-group col-6 mt-2">
-                                <label><FormattedMessage id="manage-vocab.lessonId"/></label>
+
+                            {/* <div className="form-group col-4 mt-2">
+                                <label><FormattedMessage id="manage-lesson-list.topicId"/></label>
                                 <select className='form-control'
-                                    onChange={(event) => { this.onChangeInput(event, 'lessonId') }
+                                    onChange={(event) => { this.onChangeInput(event, 'lessonName') }
                                 }
-                                value={lessonId}
+                                value={lessonName}
                                 >
                                     {listLessonArr && listLessonArr.length > 0 &&
                                         listLessonArr.map((item, index) => {
@@ -180,6 +183,16 @@ class VocabRedux extends Component {
                                         })
                                     }
                                 </select>
+                            </div> */}
+
+                            <div className="form-group col-6 mt-2">
+                                <label><FormattedMessage id="manage-vocab.vocab"/></label>
+                                <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    onChange={(event) => {this.onChangeInput(event, "vocab")}}
+                                    value={vocab}
+                                />
                             </div>
                             <div className="form-group col-6 mt-2">
                                 <label><FormattedMessage id="manage-vocab.word-meaning"/></label>
@@ -249,4 +262,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(VocabRedux);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(VocabRedux));

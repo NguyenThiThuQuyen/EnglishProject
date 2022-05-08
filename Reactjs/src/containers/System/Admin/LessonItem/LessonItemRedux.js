@@ -127,7 +127,7 @@ class LessonItemRedux extends Component {
                 </div>
                 <div className="lesson-list-redux-body mt-5">
                     <div className="container">
-                        <div className="row boder-container">
+                        {/* <div className="row boder-container">
                             <div className="col-12"><FormattedMessage id="manage-lesson-item.add"/></div>
 
                             <div className="form-group col-6 mt-2">
@@ -178,10 +178,7 @@ class LessonItemRedux extends Component {
                                     }
                                 </button>
                             </div>
-                        </div>
-
-
-                        
+                        </div> */}
 
                         <div className="row">
                             <div className="col-12 my-5">
@@ -191,6 +188,8 @@ class LessonItemRedux extends Component {
                                 />
                             </div>
                         </div>
+                        
+
                     </div>
                 </div>
             </div>

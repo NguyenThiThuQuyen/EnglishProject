@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManageLesson.scss';
+import { withRouter } from 'react-router';
 import * as actions from "../../../../store/actions";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faArchive } from "@fortawesome/free-solid-svg-icons";
@@ -38,6 +39,13 @@ class TableManageLesson extends Component {
         this.props.handleEditLessonFromParentKey(lesson)
     }
 
+    handleOnClickLesson(lesson) {
+        console.log("check push: ", )
+        if(this.props.history){
+            this.props.history.push(`/system/vocab-redux/${lesson}`)
+        }
+    }
+
 
 
     render() {
@@ -62,9 +70,16 @@ class TableManageLesson extends Component {
                                     }
                                     return (
                                     <tr key = {index}>
-                                        <td>{item.lessonName}</td>
                                         <td>
-                                            <img src={imageBase64} className='img-img' style={{width: '80px', height: '80px'}}/>
+                                            <button className='btn btn-primary'
+                                                onClick={() => this.handleOnClickLesson(item.id)}
+                                            >
+                                                {item.lessonName}
+                                            </button>
+                                        </td>
+
+                                        <td>
+                                            <img src={imageBase64} className='img-img' style={{width: '100px', height: '80px'}}/>
                                         </td>
                                         <td>
                                             <button 
@@ -104,4 +119,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableManageLesson);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TableManageLesson));

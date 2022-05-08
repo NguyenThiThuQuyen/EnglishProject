@@ -25,7 +25,7 @@ class LessonListRedux extends Component {
 
     async componentDidMount() {
         this.props.getTopicStart();
-        this.props.getLessonListStart();
+        this.props.getLessonListStart();        
 
     }
 
@@ -120,7 +120,8 @@ class LessonListRedux extends Component {
         let listLessonListArr = this.props.listLessonLists
 
         console.log("check this.state.topicId", this.state.topicId)
-        console.log("check 1234", listLessonListArr)
+
+        // console.log("check 1234", listLessonListArr)
 
         let { name, topicId } = this.state;
 
@@ -196,7 +197,7 @@ const mapStateToProps = state => {
     return {
         language: state.app.language,
         listTopics: state.admin.topics,
-        listLessonLists: state.admin.lessonLists,
+        listTopics: state.admin.topics,
 
     };
 };
@@ -204,11 +205,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getTopicStart: () => dispatch(actions.fetchAllTopicsStart()),
-
         getLessonListStart: () => dispatch(actions.fetchAllLessonListsStart()),
-        
         createNewLessonList: (data) => dispatch(actions.createNewLessonList(data)),
-        editALessonListRedux: (data) => dispatch(actions.editALessonList(data))
+        editALessonListRedux: (data) => dispatch(actions.editALessonList(data)),
     };
 };
 

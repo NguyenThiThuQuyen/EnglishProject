@@ -59,7 +59,7 @@ export const adminMenu = [
         name: 'menu.admin.vocab',
         menus: [
             {
-                name: 'menu.admin.manage-vocab', link: '/system/vocab-redux'
+                name: 'menu.admin.manage-vocab', link: '/system/vocab-redux/:id'
             }
         ]
     },

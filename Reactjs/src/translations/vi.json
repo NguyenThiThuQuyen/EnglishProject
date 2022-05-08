@@ -113,6 +113,8 @@
     "manage-lesson": {
         "title": "QUẢN LÝ BÀI HỌC",
         "add": "Thêm mới bài học",
+        "topic": "Chủ đề",
+        "lessonlist": "Loại ngôn ngữ",
         "lesson-name": "Tên bài học",
         "lesson-image": "Ảnh đại diện",
         "save": "Lưu",
@@ -123,6 +125,8 @@
     "manage-vocab": {
         "title": "QUẢN LÝ TỪ VỰNG",
         "add": "Thêm từ vựng mới",
+        "topic": "Chủ đề",
+        "lessonlist": "Loại ngôn ngữ",
         "vocab": "Từ vựng",
         "vocab-type": "Loại từ",
         "lessonId": "Tên bài học",

@@ -21,6 +21,24 @@ let handleGetAllLessonLists = async(req, res) => {
     })
 }
 
+let handleSearchTopicInLessonList = async(req, res) => {
+    let id = req.query.id; //all, id
+
+    if(!id) {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: 'Missing required parmeters',
+            searchLessonList: []
+        })
+    }
+    let searchLessonList = await lessonListService.getSearchTopicFromLessionList(id);
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'Ok',
+        searchLessonList
+    })
+}
+
 let handleCreateNewLessonList = async(req, res) => {
     let message = await lessonListService.createNewLessonList(req.body);
     console.log(message);
@@ -73,4 +91,5 @@ module.exports = {
     handleGetAllLessonLists: handleGetAllLessonLists,
     handleDeleteLessonList: handleDeleteLessonList,
     getLessonListHome: getLessonListHome,
+    handleSearchTopicInLessonList: handleSearchTopicInLessonList
 }

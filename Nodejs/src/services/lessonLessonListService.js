@@ -24,6 +24,9 @@ let getSearchVocabFromLession = (id) => {
     })
 }
 
+
+
+
 let getAllLessonLessonLists = (lessonLessonListId) => {
     return new Promise(async(resolve, reject) => {
         try{
@@ -31,8 +34,8 @@ let getAllLessonLessonLists = (lessonLessonListId) => {
             if(lessonLessonListId === 'ALL' ) {
                 lessonLessonLists = await db.LessonLessonList.findAll({
                     include:[
-                        {model: db.LessonList, as: 'lessonListData', attributes: ['name', 'topicId'],
-                        include: [{model: db.Topic, as: 'topicData', attributes: ['topicName']}]
+                        {model: db.LessonList, as: 'lessonListData', attributes: ['name', 'topicId', 'id'],
+                        include: [{model: db.Topic, as: 'topicData', attributes: ['topicName', 'id']}]
                     },
                         {model: db.Lesson, as: 'lessonData', attributes: ['lessonName', 'id']},
                     ],
@@ -44,8 +47,8 @@ let getAllLessonLessonLists = (lessonLessonListId) => {
                 lessonLessonLists = await db.LessonLessonList.findOne({
                     where: { id: lessonLessonListId},
                     include:[
-                        {model: db.LessonList, as: 'lessonListData', attributes: ['name', 'topicId'],
-                        include: [{model: db.Topic, as: 'topicData', attributes: ['topicName']}]
+                        {model: db.LessonList, as: 'lessonListData', attributes: ['name', 'topicId', 'id'],
+                        include: [{model: db.Topic, as: 'topicData', attributes: ['topicName', 'id']}]
                     },
                         {model: db.Lesson, as: 'lessonData', attributes: ['lessonName', 'id']},
                     ],
@@ -75,17 +78,34 @@ let getAllLessonLessonLists = (lessonLessonListId) => {
 // }
 
 let createNewLessonLessonList = async (data) => {
+    console.log('123:', data)
     return new Promise(async(resolve, reject) => {
         try{
-            // let check = await getSearchVocabFromLession(data.lessonId);
-            // if(check === true){
+
+            // let create = await createNewLesson(data.lessonId);
+            // console.log('123: ', create)
+            // if(create === true){
+            //     resolve({
+            //         errCode: 1,
+            //         errMessage: "The Lesson - lesson list isn't exist"
+            //     })
             // }
-            await db.LessonLessonList.create({
-                lessonId: data.lessonId,
-                lessonListId: data.lessonListId,
-            })
-            
-            resolve('create a new lesson - lessonlist succeed')
+            // else {
+                let createLesson = await db.Lesson.create({
+                    lessonName: data.lessonName,
+                    lessonImage: data.lessonImage
+                })
+
+                let createLessonItem = await db.LessonLessonList.create({
+                    lessonId: createLesson.id,
+                    lessonListId: data.lessonListId,
+
+                })
+            // }
+            resolve({
+                errCode: 0,
+                message: 'create a new lesson - lessonlist succeed!'
+            });
         }catch(e){
             reject(e);
         }
@@ -177,5 +197,6 @@ module.exports = {
     deleteLessonLessonList: deleteLessonLessonList,
     getSearchVocabFromLession: getSearchVocabFromLession,
     getLessonItemHome: getLessonItemHome,
+
 
 }

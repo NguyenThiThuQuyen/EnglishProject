@@ -1,6 +1,27 @@
 import db from "../models/index";
 import bcrypt from "bcryptjs";
 
+
+let getSearchTopicFromLessionList = (id) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            let searchLessonList = await db.LessonList.findAll({
+                where: { topicId: id },
+                include:[
+                    {model: db.Topic, as: 'topicData', attributes: ['topicName']},
+                ],
+                raw: true,
+                nest: true,
+            })
+            console.log("check search", searchLessonList)
+            resolve(searchLessonList)
+        }
+        catch(e) {
+            reject(e)
+        }
+    })
+}
+
 let getAllLessonLists = (lessonListId) => {
     return new Promise(async(resolve, reject) => {
         try{
@@ -63,28 +84,22 @@ let createNewLessonList = async (data) => {
                     where: {topicId: data.topicId}
                 })
                 // console.log("check temp: ", temp.name)
-
-                //kiểm tra temp có tồn tại ko 
-                if(temp && temp.length >0)
-                {
+                if(temp && temp.length >0){      //kiểm tra temp có tồn tại ko 
                     let check = ''
                     temp.map((item =>{          //duyệt mảng temp
-
                         if(data.name === item.name)     //so sánh tên nhập vào với từng dòng trong mảng theo tên
                     {
                         check = 'true'
                     }
                     }))
                 console.log("check mới", check )
-                    if(check === "true")
-                    {
+                    if(check === "true"){
                         resolve({
                             errCode: 1,
                             errMessage: `Lesson list name was existed !`
                         })
                     }
-                    else
-                    {
+                    else{
                         await db.LessonList.create({
                             name: data.name,
                             topicId: data.topicId
@@ -96,9 +111,6 @@ let createNewLessonList = async (data) => {
                     }
                 }
             }
-        
-
-           
             resolve('create a new lesson list succeed')
         }catch(e){
             reject(e);
@@ -188,4 +200,6 @@ module.exports = {
     deleteLessonList: deleteLessonList,
     getLessonListHome: getLessonListHome,
     checkLessonListName: checkLessonListName,
+    getSearchTopicFromLessionList: getSearchTopicFromLessionList
+
 }

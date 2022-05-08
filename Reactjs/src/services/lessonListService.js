@@ -5,6 +5,10 @@ const getAllLessonLists = (inputId) => {
     return axios.get(`/api/get-all-lesson-lists?id=${inputId}`)
 }
 
+const getSearchTopicFromLessionList = (inputId) => {
+    return axios.get(`/api/search-topic-in-lesson-list?id=${inputId}`)
+}
+
 const createNewLessonListService = (data) => {
     console.log('check data from service: ', data)
     return axios.post(`/api/create-new-lesson-list`, data) 
@@ -32,5 +36,6 @@ export {
     createNewLessonListService,
     deleteLessonListService,
     editLessonListService,
-    getLessonListHomeService
+    getLessonListHomeService,
+    getSearchTopicFromLessionList
 }

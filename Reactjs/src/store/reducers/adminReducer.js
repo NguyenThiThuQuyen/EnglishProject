@@ -23,6 +23,10 @@ const initialState = {
 
     search: [],
 
+    searchLessonList: [],
+
+
+
     questions: [],
 }
 
@@ -203,6 +207,19 @@ const adminReducer = (state = initialState, action) => {
     
         case actionTypes.FETCH_ALL_SEARCH_VOCABS_FAILD:
            state.search = [];
+            return {
+                ...state,
+            }
+
+        // search topic
+        case actionTypes.FETCH_ALL_SEARCH_LESSON_LISTS_SUCCESS:
+            state.searchLessonList = action.searchLessonList;
+            return {
+                ...state,
+            }
+
+        case actionTypes.FETCH_ALL_SEARCH_LESSON_LISTS_FAILD:
+           state.searchLessonList = [];
             return {
                 ...state,
             }

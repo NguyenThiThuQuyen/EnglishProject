@@ -5,9 +5,22 @@ const getAllLessons = (inputId) => {
     return axios.get(`/api/get-all-lessons?id=${inputId}`)
 }
 
+// const createNewLessonService = (data) => {
+//     console.log('check data from service: ', data)
+//     return axios.post(`/api/create-new-lesson`, data) 
+// }
+
+
 const createNewLessonService = (data) => {
     console.log('check data from service: ', data)
-    return axios.post(`/api/create-new-lesson`, data) 
+    return axios.post(`/api/create-new-lesson-lessonlist`, data) 
+}
+
+
+
+const createNewLessonLessonList = (data) => {
+    console.log('check data from service: ', data)
+    return axios.post(`/api/create-new-lesson-lessonlist`, data) 
 }
 
 const deleteLessonService = (lessonId) => {
@@ -32,5 +45,6 @@ export {
     createNewLessonService, 
     deleteLessonService,
     editLessonService,
-    getLessonHomeService
+    getLessonHomeService,
+    createNewLessonLessonList
 }

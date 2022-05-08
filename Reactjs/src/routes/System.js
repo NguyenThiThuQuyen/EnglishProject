@@ -27,9 +27,9 @@ class System extends Component {
                         <Route path="/system/topic-redux" component={TopicRedux} />
                         <Route path="/system/lesson-list-redux" component={LessonListRedux} />
                         <Route path="/system/lesson-redux" component={LessonRedux} />
-                        <Route path="/system/vocab-redux" component={VocabRedux} />
+                        <Route path="/system/vocab-redux/:id" component={VocabRedux} />
                         <Route path="/system/lesson-item-redux" component={LessonItemRedux} />
-                        <Route path="/system/question-redux" component={QuestionRedux} />
+                        <Route path="/system/question-redux/:id/:lessonlistId/:topicId" component={QuestionRedux} />
                         <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                     </Switch>
                 </div>

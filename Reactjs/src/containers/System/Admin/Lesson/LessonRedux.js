@@ -18,9 +18,11 @@ class LessonRedux extends Component {
 
             lessonName: '',
             lessonImage: '',
+            topicId: '',
 
             action: '',
             lessonEditId: '',
+            lessonListId: '',
 
             lessonRedux: ''
         }
@@ -28,6 +30,11 @@ class LessonRedux extends Component {
 
     async componentDidMount() {
         this.props.fetchLessonRedux();
+        this.props.fetchAllTopicsStart();
+        this.props.fetchAllLessonListsStart();
+
+        this.props.fetchAllSearchTopicsStart(4);
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot){
@@ -75,7 +82,8 @@ class LessonRedux extends Component {
             //fire redux create user
             this.props.createNewLesson({
                 lessonName: this.state.lessonName,
-                lessonImage: this.state.lessonImage
+                lessonImage: this.state.lessonImage,
+                lessonListId: this.state.lessonListId
             })
         }
         if(action === CRUD_ACTIONS.EDIT){
@@ -83,7 +91,9 @@ class LessonRedux extends Component {
             this.props.editALessonRedux({
                 id: this.state.lessonEditId,
                 lessonName: this.state.lessonName,
-                lessonImage: this.state.lessonImage
+                lessonImage: this.state.lessonImage,
+                lessonListId: this.state.lessonListId
+
             })
         }
         //this.props.fetchUserRedux();
@@ -121,6 +131,10 @@ class LessonRedux extends Component {
         return isValid;
     }
 
+    onClickTopic = () => {
+        this.props.fetchAllSearchTopicsStart(this.state.topicId)
+    }
+
     onChangeInput = (event, id) => {
         let copyState = {...this.state};
         copyState[id] = event.target.value;
@@ -132,9 +146,15 @@ class LessonRedux extends Component {
     render() {
         let language = this.props.language;
         let {
-            lessonName, lessonImage
+            lessonName, lessonImage, lessonListId, topicId
         } = this.state;
-        console.log("listLessons 112",this.props.listLessons)
+
+        let listLessonListsArr = this.props.searchLessonList
+        let listTopicsArr = this.props.listTopics
+        console.log("check state: ", this.state);
+
+
+        
         return (
             <div className='user-redux-container'>
                 <div className="title">
@@ -144,6 +164,45 @@ class LessonRedux extends Component {
                     <div className="container">
                         <div className="row boder-container">
                             <div className="col-12"><FormattedMessage id="manage-lesson.add"/></div>
+
+                            <div className="form-group col-6 mt-2">
+                                <label><FormattedMessage id="manage-lesson.topic"/></label>
+                                <select className='form-control'
+                                    onChange={(event) => { this.onChangeInput(event, 'topicId') }}
+                                    onClick = {(event) => {this.onClickTopic()}}
+                                    value={topicId}
+                                >
+                                    {listTopicsArr && listTopicsArr.length > 0 &&
+                                        listTopicsArr.map((item, index) => {
+                                            return (
+                                                <option key={index} value={item.id}>
+                                                    {item.topicName}
+                                                </option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div className="form-group col-6 mt-2">
+                                <label><FormattedMessage id="manage-lesson.lessonlist"/></label>
+                                <select className='form-control'
+                                    onChange={(event) => { this.onChangeInput(event, 'lessonListId') }
+                                }
+                                value={lessonListId}
+                                >
+                                    {listLessonListsArr && listLessonListsArr.length > 0 &&
+                                        listLessonListsArr.map((item, index) => {
+                                            return (
+                                                <option key={index} value={item.id}>
+                                                    {item.name}
+                                                </option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+
+
                             <div className="form-group col-6 mt-2">
                                 <label><FormattedMessage id="manage-lesson.lesson-name"/></label>
                                 <input 
@@ -170,6 +229,8 @@ class LessonRedux extends Component {
                                     </div>
                                 </div>                            
                             </div>
+
+
                             <div className="col-12">
                                 <button className='btn btn-danger float-right'><FormattedMessage id="manage-lesson.cancel"/></button>
                                 <button className={this.state.action === CRUD_ACTIONS.EDIT ? 'btn btn-warning float-right mr-2' : 'btn btn-primary float-right mr-2'}
@@ -208,7 +269,13 @@ class LessonRedux extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
-        listLessons: state.admin.lessons
+        listLessons: state.admin.lessons,
+        listLessonLists: state.admin.lessonLists,
+        listTopics: state.admin.topics,
+
+        searchLessonList: state.admin.searchLessonList,
+
+        
 
     };
 };
@@ -217,7 +284,10 @@ const mapDispatchToProps = dispatch => {
     return {
         createNewLesson: (data) => dispatch(actions.createNewLesson(data)),
         fetchLessonRedux: () => dispatch(actions.fetchAllLessonsStart()),
-        editALessonRedux: (data) => dispatch(actions.editALesson(data))
+        fetchAllTopicsStart: () => dispatch(actions.fetchAllTopicsStart()),
+        fetchAllLessonListsStart: () => dispatch(actions.fetchAllLessonListsStart()),
+        editALessonRedux: (data) => dispatch(actions.editALesson(data)),
+        fetchAllSearchTopicsStart: (inputId) => dispatch(actions.fetchAllSearchTopicsStart(inputId))
     };
 };
 

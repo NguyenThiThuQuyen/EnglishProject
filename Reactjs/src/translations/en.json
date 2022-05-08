@@ -106,6 +106,8 @@
 
     "manage-lesson": {
         "add": "Add new lesson",
+        "topic": "Topic",
+        "lessonlist": "Language type",
         "lesson-name": "Lesson name",
         "lesson-image": "Image",
         "save": "Save",

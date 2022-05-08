@@ -3,6 +3,10 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './QuestionRedux.scss'
 import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../../utils";
+import { withRouter } from 'react-router';
+import { getAllLessons } from '../../../../services/lessonService';
+import { getAllLessonLists } from '../../../../services/lessonListService';
+import { getAllTopics } from '../../../../services/topicService';
 import * as actions from "../../../../store/actions";
 import 'react-image-lightbox/style.css';
 // import TableManageQuestion from './TableManageQuestion';
@@ -10,12 +14,22 @@ class QuestionRedux extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            lessonItemsRedux: [],
             lessonArr: [],
+            search: [],
+            vocab: '',
+
             isOpen: false,
 
             searchLessonId: '',
             lessonId: '',
             question: '',
+
+            lessonName: '',
+
+            lessonListName: '',
+
+            topicName: '',
 
             action: '',
             questionEditId: '',
@@ -23,7 +37,30 @@ class QuestionRedux extends Component {
     }
 
     async componentDidMount() {
+        // this.props.loadTopLessonLists(this.props.match.params.id)
+        this.props.fetchAllQuestionsStart(this.props.match.params.id)
+
         this.props.fetchAllLessonsStart();
+        this.props.fetchAllLessonItemsStart();
+
+        let lessonName = await getAllLessons(this.props.match.params.id)
+        let lessonListName = await getAllLessonLists(this.props.match.params.lessonlistId)
+        let topicName = await getAllTopics(this.props.match.params.topicId)
+        console.log("check lessonListName 123: ", lessonListName)
+        console.log("check topicName 123: ", topicName)
+        this.setState({
+            lessonName: lessonName.lessons.lessonName,
+            lessonListName: lessonListName.lessonLists.name,
+            topicName: topicName.topics.topicName
+
+
+        })
+        console.log('check lessonName: ', lessonName)
+
+        this.props.fetchAllSearchVocabsStart(this.props.match.params.id);
+
+        this.props.fetchAllLessonListsStart()
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot){
@@ -32,6 +69,12 @@ class QuestionRedux extends Component {
             this.setState({
                 lessonArr: arrLessons,
                 lessonId: arrLessons && arrLessons.length > 0 ? arrLessons[0].id : ''
+            })
+        }
+
+        if(prevProps.listLessonItems !== this.props.listLessonItems) {
+            this.setState({
+                lessonItemsRedux: this.props.listLessonItems
             })
         }
 
@@ -102,12 +145,22 @@ class QuestionRedux extends Component {
     }
 
     render() {
+        let arrLessonItems = this.state.lessonItemsRedux;
+        console.log("check all 2222: ", arrLessonItems);
+
         let listLessonArr = this.props.listLessons
 
+
         this.state.lessonId = this.props.temp
-        let {lessonId } = this.state;
+        let {lessonId, lessonName, lessonListName, topicName } = this.state;
         console.log("helllllllllllllll", this.props)
         // console.log("helllllllllllllll", this.props.searchLessonId)
+
+        let searchVocabArr = this.props.search
+        let listLessonListsArr = this.props.listLessonLists
+
+        console.log("check listLessonListsArr", listLessonListsArr)
+        console.log("check searchVocabArr", searchVocabArr)
 
         console.log("check listLessonArr 3", listLessonArr)
 
@@ -120,34 +173,42 @@ class QuestionRedux extends Component {
                 <div className="lesson-list-redux-body mt-5">
                     <div className="container">
                         <div className="row boder-container">
-                            <div className="col-12"><FormattedMessage id="manage-lesson-item.add"/></div>
-                            <div className="form-group col-6 mt-2">
-                                <label><FormattedMessage id="manage-vocab.vocab-type"/></label>
+                            <div className="col-12"><FormattedMessage id="manage-question.add"/></div>
+
+                            <div className="form-group col-4 mt-2">
+                                <label><FormattedMessage id="manage-question.lesson-name"/></label>
                                 <input 
                                     type="text" 
                                     className="form-control" 
-                                    onChange={(event) => {this.onChangeInput(event, "lessonId")}}
-                                    value={lessonId}
+                                    onChange={(event) => {this.onChangeInput(event, "lessonName")}}
+                                    value={lessonName}
+                                    disabled
                                 />
                             </div>
 
-                            <div className="form-group col-6 mt-2">
-                                <label><FormattedMessage id="manage-lesson-item.lessonId"/></label>
-                                <select className='form-control'
-                                    onChange={(event) => { this.onChangeInput(event, 'lessonId') }}
-                                    value={lessonId}
-                                >
-                                    {listLessonArr && listLessonArr.length > 0 &&
-                                        listLessonArr.map((item, index) => {
-                                            return (
-                                                <option key={index} value={item.id}>
-                                                    {item.lessonName}
-                                                </option>
-                                            )
-                                        })
-                                    }
-                                </select>
+                            <div className="form-group col-4 mt-2">
+                                <label><FormattedMessage id="manage-question.lesson-name"/></label>
+                                <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    onChange={(event) => {this.onChangeInput(event, "lessonListName")}}
+                                    value={lessonListName}
+                                    disabled
+                                />
                             </div>
+
+                            <div className="form-group col-4 mt-2">
+                                <label><FormattedMessage id="manage-question.lesson-name"/></label>
+                                <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    onChange={(event) => {this.onChangeInput(event, "topicName")}}
+                                    value={topicName}
+                                    disabled
+                                />
+                            </div>
+
+
 
 
                             <div className="col-12">
@@ -163,10 +224,7 @@ class QuestionRedux extends Component {
                                 </button>
                             </div>
                         </div>
-
-
-                        
-
+                
                         {/* <div className="row">
                             <div className="col-12 my-5">
                                 <TableManageLessonItem
@@ -189,22 +247,29 @@ const mapStateToProps = state => {
         // searchLessonId: state.admin.lessons,
         search: state.admin.search,
         listLessonItems: state.admin.lessonLessonLists,
+        listLessonLists: state.admin.lessonLists,
+        
 
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        // getTopicStart: () => dispatch(actions.fetchAllTopicsStart()),
         fetchAllLessonsStart: () => dispatch(actions.fetchAllLessonsStart()),
+
         fetchAllLessonListsStart: () => dispatch(actions.fetchAllLessonListsStart()),
         fetchAllLessonItemsStart: () => dispatch(actions.fetchAllLessonItemsStart()),
         createNewLessonItem: (data) => dispatch(actions.createNewLessonItem(data)),
         editALessonItemRedux: (data) => dispatch(actions.editALessonItem(data)),
+
         fetchAllSearchVocabsStart: (inputId) => dispatch(actions.fetchAllSearchVocabsStart(inputId)),
+
+        fetchAllQuestionsStart: () => dispatch(actions.fetchAllQuestionsStart()),
+
+        
 
         
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionRedux);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(QuestionRedux));

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 // import { adminMenu, studentMenu } from './menuApp'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { AiOutlineUser } from "@fortawesome/free-solid-svg-icons";
+
 import { faSolid } from "@fortawesome/free-solid-svg-icons";
 import { adminMenu } from './menuApp'
 import * as actions from "../../store/actions";
@@ -59,7 +61,7 @@ class Header extends Component {
                         <div className="right-content">
                             <div className="dropdown">
                                 <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                    <FontAwesomeIcon  style={{ fontSize: "1rem", paddingRight: '.5rem', cursor: "pointer"}} icon={faQuestionCircle} />
+                                    <FontAwesomeIcon  style={{ fontSize: "1rem", paddingRight: '.5rem', cursor: "pointer"}} icon={faQuestionCircle} />                                    
                                     <FormattedMessage id="homeheader.support"/>
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">

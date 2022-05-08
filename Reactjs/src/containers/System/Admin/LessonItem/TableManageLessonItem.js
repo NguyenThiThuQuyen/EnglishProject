@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './TableManageLessonItem.scss';
 import { Link } from "react-router-dom";
+import { withRouter } from 'react-router';
 import * as actions from "../../../../store/actions";
 import { faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import { faArchive } from "@fortawesome/free-solid-svg-icons";
@@ -55,10 +56,11 @@ class TableManageLessonItem extends Component {
         })
     }
 
-    handleOnClickLessonNameFromQueson = (id) => {
-        console.log("search 123456: ", id)
-        let idtemp = id
-        this.state.searchLessonId = id
+    handleOnClickLessonNameFromQueson = ( lessonId, lessonListData, topicData) => {
+        console.log("check push: ", )
+        if(this.props.history){
+            this.props.history.push(`/system/question-redux/${lessonId}/${lessonListData}/${topicData}`)
+        }
     }
 
     toggleLessonModal = () => {
@@ -80,9 +82,9 @@ class TableManageLessonItem extends Component {
                     lessonId = {this.state.lessonId}
                 />
                 {/* <div className="" hidden> */}
-                    <QuestionRedux 
+                    {/* <QuestionRedux 
                         temp = {searchLessonId}
-                    />
+                    /> */}
                 {/* </div> */}
                     <table id="TableManageLessonItem" className="table table-striped">
                          <thead className='bg-success text-white'>
@@ -103,11 +105,13 @@ class TableManageLessonItem extends Component {
                                     <tr key = {index}>
                                         <td>
                                             <button className='btn btn-warning'
-                                            onClick={() => this.handleOnClickLessonNameFromQueson(item.lessonId)}
+                                            onClick={() => this.handleOnClickLessonNameFromQueson(
+                                                item.lessonId,
+                                                item.lessonListData.id,
+                                                item.lessonListData.topicData.id
+                                                 )}
                                             >
-                                                <Link to="/system/question-redux" className='style-link text-dark active'>
-                                                    <b><FormattedMessage id="table-lesson-item.create-question"/></b>
-                                                </Link>
+                                                <b><FormattedMessage id="table-lesson-item.create-question"/></b>
                                             </button>
                                         </td>
                                         <td>
@@ -163,4 +167,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableManageLessonItem);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TableManageLessonItem));

@@ -33,7 +33,7 @@ class LessonRedux extends Component {
         this.props.fetchAllTopicsStart();
         this.props.fetchAllLessonListsStart();
 
-        this.props.fetchAllSearchTopicsStart(4);
+        this.props.fetchAllSearchTopicsStart(13);
 
     }
 
@@ -100,7 +100,6 @@ class LessonRedux extends Component {
         setTimeout(() => {
             this.props.fetchLessonRedux();
         }, 1000)
-        
     }
 
     handleEditLessonFromParent = (lesson) => {
@@ -150,11 +149,11 @@ class LessonRedux extends Component {
         } = this.state;
 
         let listLessonListsArr = this.props.searchLessonList
+        console.log("listLessonListsArr:", listLessonListsArr);
         let listTopicsArr = this.props.listTopics
         console.log("check state: ", this.state);
+       
 
-
-        
         return (
             <div className='user-redux-container'>
                 <div className="title">
@@ -183,6 +182,7 @@ class LessonRedux extends Component {
                                     }
                                 </select>
                             </div>
+                            
                             <div className="form-group col-6 mt-2">
                                 <label><FormattedMessage id="manage-lesson.lessonlist"/></label>
                                 <select className='form-control'

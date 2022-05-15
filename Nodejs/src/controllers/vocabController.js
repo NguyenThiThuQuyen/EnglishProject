@@ -5,7 +5,23 @@ import questionService from "../services/questionService"
 
 const path = require('path')
 
+let handleSearchWordMeaningToVocab = async(req, res) => {
+    let id = req.query.id; //all, id
 
+    if(!id) {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: 'Missing required parmeters',
+            searchWordMeaning: []
+        })
+    }
+    let searchWordMeaning = await vocabService.getSearchWordMeaningToVocab(id);
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'Ok',
+        searchWordMeaning
+    })
+}
 
 let handleSearchVocab = async(req, res) => {
     let id = req.query.id; //all, id
@@ -105,6 +121,11 @@ let handleDeleteVocab =  async(req, res) => {
 //     }
 // }
 
+let checkVocabFromLessonId = async(req, res) => {
+    let data = req.query.lessonId;
+    let message = await vocabService.checkVocabFromLessonId(data);
+    return res.status(200).json(message)
+}
 
 module.exports = {
     handleCreateNewVocab: handleCreateNewVocab,
@@ -112,5 +133,7 @@ module.exports = {
     handleEditVocab: handleEditVocab,
     handleDeleteVocab: handleDeleteVocab,
     handleSearchVocab: handleSearchVocab,
-    handleSearchVocabInQuestion: handleSearchVocabInQuestion
+    handleSearchVocabInQuestion: handleSearchVocabInQuestion,
+    checkVocabFromLessonId:checkVocabFromLessonId,
+    handleSearchWordMeaningToVocab: handleSearchWordMeaningToVocab
 }

@@ -4,15 +4,75 @@ import {createNewVocabService,
     getAllVocabs,
     deleteVocabService,
     editVocabService,
-    // getTopicHomeService,
+    getSearchWordMeaningToVocabService
  }
 from "../../services/vocabService";
 export const addVocabSuccess = () => ({
     type: actionTypes.ADD_VOCAB_SUCCESS
 })
 
+//search word meaning to vocab
+export const fetchAllSearchWordMeaningToVocabsStart = (inputId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getSearchWordMeaningToVocabService(inputId);
+            console.log('check res getSearchWordMeaningToVocabService: ', res)
+
+            if(res && res.errCode === 0){
+                dispatch(fetchAllSearchWordMeaningToVocabsSuccess(res.searchWordMeaning))
+            }else{
+                dispatch(fetchAllSearchWordMeaningToVocabsFailed());
+            }
+        } catch(e) {
+            dispatch(fetchAllSearchWordMeaningToVocabsFailed());
+            console.log('fetchAllSearchWordMeaningToVocabsFailed error', e)
+        }
+    }
+}
+
+export const fetchAllSearchWordMeaningToVocabsSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_WORD_MEANING_VOCABS_SUCCESS,
+    searchWordMeaning: data
+})
+
+export const fetchAllSearchWordMeaningToVocabsFailed = () => ({
+    type: actionTypes.FETCH_ALL_WORD_MEANING_VOCABS_FAILD
+})
+
 
 //vocab
+export const fetchAllVocabsStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllVocabs("ALL");
+            console.log('check fetchAllVocabsStart: ', res)
+
+            // let res1 = await getVocabHomeService('');
+            // console.log('check res1 get topic: ', res)
+            if(res && res.errCode === 0){
+                dispatch(fetchAllVocabsSuccess(res.vocabs.reverse()))
+
+            }else{
+                toast.error("Fetch all topics error!");
+                dispatch(fetchAllVocabsFailed());
+            }
+        } catch(e) {
+            toast.error("Fetch all topics error!");
+            dispatch(fetchAllVocabsFailed());
+            console.log('fetchAllVocabsStart error', e)
+        }
+    }
+}
+
+export const fetchAllVocabsSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_VOCABS_SUCCESS,
+    vocabs: data
+})
+
+export const fetchAllVocabsFailed = () => ({
+    type: actionTypes.FETCH_ALL_VOCABS_FAILD
+})
+
 export const createNewVocab = (data) => {
     return async (dispatch, getState) => {
         try {
@@ -37,37 +97,6 @@ export const saveVocabSuccess = () => ({
 
 export const saveVocabFailed = () => ({
     type: actionTypes.CREATE_VOCAB_FAILD
-})
-
-export const fetchAllVocabsStart = () => {
-    return async (dispatch, getState) => {
-        try {
-            let res = await getAllVocabs("ALL");
-            // console.log('check res: ', res)
-
-            // let res1 = await getVocabHomeService('');
-            // console.log('check res1 get topic: ', res)
-            if(res && res.errCode === 0){
-                dispatch(fetchAllVocabsSuccess(res.vocabs.reverse()))
-            }else{
-                toast.error("Fetch all topics error!");
-                dispatch(fetchAllVocabsFailed());
-            }
-        } catch(e) {
-            toast.error("Fetch all topics error!");
-            dispatch(fetchAllVocabsFailed());
-            console.log('fetchAllVocabsStart error', e)
-        }
-    }
-}
-
-export const fetchAllVocabsSuccess = (data) => ({
-    type: actionTypes.FETCH_ALL_VOCABS_SUCCESS,
-    vocabs: data
-})
-
-export const fetchAllVocabsFailed = () => ({
-    type: actionTypes.FETCH_ALL_VOCABS_FAILD
 })
 
 export const deleteAVocab = (vocabId) => {

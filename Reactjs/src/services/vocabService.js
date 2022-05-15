@@ -10,6 +10,10 @@ const createNewVocabService = (data) => {
     return axios.post(`/api/create-new-vocab`, data) 
 }
 
+const getSearchWordMeaningToVocabService = (inputId) => {
+    return axios.get(`/api/search-word-meaning-to-vocab?id=${inputId}`)
+}
+
 const deleteVocabService = (vocabId) => {
     return axios.delete('/api/delete-vocab', {
         data: {
@@ -26,10 +30,16 @@ const editVocabService = (inputData) => {
 //     return axios.get(`/api/topic-home?limit=${limit}`)
 // }
 
+const getAllVocabsFromLessonId = (lessonId) => {
+    return axios.get(`/api/get-all-vocab-from-lesson?lessonId=${lessonId}`);
+}
+
 
 export {
     getAllVocabs,
     createNewVocabService,
     deleteVocabService,
-    editVocabService 
+    editVocabService,
+    getAllVocabsFromLessonId,
+    getSearchWordMeaningToVocabService
 }

@@ -132,6 +132,7 @@ class TopicRedux extends Component {
     }
 
     render() {
+        console.log("check state", this.state)
         let language = this.props.language;
         let {
             topicName, topicImage

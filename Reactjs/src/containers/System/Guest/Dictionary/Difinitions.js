@@ -39,7 +39,7 @@ const Definitions = ({ meanings, word, LightTheme, category }) => {
                   )}
                   {def.synonyms && (
                     <span>
-                      <b>Synonyms :</b> {def.synonyms.map((s) => `${s}, `)}
+                      <b> <br />Synonyms :</b> {def.synonyms.map((s) => `${s}, `)}
                     </span>
                   )}
                 </div>

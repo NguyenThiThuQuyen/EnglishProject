@@ -1,6 +1,6 @@
 import db from "../models/index";
 import bcrypt from "bcryptjs";
-
+import { getSearchVocabFromLession } from "./lessonLessonListService"
 
 let getSearchVocabFromLessionInQuesson = (id) => {
     return new Promise(async(resolve, reject) => {
@@ -15,11 +15,84 @@ let getSearchVocabFromLessionInQuesson = (id) => {
                 raw: true,
                 nest: true,
             })
-            console.log("check searchFromQuestion", searchFromQuestion)
+            // console.log("check searchFromQuestion", searchFromQuestion)
             resolve(searchFromQuestion)
         }
         catch(e) {
             reject(e)
+        }
+    })
+}
+
+let createChoiseAnswer = (data) => {
+    console.log("check data",data);
+    return new Promise(async(resolve, reject) => {
+        try{
+            if(data.lessonId)
+            {
+                let getNameVoCab = await db.Vocab.findAll({
+                    where : {lessonId: data.lessonId}
+                }) 
+
+                if(data.answerTrue)
+                {
+                    getNameVoCab.map((item, index) =>{
+                        if(item.vocab === data.answerTrue)
+                        {
+                            delete getNameVoCab[index]
+                            getNameVoCab.splice(index, 1)
+                            return getNameVoCab
+                            
+                        }
+                        // console.log("check temp", getNameVoCab)
+                        resolve(getNameVoCab)
+                        })
+                        // console.log("check getNameVoCab",getNameVoCab)
+                        if(data.answerFalse1)
+                        {
+                            getNameVoCab.map((item, index) =>{
+                                if(item.vocab === data.answerFalse1)
+                                {
+                                    delete getNameVoCab[index]
+                                    getNameVoCab.splice(index, 1)
+                                    return getNameVoCab
+                                    
+                                }
+                                // console.log("check temp", getNameVoCab)
+                                resolve(getNameVoCab)
+                                })
+                                if(data.answerFalse2) 
+                                    getNameVoCab.map((item, index) =>{
+                                        if(item.vocab === data.answerFalse2)
+                                        {
+                                            delete getNameVoCab[index]
+                                            getNameVoCab.splice(index, 1)
+                                            return getNameVoCab                                            
+                                        }
+                                            // console.log("check temp", getNameVoCab)
+                                            resolve(getNameVoCab)
+                                            })
+                        }
+                        console.log("check getNameVoCab",getNameVoCab)
+
+
+                    
+                }
+                else{
+                    resolve(getNameVoCab)
+                }
+            }
+            else
+            {
+                resolve({
+                    errCode: 1,
+                    errMessage: "không có id lessonId trong Vocab"
+                })
+            }
+            
+        }
+        catch(e){
+            reject(e);
         }
     })
 }
@@ -136,10 +209,29 @@ let deleteQuestion = (questionId) => {
 }
 
 
+let getQuestionHome = (limitInput) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            let lessons = await db.Question.findAll({
+                limit: limitInput,
+                order: [['createdAt', 'DESC']],
+            })
+            resolve({
+                errCode: 0,
+                data: lessons
+            })
+        }catch(e) {
+            reject(e);
+        }
+    })
+}
+
 module.exports = {
     createNewQuestion: createNewQuestion,
     getAllQuestions: getAllQuestions,
     updateQuestionData: updateQuestionData,
     deleteQuestion: deleteQuestion,
-    getSearchVocabFromLessionInQuesson: getSearchVocabFromLessionInQuesson
+    getSearchVocabFromLessionInQuesson: getSearchVocabFromLessionInQuesson,
+    createChoiseAnswer: createChoiseAnswer,
+    getQuestionHome: getQuestionHome
 }

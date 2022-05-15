@@ -2,6 +2,15 @@ import questionService from "../services/questionService";
 
 const path = require('path')
 
+
+let handleChoiseAnswer = async(req, res) => {
+    
+    console.log("req.body",req.body);
+    let message = await questionService.createChoiseAnswer(req.body);
+    // console.log(message);
+    return res.status(200).json(message);
+}
+
 let handleGetAllQuestions = async(req, res) => {
     let id = req.query.id; //all, id
     
@@ -20,6 +29,8 @@ let handleGetAllQuestions = async(req, res) => {
         questions
     })
 }
+
+
 
 let handleCreateNewQuestion = async(req, res) => {
     let message = await questionService.createNewQuestion(req.body);
@@ -45,12 +56,31 @@ let handleDeleteQuestion =  async(req, res) => {
  }
 
 
+let getQuestionHome = async(req, res) => {
+    let limit = req.query.limit;
+    if(!limit) limit = 10;
+    try {
+        // console.log('check res: ', response)
+        let response = await questionService.getQuestionHome(limit);
+        return res.status(200).json(response);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server...'
+        })
+    }
+}
+
+
+
+
 
 module.exports = {
     handleCreateNewQuestion: handleCreateNewQuestion,
     handleGetAllQuestions: handleGetAllQuestions,
     handleEditQuestion: handleEditQuestion,
     handleDeleteQuestion: handleDeleteQuestion,
-
-
+    handleChoiseAnswer: handleChoiseAnswer,
+    getQuestionHome: getQuestionHome
 }

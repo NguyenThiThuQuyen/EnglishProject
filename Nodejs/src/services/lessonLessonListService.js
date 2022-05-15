@@ -15,7 +15,7 @@ let getSearchVocabFromLession = (id) => {
                 raw: true,
                 nest: true,
             })
-            console.log("check search", search)
+            // console.log("check search", search)
             resolve(search)
         }
         catch(e) {

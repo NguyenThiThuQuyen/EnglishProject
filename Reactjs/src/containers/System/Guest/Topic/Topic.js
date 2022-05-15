@@ -32,7 +32,6 @@ class Topic extends Component {
         this.props.loadTopTopics();
         this.props.fetchAllTopicsStart();
         // fetchAllTopicsStart: () => dispatch(actions.fetchAllTopicsStart())
-
     }
 
     handleOnClickChooseId(topic) {

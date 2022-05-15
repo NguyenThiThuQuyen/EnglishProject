@@ -50,8 +50,9 @@ class TableManageLesson extends Component {
 
     render() {
         // console.log('check list topic: ', this.props.listTopics)
-        // console.log('check state: ', this.state.topicsRedux)
         let arrLessons = this.state.lessonsRedux;
+        console.log('check state: ', arrLessons)
+
         return (
                     <table id="TableManageLesson" className="table table-striped">
                         <thead className='bg-success text-white'>

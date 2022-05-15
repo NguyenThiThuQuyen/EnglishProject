@@ -54,6 +54,14 @@
         "topic": "Topic",
         "action": "Action"
     },
+    "table-question": {
+        "vocab": "Answer true",
+        "question": "Question",
+        "wrong1": "Wrong Answer 1",
+        "wrong2": "Wrong Answer 2",
+        "wrong3": "Wrong Answer 3",
+        "action": "Action"
+    },
     "menu": {
         "admin": {
             "manage-user": "Users manage",
@@ -96,8 +104,8 @@
         "edit": "Save changes"
     },
     "manage-lesson-list": {
-        "add": "Add new lesson list",
-        "name": "Lesson list name",
+        "add": "Add new lesson type",
+        "name": "Lesson type name",
         "topicId": "Topic name",
         "save": "Save",
         "cancel": "Cancel",
@@ -132,6 +140,22 @@
         "add": "Add new lesson item",
         "lessonId": "Lesson",
         "lessonListId": "Lesson Type",
+        "save": "Create",
+        "cancel": "Cancel",
+        "edit": "Save changes"
+    },
+
+    "manage-question": {
+        "title": "QUESTION MANAGE",
+        "add": "Add new question",
+        "lesson-name": "Lesson name",
+        "language-type": "Language type",
+        "topic": "Topic",
+        "vocab":"Vocabulary",
+        "question":"Question",
+        "answer-false1": "Wrong answer 1",
+        "answer-false2": "Wrong answer 2",
+        "answer-false3": "Wrong answer 3",
         "save": "Create",
         "cancel": "Cancel",
         "edit": "Save changes"

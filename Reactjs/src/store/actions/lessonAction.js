@@ -56,7 +56,7 @@ export const fetchAllLessonsStart = () => {
         } catch(e) {
             toast.error("Fetch all lessons error!");
             dispatch(fetchAllLessonsFailed());
-            console.log('fetchAllTopicsStart error', e)
+            console.log('fetchAllLessonsStart error', e)
         }
     }
 }

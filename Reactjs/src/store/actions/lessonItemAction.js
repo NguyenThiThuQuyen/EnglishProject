@@ -15,7 +15,7 @@ export const fetchAllSearchVocabsStart = (inputId) => {
     return async (dispatch, getState) => {
         try {
             let res = await getSearchVocabFromLessonService(inputId);
-            console.log('check res fetchAllSearchVocabsStart: ', res)
+            // console.log('check res fetchAllSearchVocabsStart: ', res)
             // let res1 = await getLessonItemHomeService('');
             // console.log('check res1 get lesson item: ', res1)
 

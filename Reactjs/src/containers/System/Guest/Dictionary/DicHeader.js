@@ -22,10 +22,12 @@ const DicHeader = ({
   return (
     <React.Fragment>
         <div className="container dic-header">
-            <h1>Dictionary</h1>
-            <p>standard</p>
-            <span className=''>{word ? word : "Word Hunt"}</span>
-            <div className="row">
+            <h1 className='mt-5'>DICTIONARY</h1>
+            {/* <p>standard</p> */}
+            <div className="text-center mt-5">
+                <span className='font-dic' style={{fontSize: '40px', fontWeight: '100'}}>{word ? word : "Word Hunt"}</span>
+            </div>
+            <div className="row mt-5">
                 <div className="col-6">
                     <input 
                         type="text" 

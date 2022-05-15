@@ -2,13 +2,39 @@ import db from "../models/index";
 import bcrypt from "bcryptjs";
 
 
+let getSearchWordMeaningToVocab = (id) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            let searchWordMeaning = await db.WordMeaning.findAll({
+                where: { vocabId: id },
+                include: [
+                    {model: db.Vocab, as: 'vocabData', attributes: ['vocab', 'id']}
+                ],
+                raw: true,
+                nest: true,
+            })
+            console.log("check searchWordMeaning", searchWordMeaning)
+            resolve(searchWordMeaning)
+        }
+        catch(e) {
+            reject(e)
+        }
+    })
+}
+
 // let getSearchVocabFromLession = (id) => {
 //     return new Promise(async(resolve, reject) => {
 //         try{
 //             let search = await db.Vocab.findAll({
 //                 where: { lessonId: id },
+//                 include:[
+//                     {model: db.Lesson, as: 'lessonData1', attributes: ['lessonName']},
+//                     {model: db.WordMeaning, as: 'vocabData', attributes: ['wordmeaning']},
+//                     {model: db.VocabType, as: 'vocabData1', attributes: ['vocabType']},
+//                 ],
+//                 raw: true,
+//                 nest: true,
 //             })
-//             console.log("check search", search)
 //             resolve(search)
 //         }
 //         catch(e) {
@@ -193,12 +219,26 @@ let deleteVocab = (vocabId) => {
     })
 }
 
+let checkVocabFromLessonId = (lessonId) => {
+    console.log('check lessonId: ', lessonId)
+    return new Promise (async(resolve, reject) => {
+        let foundVocab = await db.Vocab.findAll({
+            where: {lessonId: lessonId}
+        })
+        
+        resolve({
+            errCode: 0,
+            foundVocab:foundVocab
+        })
+    })
+}
 module.exports = {
     checkVocabName: checkVocabName,
     getAllVocabs: getAllVocabs,
     createNewVocab: createNewVocab,
     updateVocabData: updateVocabData,
     deleteVocab: deleteVocab,
-    // getSearchVocabFromLession: getSearchVocabFromLession
+    checkVocabFromLessonId: checkVocabFromLessonId,
+    getSearchWordMeaningToVocab: getSearchWordMeaningToVocab,
 
 }

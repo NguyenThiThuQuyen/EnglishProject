@@ -34,7 +34,10 @@ let createNewTopic = async (data) => {
                 topicName: data.topicName,
                 topicImage: data.topicImage,
             })
-            resolve('create a new topic succeed')
+            resolve({
+                errCode: 0,
+                errMessage: `create a new topic succeed!`
+            })
         }catch(e){
             reject(e);
         }

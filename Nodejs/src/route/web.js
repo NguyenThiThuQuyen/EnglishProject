@@ -71,17 +71,23 @@ let initWebRoutes = (app) => {
     router.post('/api/create-new-vocab', vocabController.handleCreateNewVocab);
     router.put('/api/edit-vocab', vocabController.handleEditVocab);
     router.delete('/api/delete-vocab', vocabController.handleDeleteVocab);
+    router.get(`/api/get-all-vocab-from-lesson`, vocabController.checkVocabFromLessonId)
 
     //search
     router.get('/api/search-vocab', vocabController.handleSearchVocab);
     router.get('/api/search-vocab-in-question', vocabController.handleSearchVocabInQuestion);
     router.get('/api/search-topic-in-lesson-list', lessonListController.handleSearchTopicInLessonList);
+    router.get('/api/search-word-meaning-to-vocab', vocabController.handleSearchWordMeaningToVocab);
+    
 
     //question
     router.get('/api/get-all-questions', questionController.handleGetAllQuestions);
     router.post('/api/create-new-question', questionController.handleCreateNewQuestion);
     router.put('/api/edit-question', questionController.handleEditQuestion);
     router.delete('/api/delete-question', questionController.handleDeleteQuestion);
+    router.post('/api/create-choise-answer', questionController.handleChoiseAnswer);
+
+
     // router.get('/api/search-vocab', vocabController.handleSearchVocab);
 
     return app.use("/", router);

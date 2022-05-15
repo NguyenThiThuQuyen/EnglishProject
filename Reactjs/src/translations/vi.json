@@ -54,6 +54,14 @@
         "topic": "Chủ đề",
         "action": "Hành động"
     },
+    "table-question": {
+        "vocab": "Đáp án đúng",
+        "question": "Câu hỏi",
+        "wrong1": "Đáp án sai 1",
+        "wrong2": "Đáp án sai 2",
+        "wrong3": "Đáp án sai 3",
+        "action": "Hành động"
+    },
     "menu": {
         "admin": {
             "manage-user": "Người dùng",
@@ -102,8 +110,8 @@
 
     "manage-lesson-list": {
         "title": "QUẢN LÝ DANH SÁCH BÀI HỌC",
-        "add": "Thêm mới danh sách bài học",
-        "name": "Tên",
+        "add": "Thêm mới loại bài học",
+        "name": "Tên loại",
         "topicId": "Tên chủ đề",
         "save": "Lưu",
         "cancel": "Hủy",
@@ -141,6 +149,22 @@
         "add": "Thêm chi tiết bài học",
         "lessonId": "Bài học",
         "lessonListId": "Loại bài học",
+        "save": "Tạo",
+        "cancel": "Hủy",
+        "edit": "Lưu thay đổi"
+    },
+
+    "manage-question": {
+        "title": "QUẢN LÝ CÂU HỎI",
+        "add": "Thêm câu hỏi",
+        "lesson-name": "Bài học",
+        "language-type": "Loại bài học",
+        "topic": "Chủ đề",
+        "vocab":"Từ vựng",
+        "question":"Câu hỏi",
+        "answer-false1": "Đáp án sai 1",
+        "answer-false2": "Đáp án sai 2",
+        "answer-false3": "Đáp án sai 3",
         "save": "Tạo",
         "cancel": "Hủy",
         "edit": "Lưu thay đổi"

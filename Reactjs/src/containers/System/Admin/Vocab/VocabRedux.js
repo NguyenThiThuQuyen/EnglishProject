@@ -32,8 +32,8 @@ class VocabRedux extends Component {
     }
 
     async componentDidMount() {
-        this.props.fetchVocabRedux();
-        this.props.getVocabStart(this.props.match.params.id);
+        this.props.fetchVocabRedux(this.props.match.params.id);
+        // this.props.getVocabStart(this.props.match.params.id);
         this.props.getLessonStart();
         this.props.fetchAllLessonsStart();
 
@@ -53,7 +53,7 @@ class VocabRedux extends Component {
             let arrLessons = this.props.listLessons
             this.setState({
                 lessonArr: arrLessons,
-                lessonId: arrLessons && arrLessons.length > 0 ? arrLessons[0].id: ''
+                lessonId: this.props.match.params.id
             })
         }
 
@@ -145,6 +145,8 @@ class VocabRedux extends Component {
         } = this.state;
 
         console.log("listVocabs",this.props.listVocabs)
+        console.log("check state: ", this.state)
+
         return (
             <div className='user-redux-container'>
                 <div className="title">
@@ -165,25 +167,6 @@ class VocabRedux extends Component {
                                     disabled
                                 />
                             </div>
-
-                            {/* <div className="form-group col-4 mt-2">
-                                <label><FormattedMessage id="manage-lesson-list.topicId"/></label>
-                                <select className='form-control'
-                                    onChange={(event) => { this.onChangeInput(event, 'lessonName') }
-                                }
-                                value={lessonName}
-                                >
-                                    {listLessonArr && listLessonArr.length > 0 &&
-                                        listLessonArr.map((item, index) => {
-                                            return (
-                                                <option key={index} value={item.id}>
-                                                    {item.lessonName}
-                                                </option>
-                                            )
-                                        })
-                                    }
-                                </select>
-                            </div> */}
 
                             <div className="form-group col-6 mt-2">
                                 <label><FormattedMessage id="manage-vocab.vocab"/></label>
@@ -253,7 +236,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getLessonStart: () => dispatch(actions.fetchAllTopicsStart()),
-        getVocabStart: () => dispatch(actions.fetchAllVocabsStart()),
+        // getVocabStart: () => dispatch(actions.fetchAllVocabsStart()),
         createNewVocab: (data) => dispatch(actions.createNewVocab(data)),
         fetchVocabRedux: () => dispatch(actions.fetchAllVocabsStart()),
         editAVocabRedux: (data) => dispatch(actions.editAVocab(data)),

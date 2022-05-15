@@ -55,14 +55,14 @@ export const adminMenu = [
         ]
     },
 
-    { //quản lý bài học
-        name: 'menu.admin.vocab',
-        menus: [
-            {
-                name: 'menu.admin.manage-vocab', link: '/system/vocab-redux/:id'
-            }
-        ]
-    },
+    // { //quản lý bài học
+    //     name: 'menu.admin.vocab',
+    //     menus: [
+    //         {
+    //             name: 'menu.admin.manage-vocab', link: '/system/vocab-redux/:id'
+    //         }
+    //     ]
+    // },
 
     { //quản lý bài học
         name: 'menu.admin.lesson-item',

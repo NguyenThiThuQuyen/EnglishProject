@@ -25,9 +25,12 @@ const initialState = {
 
     searchLessonList: [],
 
-
-
+    vocabArr: [],
     questions: [],
+
+    searchWordMeaning: [],
+
+
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -224,6 +227,20 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
             }
 
+        //search word meaning to vocab
+        case actionTypes.FETCH_ALL_WORD_MEANING_VOCABS_SUCCESS:
+            state.searchWordMeaning = action.searchWordMeaning;
+            return {
+                ...state,
+            }
+    
+        case actionTypes.FETCH_ALL_WORD_MEANING_VOCABS_FAILD:
+           state.searchWordMeaning = [];
+            return {
+                ...state,
+            }
+        
+        
         //question
         case actionTypes.FETCH_ALL_QUESTIONS_SUCCESS:
             state.questions = action.questions;
@@ -236,6 +253,18 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             }
+        case actionTypes.CREATE_CHOISE_ANSWER_SUCCESS:
+            state.vocabArr = action.data;
+            return {
+                ...state,
+            }
+        case actionTypes.CREATE_CHOISE_ANSWER_FAILD:
+           state.vocabArr = [];
+            return {
+                ...state,
+            }
+        /////////////////////////
+
         // case actionTypes.FETCH_TOP_LESSON_LISTS_SUCCESS:
         //     state.topLessonLists = action.dataLessonLists;
         //     return {

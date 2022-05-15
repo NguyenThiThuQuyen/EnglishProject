@@ -13,7 +13,7 @@ let getSearchTopicFromLessionList = (id) => {
                 raw: true,
                 nest: true,
             })
-            console.log("check search", searchLessonList)
+            // console.log("check search", searchLessonList)
             resolve(searchLessonList)
         }
         catch(e) {
@@ -87,12 +87,12 @@ let createNewLessonList = async (data) => {
                 if(temp && temp.length >0){      //kiểm tra temp có tồn tại ko 
                     let check = ''
                     temp.map((item =>{          //duyệt mảng temp
-                        if(data.name === item.name)     //so sánh tên nhập vào với từng dòng trong mảng theo tên
+                    if(data.name === item.name)     //so sánh tên nhập vào với từng dòng trong mảng theo tên
                     {
                         check = 'true'
                     }
                     }))
-                console.log("check mới", check )
+                        console.log("check mới", check )
                     if(check === "true"){
                         resolve({
                             errCode: 1,
@@ -103,12 +103,23 @@ let createNewLessonList = async (data) => {
                         await db.LessonList.create({
                             name: data.name,
                             topicId: data.topicId
-                            })
-                            resolve({
-                                errCode: 0,
-                                errMessage: `create a new lesson list succeed !`
-                            })
+                        })
+                        resolve({
+                            errCode: 0,
+                            errMessage: `create a new lesson list succeed !`
+                        })
                     }
+                }
+                else
+                {
+                    await db.LessonList.create({
+                        name: data.name,
+                        topicId: data.topicId
+                        })
+                        resolve({
+                            errCode: 0,
+                            errMessage: `create a new lesson list succeed !`
+                        })
                 }
             }
             resolve('create a new lesson list succeed')

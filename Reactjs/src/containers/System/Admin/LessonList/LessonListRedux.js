@@ -25,8 +25,8 @@ class LessonListRedux extends Component {
 
     async componentDidMount() {
         this.props.getTopicStart();
-        this.props.getLessonListStart();        
-
+        this.props.getLessonListStart();
+        this.props.fetchAllSearchTopicsStart();        
     }
 
     componentDidUpdate(prevProps, prevState, snapshot){
@@ -36,7 +36,8 @@ class LessonListRedux extends Component {
 
             this.setState({
                 topicArr: arrTopics,
-                topicId: arrTopics && arrTopics.length > 0 ? arrTopics[0].id : ''
+                topicId: arrTopics && arrTopics.length > 0 ? arrTopics[0].id : '',
+                action: CRUD_ACTIONS.CREATE,
             })
         }
 
@@ -63,6 +64,11 @@ class LessonListRedux extends Component {
                 name: this.state.name,
                 topicId: this.state.topicId,
             })
+            this.setState({
+                name: '',
+                topicId: '',
+            })
+
         }
         if(action === CRUD_ACTIONS.EDIT){
             //fire redux edit lesson list
@@ -71,8 +77,12 @@ class LessonListRedux extends Component {
                 name: this.state.name,
                 topicId: this.state.topicId,
             })
+            this.setState({
+                name: '',
+                topicId: '',
+                action: CRUD_ACTIONS.CREATE
+            })
         }
-        // this.props.fetchUserRedux();
         setTimeout(() => {
             this.props.getLessonListStart();
         }, 1000)
@@ -118,10 +128,10 @@ class LessonListRedux extends Component {
         let listTopicArr = this.props.listTopics
         
         let listLessonListArr = this.props.listLessonLists
-
+        console.log("check 1234", listLessonListArr)
         console.log("check this.state.topicId", this.state.topicId)
 
-        // console.log("check 1234", listLessonListArr)
+        console.log("check state", this.state)
 
         let { name, topicId } = this.state;
 
@@ -198,7 +208,7 @@ const mapStateToProps = state => {
         language: state.app.language,
         listTopics: state.admin.topics,
         listTopics: state.admin.topics,
-
+        searchLessonList: state.admin.searchLessonList,
     };
 };
 
@@ -208,6 +218,7 @@ const mapDispatchToProps = dispatch => {
         getLessonListStart: () => dispatch(actions.fetchAllLessonListsStart()),
         createNewLessonList: (data) => dispatch(actions.createNewLessonList(data)),
         editALessonListRedux: (data) => dispatch(actions.editALessonList(data)),
+        fetchAllSearchTopicsStart: (inputId) => dispatch(actions.fetchAllSearchTopicsStart(inputId))
     };
 };
 

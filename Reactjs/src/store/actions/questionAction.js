@@ -6,6 +6,7 @@ import {
     getAllQuestions,
     deleteQuestionService,
     editQuestionService,
+    createChoiseAnswerService,
 } from '../../services/questionService';
 
 
@@ -148,3 +149,35 @@ export const editQuestionFailed = () => ({
 //         }
 //     }
 // }
+
+
+export const createChoiseAnswer = (inputData) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await createChoiseAnswerService(inputData);
+            // console.log('check createChoiseAnswer : ', res)
+            // let res1 = await getQuestionHomeService('');
+            // console.log('check res1 get Question: ', res1)
+
+            if(res){
+                dispatch(createChoiseAnswerSuccess(res))
+            }else{
+                // toast.error("Fetch all Questions error!");
+                dispatch(createChoiseAnswerFailed());
+            }
+        } catch(e) {
+            // toast.error("Fetch all Questions error!");
+            dispatch(createChoiseAnswerFailed());
+            console.log('createChoiseAnswer error', e)
+        }
+    }
+}
+
+export const createChoiseAnswerSuccess = (data) => ({
+    type: actionTypes.CREATE_CHOISE_ANSWER_SUCCESS,
+    data: data
+})
+
+export const createChoiseAnswerFailed = () => ({
+    type: actionTypes.CREATE_CHOISE_ANSWER_FAILD
+})

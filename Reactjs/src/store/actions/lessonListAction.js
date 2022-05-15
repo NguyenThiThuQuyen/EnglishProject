@@ -50,9 +50,10 @@ export const createNewLessonList = (data) => {
             if(res && res.errCode === 0){
                 toast.success("Create a new lesson list succeed!")
                 dispatch(saveLessonListSuccess())
+                // dispatch(fetchAllLessonListsStart())
             }else 
                 if(res && res.errCode === 1){
-                    toast.error("Name was existed!")
+                    toast.error("Lesson type already exists, please re-enter!")
                     dispatch(saveLessonListFailed());  
                 }
             else{

@@ -27,9 +27,15 @@ const editQuestionService = (inputData) => {
 // }
 
 
+const createChoiseAnswerService = (data) => {
+    console.log("inputData",data)
+    return axios.post('/api/create-choise-answer', data);
+}
+
 export {
     getAllQuestions,
     createNewQuestionService,
     deleteQuestionService,
-    editQuestionService
+    editQuestionService,
+    createChoiseAnswerService,
 }

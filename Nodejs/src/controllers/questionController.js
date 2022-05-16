@@ -57,11 +57,11 @@ let handleDeleteQuestion =  async(req, res) => {
 
 
 let getQuestionHome = async(req, res) => {
-    let limit = req.query.limit;
-    if(!limit) limit = 10;
+    let lessonId = req.query.lessonId;
+    if(!lessonId) lessonId = 10;
     try {
         // console.log('check res: ', response)
-        let response = await questionService.getQuestionHome(limit);
+        let response = await questionService.getQuestionHome(lessonId);
         return res.status(200).json(response);
     } catch (e) {
         console.log(e);

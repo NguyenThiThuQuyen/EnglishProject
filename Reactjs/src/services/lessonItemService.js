@@ -31,6 +31,9 @@ const getLessonItemHomeService = (limit) => {
     return axios.get(`/api/lesson-item-home?limit=${limit}`)
 }
 
+const getAllLessonFromlessonListId = (lessonListIdInput) => {
+    return axios.get(`/api/getAllLessonFromlessonListId?lessonListIdInput=${lessonListIdInput}`)
+}
 
 export {
     getAllLessonItems,
@@ -38,5 +41,6 @@ export {
     deleteLessonItemService,
     editLessonItemService,
     getLessonItemHomeService,
-    getSearchVocabFromLessonService
+    getSearchVocabFromLessonService,
+    getAllLessonFromlessonListId
 }

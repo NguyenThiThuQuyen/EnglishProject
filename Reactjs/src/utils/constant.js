@@ -2,7 +2,7 @@ export const path = {
     HOME: '/',
     HOMEPAGE: '/home',
     TOPIC: '/topic',
-    LESSON: '/lesson',
+    LESSON: '/lesson/:id',
     LESSONLIST: '/lesson-list/:id',
     DICTIONARY: '/dictionary',
     LESSONITEM: '/lesson-item',

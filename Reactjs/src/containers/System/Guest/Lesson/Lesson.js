@@ -23,19 +23,25 @@ class Lesson extends Component {
                 arrLessons: this.props.topLessonsRedux
             })
         }
+
+        if(this.props.match.params.id)
+        {
+            console.log("truyền được rồi", this.props.match.params.id)
+        }
     }
 
     componentDidMount() {
         this.props.loadTopLessons();
         this.props.fetchAllLessonsStart();
         // fetchAllLessonsStart: () => dispatch(actions.fetchAllLessonsStart())
-
+        this.props.fetchAllLessonItemsFromLessonlistIdStart(this.props.match.params.id)
     }
 
     render() {
-        console.log('check topLessonsRedux: ', this.props.topLessonsRedux);
+        // console.log('check topLessonsRedux: ', this.props.topLessonsRedux);
         let { language } = this.props
-        let allLessons = this.state.arrLessons;
+        let allLessons = this.props.LessonItemsFromLessonlistId;
+        console.log("check allLessons", allLessons);
         return (
             <div>
                 <HomeHeader />
@@ -47,17 +53,18 @@ class Lesson extends Component {
                                 && allLessons.map((item, index) => {
                                     let imageBase64 = '';
                                     // console.log('check image: ', imageBase64)
-                                    if(item.lessonImage){
-                                        imageBase64 = new Buffer(item.lessonImage, 'base64').toString('binary');
+                                    if(item.lessonData.lessonImage){
+                                        imageBase64 = new Buffer(item.lessonData.lessonImage, 'base64').toString('binary');
                                     }
-                                    let nameVi = `${item.lessonName}`;
-                                    let nameEn = `${item.lessonName}`;
+                                    console.log("check base", imageBase64)
+                                    let nameVi = `${item.lessonData.lessonName}`;
+                                    let nameEn = `${item.lessonData.lessonName}`;
                                     return(
                                     <div className="row mt-5 bg-lesson-content" key={index}>
                                         <div className="col-4">
                                             <img
                                                 className="card-img"
-                                                style={{ backgroundImage: `url(${imageBase64})` }}
+                                               src={imageBase64}
                                             />
                                         </div>
                                         <div className="col-8 card-content">
@@ -84,15 +91,16 @@ class Lesson extends Component {
         return {
             language: state.app.language,
             isLoggedIn: state.user.isLoggedIn,
-            topLessonsRedux: state.admin.topLessons
+            topLessonsRedux: state.admin.topLessons,
+            LessonItemsFromLessonlistId: state.admin.LessonItemsFromLessonlistId,
         };
     };
     
     const mapDispatchToProps = dispatch => {
         return {
             loadTopLessons: () => dispatch(actions.fetchTopLesson()),
-            fetchAllLessonsStart: () => dispatch(actions.fetchAllLessonsStart())
-
+            fetchAllLessonsStart: () => dispatch(actions.fetchAllLessonsStart()),
+            fetchAllLessonItemsFromLessonlistIdStart: (id) => dispatch(actions.fetchAllLessonItemsFromLessonlistIdStart(id)),
             
         };
     };

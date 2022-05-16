@@ -190,6 +190,27 @@ let getLessonItemHome = (limitInput) => {
     })
 }
 
+let getAllLessonFromlessonItemIdService = (lessonListIdInput) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            let lessonItems = await db.LessonLessonList.findAll({
+                where : {lessonListId: lessonListIdInput},
+                include:[
+                    {model: db.Lesson, as: 'lessonData', attributes: ['lessonName', 'lessonImage']}
+                ],
+                raw: true,
+                nest: true,
+
+            })
+            resolve({
+                errCode: 0,
+                data: lessonItems
+            })
+        }catch(e) {
+            reject(e);
+        }
+    })
+}
 module.exports = {
     createNewLessonLessonList: createNewLessonLessonList,
     getAllLessonLessonLists: getAllLessonLessonLists,
@@ -197,6 +218,6 @@ module.exports = {
     deleteLessonLessonList: deleteLessonLessonList,
     getSearchVocabFromLession: getSearchVocabFromLession,
     getLessonItemHome: getLessonItemHome,
-
+    getAllLessonFromlessonItemIdService:getAllLessonFromlessonItemIdService
 
 }

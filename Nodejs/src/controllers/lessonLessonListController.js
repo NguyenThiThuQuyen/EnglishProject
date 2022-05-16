@@ -63,11 +63,26 @@ let handleDeleteLessonLessonList =  async(req, res) => {
 }
 
 
+
+let getAllLessonFromlessonListId = async(req, res) => {
+    try {
+        // console.log('check res: ', response)
+        let response = await lessonLessonListService.getAllLessonFromlessonItemIdService(req.query.lessonListIdInput);
+        return res.status(200).json(response);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server...'
+        })
+    }
+}
 module.exports = {
     handleCreateNewLessonLessonList: handleCreateNewLessonLessonList,
     handleGetAllLessonsLessonLists: handleGetAllLessonsLessonLists,
     handleEditLessonLessonList: handleEditLessonLessonList,
     handleDeleteLessonLessonList: handleDeleteLessonLessonList,
     getLessonItemHome: getLessonItemHome,
+    getAllLessonFromlessonListId:getAllLessonFromlessonListId
 
 }

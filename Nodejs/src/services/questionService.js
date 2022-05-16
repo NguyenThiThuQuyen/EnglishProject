@@ -226,6 +226,77 @@ let getQuestionHome = (limitInput) => {
     })
 }
 
+let tronbangservice = (id) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            let mang = ['answerTrue','answerFalse1','answerFalse2','answerFalse3']
+            // let mangs = Math.floor(Math.random() * mang.length);
+            mang.sort(() => Math.random() - 0.5)
+            console.log("check mang", mang)
+            let question = await db.Question.findOne({
+               where: {id:id},
+               attributes: [mang[0],mang[1],mang[2],mang[3]],
+            })
+            resolve({
+                errCode: 0,
+                data: question
+            })
+        }catch(e) {
+            reject(e);
+        }
+    })
+}
+
+let checkQuestonService = (dataInput) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            if(dataInput.id)
+            {
+                let data = await db.Question.findOne({
+                    where: {id : dataInput.id}
+                })
+
+             if(dataInput.answer)
+             {
+                 if(data.answerTrue === dataInput.answer)
+                 {
+                    resolve(true)
+                 }
+                 else
+                 {
+                    resolve(false)
+                 }
+             }
+            }
+            
+        }catch(e) {
+            reject(e);
+        }
+    })
+}
+
+
+let getQuestionFromLessonIdService = (lessonId) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            console.log("lessonId", lessonId)
+            if(lessonId)
+            {
+                let data = await db.Question.findAll({
+                    where: {lessonId : lessonId}
+                })
+
+                // let temp = await tronbangservice(data[0].id)
+                // console.log("temp", temp)
+
+                resolve(data)
+            }
+            
+        }catch(e) {
+            reject(e);
+        }
+    })
+}
 module.exports = {
     createNewQuestion: createNewQuestion,
     getAllQuestions: getAllQuestions,
@@ -233,5 +304,8 @@ module.exports = {
     deleteQuestion: deleteQuestion,
     getSearchVocabFromLessionInQuesson: getSearchVocabFromLessionInQuesson,
     createChoiseAnswer: createChoiseAnswer,
-    getQuestionHome: getQuestionHome
+    getQuestionHome: getQuestionHome,
+    tronbangservice:tronbangservice,
+    checkQuestonService:checkQuestonService,
+    getQuestionFromLessonIdService:getQuestionFromLessonIdService
 }

@@ -72,15 +72,60 @@ let getQuestionHome = async(req, res) => {
     }
 }
 
+let tronbang = async(req, res) => {
+    let id = req.query.id;
+    if(!id) id = 10;
+    try {
+        // console.log('check res: ', response)
+        let response = await questionService.tronbangservice(id);
+        return res.status(200).json(response);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server...'
+        })
+    }
+}
 
 
 
+let checkQueston = async(req, res) => {
+    try {
+        // console.log('check res: ', response)
+        let response = await questionService.checkQuestonService(req.body);
+        return res.status(200).json(response);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server...'
+        })
+    }
+}
 
+let getQuestionFromLessonId = async(req, res) => {
+    try {
+        // console.log('check res: ', response)
+        let response = await questionService.getQuestionFromLessonIdService(req.query.lessonId);
+        console.log("check response", response)
+        return res.status(200).json(response);
+    } catch (e) {
+        console.log(e);
+        return res.status(200).json({
+            errCode: -1,
+            message: 'Error from server...'
+        })
+    }
+}
 module.exports = {
     handleCreateNewQuestion: handleCreateNewQuestion,
     handleGetAllQuestions: handleGetAllQuestions,
     handleEditQuestion: handleEditQuestion,
     handleDeleteQuestion: handleDeleteQuestion,
     handleChoiseAnswer: handleChoiseAnswer,
-    getQuestionHome: getQuestionHome
+    getQuestionHome: getQuestionHome,
+    tronbang:tronbang,
+    checkQueston:checkQueston,
+    getQuestionFromLessonId:getQuestionFromLessonId
 }

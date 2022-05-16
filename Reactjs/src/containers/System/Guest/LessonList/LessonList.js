@@ -38,7 +38,12 @@ class LessonList extends Component {
         // this.props.fetchAllLessonListsStart();
 
     }
-
+    hanldeOnClick(id)
+    {
+        if(this.props.history){
+            this.props.history.push(`/lesson/${id}`)
+        }
+    }
     render() {
         // console.log('check topLessonListsRedux: ', this.props.topLessonListsRedux);
         let { language } = this.props
@@ -48,6 +53,7 @@ class LessonList extends Component {
         return (
             <div>
                 <HomeHeader />
+                
                 <div className="container">     
                     {allLessonLists && allLessonLists.length > 0
                         && allLessonLists.map((item, index) => {
@@ -55,11 +61,13 @@ class LessonList extends Component {
                             let nameEn = `${item.name}`;
                             return(
                             <div className="card-content"  key={index}>
-                                <p className='c-content'>
+                                <p  className='c-content' 
+                                    onClick={()=>this.hanldeOnClick(item.id)}>
                                     <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
-                                    <Link to="/lesson" className='style-link'>
-                                        {language === LANGUAGES.VI ? nameVi : nameEn} 
-                                    </Link> 
+                                    {language === LANGUAGES.VI ? nameVi : nameEn} 
+
+                                    {/* <Link to="/lesson" className='style-link'>
+                                    </Link>  */}
 
                                 </p>
                             </div>

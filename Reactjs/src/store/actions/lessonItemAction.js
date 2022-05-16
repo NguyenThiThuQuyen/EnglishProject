@@ -7,6 +7,7 @@ import {createNewLessonItemService,
     deleteLessonItemService,
     getSearchVocabFromLessonService,
     getLessonItemHomeService,
+    getAllLessonFromlessonListId
 } from '../../services/lessonItemService';
 
 
@@ -181,3 +182,32 @@ export const fetchTopLessonItem = () => {
         }
     }
 }
+
+
+export const fetchAllLessonItemsFromLessonlistIdStart = (lessonItemId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllLessonFromlessonListId(lessonItemId);
+
+            if(res && res.errCode === 0){
+                dispatch(fetchAllLessonItemsFromLessonlistIdSuccess(res.data))
+            }else{
+                // toast.error("Fetch all lesson items error!");
+                dispatch(fetchAllLessonItemsFromLessonlistIdFailed());
+            }
+        } catch(e) {
+            // toast.error("Fetch all lesson items error!");
+            dispatch(fetchAllLessonItemsFromLessonlistIdFailed());
+            console.log('fetchAllLessonItemsFailed error', e)
+        }
+    }
+}
+
+export const fetchAllLessonItemsFromLessonlistIdSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_LESSON_ITEMS_FROM_LESSONLISTID_SUCCESS,
+    LessonItemsFromLessonlistId: data
+})
+
+export const fetchAllLessonItemsFromLessonlistIdFailed = () => ({
+    type: actionTypes.FETCH_ALL_LESSON_ITEMS_FROM_LESSONLISTID_FAILD
+})

@@ -70,7 +70,7 @@ class Lesson extends Component {
                                         <div className="col-8 card-content">
                                             <p className='c-content'>
                                                 <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
-                                                <Link to="/lesson-item" className='style-link'>
+                                                <Link to="/question" className='style-link'>
                                                     {language === LANGUAGES.VI ? nameVi : nameEn} 
                                                 </Link> 
                                             </p>

@@ -56,7 +56,7 @@ class Question extends Component {
                             {allQuestions && allQuestions.length > 0
                                 && allQuestions.map((item, index) => {
                   
-                                    let nameVi = `${item.lessonName}`;
+                                    let nameVi = `${item.question}`;
                                     let nameEn = `${item.lessonName}`;
                                     return(
                                     <div className="row" key={index}>
@@ -64,9 +64,11 @@ class Question extends Component {
                                         <div className="col-6 card-content">
                                             <p className='c-content'>
                                                 <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
-                                                <Link to="" className='style-link'>
-                                                    {language === LANGUAGES.VI ? nameVi : nameEn} 
-                                                </Link> 
+                                                <div className="question">{item.question}</div>
+                                                <div className="question">{item.answerTrue}</div>
+                                                <div className="question">{item.answerFalse1}</div>
+                                                <div className="question">{item.answerFalse2}</div>
+                                                <div className="question">{item.answerFalse3}</div>
                                             </p>
                                         </div>
                                     </div>  

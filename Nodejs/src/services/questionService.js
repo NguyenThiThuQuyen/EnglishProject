@@ -218,7 +218,9 @@ let getQuestionHome = (lessonId) => {
             })
             resolve({
                 errCode: 0,
-                data: questions
+                data: questions,
+                data1: questions,
+                // data1: 
             })
         }catch(e) {
             reject(e);

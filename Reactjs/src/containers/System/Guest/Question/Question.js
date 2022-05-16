@@ -56,8 +56,8 @@ class Question extends Component {
                             {allQuestions && allQuestions.length > 0
                                 && allQuestions.map((item, index) => {
                   
-                                    let nameVi = `${item.lessonName}`;
-                                    let nameEn = `${item.lessonName}`;
+                                    let nameVi = `${item.question}`;
+                                    let nameEn = `${item.answerTrue}`;
                                     return(
                                     <div className="row" key={index}>
                                   

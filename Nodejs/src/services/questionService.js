@@ -209,16 +209,16 @@ let deleteQuestion = (questionId) => {
 }
 
 
-let getQuestionHome = (limitInput) => {
+let getQuestionHome = (lessonId) => {
     return new Promise(async(resolve, reject) => {
         try{
-            let lessons = await db.Question.findAll({
-                limit: limitInput,
-                order: [['createdAt', 'DESC']],
+            let questions = await db.Question.findAll({
+                where: {lessonId: lessonId},
+                // order: [['createdAt', 'DESC']],
             })
             resolve({
                 errCode: 0,
-                data: lessons
+                data: questions
             })
         }catch(e) {
             reject(e);

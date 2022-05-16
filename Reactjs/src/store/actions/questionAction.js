@@ -7,6 +7,7 @@ import {
     deleteQuestionService,
     editQuestionService,
     createChoiseAnswerService,
+    getQuestionHomeService,
 } from '../../services/questionService';
 
 
@@ -125,32 +126,6 @@ export const editQuestionFailed = () => ({
 })
 
 
-// export const fetchTopLessonList = () => {
-//     return async (dispatch, getState) => {
-//         try {
-//             let res = await getLessonListHomeService('');
-//             console.log('check res lesson list: ', res)
-//             if(res && res.errCode === 0){
-//                 dispatch({
-//                     type: actionTypes.FETCH_TOP_LESSON_LISTS_SUCCESS,
-//                     dataLessonLists: res.data
-//                 })
-//             }else {
-//                 dispatch({
-//                     type: actionTypes.FETCH_TOP_LESSON_LISTS_FAILD,
-//                 })
-//             }
-
-//         } catch(e) {
-//             console.log('FETCH_TOP_LESSON_LISTS_FAILD: ', e)
-//             dispatch({
-//                 type: actionTypes.FETCH_TOP_LESSON_LISTS_FAILD,
-//             })
-//         }
-//     }
-// }
-
-
 export const createChoiseAnswer = (inputData) => {
     return async (dispatch, getState) => {
         try {
@@ -181,3 +156,30 @@ export const createChoiseAnswerSuccess = (data) => ({
 export const createChoiseAnswerFailed = () => ({
     type: actionTypes.CREATE_CHOISE_ANSWER_FAILD
 })
+
+
+
+export const fetchTopQuestionList = (lessonId) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getQuestionHomeService(lessonId);
+            console.log('check res lesson list: ', res)
+            if(res && res.errCode === 0){
+                dispatch({
+                    type: actionTypes.FETCH_TOP_QUESTIONS_SUCCESS,
+                    dataQuestions: res.data
+                })
+            }else {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_QUESTIONS_FAILD,
+                })
+            }
+
+        } catch(e) {
+            console.log('FETCH_TOP_QUESTIONS_FAILD: ', e)
+            dispatch({
+                type: actionTypes.FETCH_TOP_QUESTIONS_FAILD,
+            })
+        }
+    }
+}

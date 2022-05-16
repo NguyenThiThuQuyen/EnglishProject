@@ -90,6 +90,8 @@ let initWebRoutes = (app) => {
     router.get(`/api/tronbang`, questionController.tronbang);
     router.get(`/api/checkQueston`, questionController.checkQueston);
     router.get(`/api/getQuestionFromLessonId`, questionController.getQuestionFromLessonId);
+
+    router.get('/api/question-home', questionController.getQuestionHome);
     
     
     // router.get('/api/search-vocab', vocabController.handleSearchVocab);

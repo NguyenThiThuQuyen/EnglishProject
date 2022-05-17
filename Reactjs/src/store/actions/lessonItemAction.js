@@ -162,7 +162,7 @@ export const fetchTopLessonItem = () => {
     return async (dispatch, getState) => {
         try {
             let res = await getLessonItemHomeService('');
-            console.log('check res lesson item: ', res)
+            // console.log('check res lesson item: ', res)
             if(res && res.errCode === 0){
                 dispatch({
                     type: actionTypes.FETCH_TOP_LESSON_ITEMS_SUCCESS,

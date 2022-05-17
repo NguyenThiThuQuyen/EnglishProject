@@ -36,7 +36,11 @@ class Lesson extends Component {
         // fetchAllLessonsStart: () => dispatch(actions.fetchAllLessonsStart())
         this.props.fetchAllLessonItemsFromLessonlistIdStart(this.props.match.params.id)
     }
-
+    hanldeOnClick(id) {
+        if(this.props.history){
+            this.props.history.push(`/question/${id}`)
+        }
+    }
     render() {
         // console.log('check topLessonsRedux: ', this.props.topLessonsRedux);
         let { language } = this.props
@@ -68,11 +72,14 @@ class Lesson extends Component {
                                             />
                                         </div>
                                         <div className="col-8 card-content">
-                                            <p className='c-content'>
+                                            <p className='c-content'
+                                                onClick={()=> this.hanldeOnClick(item.id)}
+                                            >
                                                 <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
-                                                <Link to="/question" className='style-link'>
-                                                    {language === LANGUAGES.VI ? nameVi : nameEn} 
-                                                </Link> 
+                                                {language === LANGUAGES.VI ? nameVi : nameEn} 
+
+                                                {/* <Link to="/question" className='style-link'>
+                                                </Link>  */}
                                             </p>
                                         </div>
                                     </div>  

@@ -32,11 +32,36 @@ const createChoiseAnswerService = (data) => {
     return axios.post('/api/create-choise-answer', data);
 }
 
+const tronbangService = async (id) => {
+    // console.log("inputData",data)
+    // console.log("check temp questionService", temp)
+    return axios.get(`/api/tronbang?id=${id}`); 
+}
+const checkQuestionService = (dataInput) => {
+    console.log("inputData",dataInput)
+    return axios.post('/api/checkQueston', dataInput);
+}
+
+const getAllanswerFromQuestionId = (questionId) => {
+    // console.log("inputData",dataInput)
+    return axios.get(`/api/getAllanswerFromQuestionId?questionId=${questionId}`);
+}
+
+const getQuestionFromLessonId = (lessonId) => {
+    
+    // console.log("inputData",dataInput)
+    return axios.get(`/api/getQuestionFromLessonId?lessonId=${lessonId}`);
+}
+
 export {
     getAllQuestions,
     createNewQuestionService,
     deleteQuestionService,
     editQuestionService,
     createChoiseAnswerService,
-    getQuestionHomeService
+    getQuestionHomeService,
+    tronbangService,
+    checkQuestionService,
+    getAllanswerFromQuestionId,
+    getQuestionFromLessonId
 }

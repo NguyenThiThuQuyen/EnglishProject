@@ -118,6 +118,12 @@ let getQuestionFromLessonId = async(req, res) => {
         })
     }
 }
+let getAllanswerFromQuestionId = async(req, res) => {
+    let questionId = req.query.questionId;
+    let message = await questionService.getAllanswerFromQuestionIdService(questionId);
+    return res.status(200).json(message)
+}
+
 module.exports = {
     handleCreateNewQuestion: handleCreateNewQuestion,
     handleGetAllQuestions: handleGetAllQuestions,
@@ -127,5 +133,6 @@ module.exports = {
     getQuestionHome: getQuestionHome,
     tronbang:tronbang,
     checkQueston:checkQueston,
-    getQuestionFromLessonId:getQuestionFromLessonId
+    getQuestionFromLessonId:getQuestionFromLessonId,
+    getAllanswerFromQuestionId:getAllanswerFromQuestionId
 }

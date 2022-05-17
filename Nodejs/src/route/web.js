@@ -88,11 +88,11 @@ let initWebRoutes = (app) => {
     router.delete('/api/delete-question', questionController.handleDeleteQuestion);
     router.post('/api/create-choise-answer', questionController.handleChoiseAnswer);
     router.get(`/api/tronbang`, questionController.tronbang);
-    router.get(`/api/checkQueston`, questionController.checkQueston);
+    router.post(`/api/checkQueston`, questionController.checkQueston);
     router.get(`/api/getQuestionFromLessonId`, questionController.getQuestionFromLessonId);
 
     router.get('/api/question-home', questionController.getQuestionHome);
-    
+    router.get(`/api/getAllanswerFromQuestionId`, questionController.getAllanswerFromQuestionId);
     
     // router.get('/api/search-vocab', vocabController.handleSearchVocab);
 

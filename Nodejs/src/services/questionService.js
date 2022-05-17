@@ -141,12 +141,48 @@ let createNewQuestion = async (data) => {
                 answerFalse3: data.answerFalse3,
                 lessonId: data.lessonId,
             })
+            
             resolve('create a new question succeed')
         }catch(e){
             reject(e);
         }
     })
 }
+// let createNewQuestion = async (data) => {
+//     return new Promise(async(resolve, reject) => {
+//         try{
+//             let question = await db.Question.create({
+//                 question: data.question,
+//                 lessonId: data.lessonId,
+//             })
+//             let id = question.id
+//             let answre = await db.answers.create({
+//                 questionId: id,
+//                 status: "True",
+//                 answer: data.answerTrue,
+//             })
+//             let answer1 = await db.answers.create({
+//                 questionId: id,
+//                 status: "False",
+//                 answer: data.answerFalse1,
+//             })
+//             let answer2 = await db.answers.create({
+//                 questionId: id,
+//                 status: "False",
+//                 answer: data.answerFalse2,
+//             })
+//             let answer3 = await db.answers.create({
+//                 questionId: id,
+//                 status: "False",
+//                 answer: data.answerFalse3,
+//             })
+//             resolve('create a new question succeed')
+//         }catch(e){
+//             reject(e);
+//         }
+//     })
+// }
+
 
 let updateQuestionData = (data) => {
     return new Promise(async(resolve, reject) => {
@@ -214,6 +250,7 @@ let getQuestionHome = (lessonId) => {
         try{
             let questions = await db.Question.findAll({
                 where: {lessonId: lessonId},
+                
                 // order: [['createdAt', 'DESC']],
             })
             resolve({
@@ -250,6 +287,7 @@ let tronbangservice = (id) => {
 let checkQuestonService = (dataInput) => {
     return new Promise(async(resolve, reject) => {
         try{
+            console.log("check dataInput", dataInput);
             if(dataInput.id)
             {
                 let data = await db.Question.findOne({
@@ -274,7 +312,31 @@ let checkQuestonService = (dataInput) => {
         }
     })
 }
+let getAllanswerFromQuestionIdService = (questionId) => {
+    console.log("check questionId", questionId)
+    return new Promise (async(resolve, reject) => {
+        try
+        {
+            if(questionId)
+            {
+                let question = await db.answers.findAll({
+                    where: {questionId: questionId},
+                    // include:[
+                    //     {model: db.answers, as: 'anwserData', attributes: ['answer', 'status']
+                    // },
+                    // ],
+                    // raw: true,
+                    // nest: true,
+                })
+                resolve(question)
+            }
+        }
+        catch(e)
+        {
 
+        }
+    })
+}
 
 let getQuestionFromLessonIdService = (lessonId) => {
     return new Promise(async(resolve, reject) => {
@@ -283,7 +345,13 @@ let getQuestionFromLessonIdService = (lessonId) => {
             if(lessonId)
             {
                 let data = await db.Question.findAll({
-                    where: {lessonId : lessonId}
+                    where: {lessonId : lessonId},
+                    include:[
+                        {model: db.answers, as: 'anwserData', attributes: ['answer', 'status']
+                    },
+                    ],
+                    raw: true,
+                    nest: true,
                 })
 
                 // let temp = await tronbangservice(data[0].id)
@@ -307,5 +375,6 @@ module.exports = {
     getQuestionHome: getQuestionHome,
     tronbangservice:tronbangservice,
     checkQuestonService:checkQuestonService,
-    getQuestionFromLessonIdService:getQuestionFromLessonIdService
+    getQuestionFromLessonIdService:getQuestionFromLessonIdService,
+    getAllanswerFromQuestionIdService:getAllanswerFromQuestionIdService
 }

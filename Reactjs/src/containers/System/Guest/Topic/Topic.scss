@@ -39,13 +39,14 @@
 
             .bg-topic-content {
                 background-color: white;
-                border: 1px solid rgb(206, 210, 210);
+                border: 1px solid rgb(139, 230, 178);
                 border-radius: 5px;
                 padding: 20px;
+                box-shadow: 4px 8px 6px #baeebc;
             }
 
             .bg-topic-content:hover{
-                box-shadow: 4px 8px 6px #b0e5b2;
+                box-shadow: 4px 8px 6px #4edc52;
             }
         }
 

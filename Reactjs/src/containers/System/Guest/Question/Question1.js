@@ -25,7 +25,7 @@ class Question extends Component {
         }
     }
     async componentDidMount() {
-        let allQuestions = await getQuestionHomeService(this.props.match.params.id);
+        let allQuestions = await getQuestionHomeService(16);
         // console.log("check temp 123456789:", allQuestions.data)
         this.state.arrQuestions =  allQuestions.data
         if(allQuestions)
@@ -224,19 +224,19 @@ class Question extends Component {
                                                     </div>
 
                                                     <div className="answer"
-                                                    onClick={()=>this.hanldeOnclickda2(mang[1], item.id)}
+                                                    onClick={()=>this.hanldeOnclickda1(mang[1], item.id)}
                                                     value={mang[1]}
                                                     >B. {mang[1]}
                                                     </div>
 
                                                     <div className="answer"
-                                                    onClick={()=>this.hanldeOnclickda3(mang[2], item.id)}
+                                                    onClick={()=>this.hanldeOnclickda1(mang[2], item.id)}
                                                     value={mang[2]}
                                                     >C. {mang[2]}
                                                     </div>
 
                                                     <div className="answer"
-                                                    onClick={()=>this.hanldeOnclickda4(mang[3], item.id)}
+                                                    onClick={()=>this.hanldeOnclickda1(mang[3], item.id)}
                                                     value={mang[3]}
                                                     >D. {mang[3]}
                                                     </div>

@@ -71,7 +71,7 @@ class QuestionRedux extends Component {
         let vocabName = await getSearchVocabFromLessonService(this.props.match.params.id)
         console.log("check vocabName",vocabName.search[0].vocab)
         this.setState({
-            lessonId: this.props.match.params.lessonlistId
+            lessonId: this.props.match.params.id
         })
         this.setState({
             lessonName: lessonName.lessons.lessonName,

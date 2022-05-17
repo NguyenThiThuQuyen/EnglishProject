@@ -55,24 +55,28 @@ class LessonList extends Component {
                 <HomeHeader2 />
                 
                 <div className="container">     
+                <div className="row">
+                <div className="col-4"></div>
+                    <div className="col-4 mt-5">
+                <div className="mt-5 text-center">CHỌN LOẠI BÀI HỌC</div>
+                    
                     {allLessonLists && allLessonLists.length > 0
                         && allLessonLists.map((item, index) => {
-                            let nameVi = `${item.name}`;
-                            let nameEn = `${item.name}`;
+
                             return(
                             <div className="card-content"  key={index}>
                                 <p  className='c-content' 
                                     onClick={()=>this.hanldeOnClick(item.id)}>
-                                    <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
-                                    {language === LANGUAGES.VI ? nameVi : nameEn} 
-
-                                    {/* <Link to="/lesson" className='style-link'>
-                                    </Link>  */}
-
+                                    <div className="lessonlist">
+                                        {item.name}
+                                    </div>
                                 </p>
                             </div>
                         )
                     })}
+                    </div>
+                    <div className="col-4"></div>
+                </div>
                 </div>
             </div>
             );

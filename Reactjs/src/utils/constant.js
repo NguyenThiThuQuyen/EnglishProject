@@ -8,7 +8,8 @@ export const path = {
     LESSONITEM: '/lesson-item',
     LOGIN: '/login',
     LOG_OUT: '/logout',
-    SYSTEM: '/system'
+    SYSTEM: '/system',
+    QUESTION: '/question/:id'
 };
 
 export const LANGUAGES = {

@@ -8,6 +8,7 @@ import {
     editQuestionService,
     createChoiseAnswerService,
     getQuestionHomeService,
+    tronbangService,
 } from '../../services/questionService';
 
 
@@ -159,27 +160,54 @@ export const createChoiseAnswerFailed = () => ({
 
 
 
-export const fetchTopQuestionList = (lessonId) => {
-    return async (dispatch, getState) => {
+export const fetchTopQuestionList =  (lessonId) => {
+    return  async (dispatch, getState) => {
         try {
             let res = await getQuestionHomeService(lessonId);
-            console.log('check res lesson list: ', res)
-            if(res && res.errCode === 0){
-                dispatch({
-                    type: actionTypes.FETCH_TOP_QUESTIONS_SUCCESS,
-                    dataQuestions: res.data
-                })
-            }else {
-                dispatch({
-                    type: actionTypes.FETCH_TOP_QUESTIONS_FAILD,
-                })
-            }
+            console.log('check res fetchTopQuestionList: ', res.data)
+            // getState(res.data)
+            // if(res && res.errCode === 0){
+            //     dispatch(fetchTopQuestionListSuccess(res.data))
+            // }else {
+            //     dispatch(                
+            //         dispatch(fetchTopQuestionListFailed())
+            //     )
+            // }
 
         } catch(e) {
             console.log('FETCH_TOP_QUESTIONS_FAILD: ', e)
-            dispatch({
-                type: actionTypes.FETCH_TOP_QUESTIONS_FAILD,
-            })
+            // dispatch({
+            //     type: actionTypes.FETCH_TOP_QUESTIONS_FAILD,
+            // })
+        }
+    }
+}
+
+// export const fetchTopQuestionListSuccess = (data) => ({
+//     type: actionTypes.FETCH_TOP_QUESTIONS_SUCCESS,
+//     dataQuestions: data
+// })
+
+// export const fetchTopQuestionListFailed = () => ({
+//     type: actionTypes.FETCH_TOP_QUESTIONS_FAILD,
+// })
+export const tronbang = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await tronbangService(id);
+            console.log('check tronbang : ', res)
+           
+            // getState(res)
+            // if(res){
+            //     dispatch(createChoiseAnswerSuccess(res))
+            // }else{
+            //     // toast.error("Fetch all Questions error!");
+            //     dispatch(createChoiseAnswerFailed());
+            // }
+        } catch(e) {
+            // // toast.error("Fetch all Questions error!");
+            // dispatch(createChoiseAnswerFailed());
+            console.log('createChoiseAnswer error', e)
         }
     }
 }

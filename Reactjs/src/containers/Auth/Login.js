@@ -73,6 +73,8 @@ class Login extends Component {
         })
     }
     render() {
+        console.log("check userInfo", this.props.userInfo);
+        console.log("islogin", this.props.isLoggedIn)
         return (
            <div>
                <div className="container-fluid bg-login">
@@ -142,7 +144,9 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        language: state.app.language
+        language: state.app.language,
+        isLoggedIn: state.user.isLoggedIn,
+        userInfo: state.user.userInfo
     };
 };
 

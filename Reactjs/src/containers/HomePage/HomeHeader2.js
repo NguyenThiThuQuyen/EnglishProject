@@ -18,8 +18,13 @@ class HomeHeader2 extends Component {
         let language = this.props.language;
         return (
             <React.Fragment>
+<<<<<<< HEAD
             <div className="home-header-container sticky-top">
                 <div className="home-header-content">
+=======
+            <div className="h-header-container sticky-top">
+                <div className="h-header-content">
+>>>>>>> 77fb4299d33a2b97d85f56ce212977531290601a
                     <div className="left-content">
                         <FontAwesomeIcon  style={{ fontSize: "2rem", marginLeft: "1rem", cursor: "pointer"}} icon={faBars} />
                         <h1><a className='font header-logo' style={{color: 'white'}} href="">italk</a></h1>

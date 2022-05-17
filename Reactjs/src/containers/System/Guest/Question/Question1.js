@@ -4,7 +4,7 @@ import './Question.scss';
 import { Link } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
 import * as BsIcons from 'react-icons/bs';
-import HomeHeader2 from '../../../HomePage/HomeHeader2';
+import HomeHeader from '../../../HomePage/HomeHeader';
 import Footer from '../../../HomePage/Footer';
 import * as actions from '../../../../store/actions'
 import { tronbangService, getQuestionHomeService, checkQuestionService } from '../../../../services/questionService'
@@ -25,7 +25,7 @@ class Question extends Component {
         }
     }
     async componentDidMount() {
-        let allQuestions = await getQuestionHomeService(this.props.match.params.id);
+        let allQuestions = await getQuestionHomeService(16);
         // console.log("check temp 123456789:", allQuestions.data)
         this.state.arrQuestions =  allQuestions.data
         if(allQuestions)
@@ -164,31 +164,12 @@ class Question extends Component {
         console.log("check action", this.state.action)
         return (
             <div>
-<<<<<<< HEAD
-                <HomeHeader2 />
-=======
                 
                 <HomeHeader />
->>>>>>> 77fb4299d33a2b97d85f56ce212977531290601a
                 <div className="container">     
                     <div className="row">
                         <div className="col-4"></div>
                         <div className="col-6">
-<<<<<<< HEAD
-                            {allQuestions && allQuestions.length > 0
-                                && allQuestions.map((item, index) => {
-                                    return(
-                                    <div className="row mt-5" key={index}>
-                                        <div className="col-8 card-content">
-                                            <p className='c-content'>
-                                                {/* <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/> */}
-                                                <div className="question">{item.question}</div>
-                                                <div className="answer">{item.answerTrue}</div>
-                                                <div className="answer">{item.answerFalse1}</div>
-                                                <div className="answer">{item.answerFalse2}</div>
-                                                <div className="answer">{item.answerFalse3}</div>
-                                            </p>
-=======
 
                             {allQuestions && allQuestions.length>0 && answer && answer.length>0 &&
                             allQuestions.map((item, index) => {
@@ -243,25 +224,24 @@ class Question extends Component {
                                                     </div>
 
                                                     <div className="answer"
-                                                    onClick={()=>this.hanldeOnclickda2(mang[1], item.id)}
+                                                    onClick={()=>this.hanldeOnclickda1(mang[1], item.id)}
                                                     value={mang[1]}
                                                     >B. {mang[1]}
                                                     </div>
 
                                                     <div className="answer"
-                                                    onClick={()=>this.hanldeOnclickda3(mang[2], item.id)}
+                                                    onClick={()=>this.hanldeOnclickda1(mang[2], item.id)}
                                                     value={mang[2]}
                                                     >C. {mang[2]}
                                                     </div>
 
                                                     <div className="answer"
-                                                    onClick={()=>this.hanldeOnclickda4(mang[3], item.id)}
+                                                    onClick={()=>this.hanldeOnclickda1(mang[3], item.id)}
                                                     value={mang[3]}
                                                     >D. {mang[3]}
                                                     </div>
                                                 </div>
                                             </div>
->>>>>>> 77fb4299d33a2b97d85f56ce212977531290601a
                                         </div>
                                 )
                             })}

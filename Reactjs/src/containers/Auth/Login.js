@@ -120,7 +120,7 @@ class Login extends Component {
                                         {this.state.errMessage}
                                     </div>
                                     <button className='btn-login mt-5' onClick={() => {this.handleLogin()}}> LOGIN</button>
-                                    <div className="mt-3">
+                                    {/* <div className="mt-3">
                                         <IconContext.Provider
                                             value={{ color: 'blue', size: '45px' }}
                                             >
@@ -129,7 +129,7 @@ class Login extends Component {
                                                 <BsYoutube />
                                             </div>
                                         </IconContext.Provider>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

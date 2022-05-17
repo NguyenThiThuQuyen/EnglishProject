@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import HomeHeader from '../../../HomePage/HomeHeader';
+import HomeHeader2 from '../../../HomePage/HomeHeader2';
 // import './Dictionary.scss';
 import DicHeader from './DicHeader';
 import Definitions from './Difinitions';
@@ -28,7 +28,7 @@ function Dictionary() {
 
     return (
         <React.Fragment>
-            <HomeHeader />
+            <HomeHeader2 />
             <DicHeader 
                 setWord={setWord}
                 category={category}

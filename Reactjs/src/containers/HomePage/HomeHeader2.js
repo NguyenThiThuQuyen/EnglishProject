@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
-import './HomeHeader.scss';
+import './HomeHeader2.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../utils';
 import { changeLanguageApp } from '../../store/actions/appActions';
 
-class HomeHeader extends Component {
+class HomeHeader2 extends Component {
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language)
     }
@@ -18,11 +18,11 @@ class HomeHeader extends Component {
         let language = this.props.language;
         return (
             <React.Fragment>
-            <div className="h-header-container sticky-top">
-                <div className="h-header-content">
+            <div className="home-header-container sticky-top">
+                <div className="home-header-content">
                     <div className="left-content">
                         <FontAwesomeIcon  style={{ fontSize: "2rem", marginLeft: "1rem", cursor: "pointer"}} icon={faBars} />
-                        <h1><a className='font header-logo' style={{color: 'green'}} href="">italk</a></h1>
+                        <h1><a className='font header-logo' style={{color: 'white'}} href="">italk</a></h1>
                     </div>
                     <div className="center-content">
                         <div className="child-content">
@@ -95,4 +95,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader2);

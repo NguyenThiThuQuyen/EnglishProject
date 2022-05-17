@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 import { Link } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
 import * as BsIcons from 'react-icons/bs';
-import HomeHeader from '../../../HomePage/HomeHeader';
+import HomeHeader2 from '../../../HomePage/HomeHeader2';
 import Footer from '../../../HomePage/Footer';
 import * as actions from '../../../../store/actions'
 import LessonList from '../LessonList/LessonList'
@@ -46,7 +46,7 @@ class Topic extends Component {
         let allTopics = this.state.arrTopics;
         return (
             <div>
-                <HomeHeader />
+                <HomeHeader2 />
                 <div className="container-fluid bg-topic">     
                     <div className="row">
                         <div className="col-3"></div>

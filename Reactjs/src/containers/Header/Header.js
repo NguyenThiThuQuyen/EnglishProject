@@ -48,8 +48,8 @@ class Header extends Component {
         // console.log('check userinfo', userInfo)
         return (
             <React.Fragment>
-                <div className="home-header-container sticky-top">
-                    <div className="home-header-content">
+                <div className="header-container sticky-top">
+                    <div className="header-content">
                         <div className="left-content">
                             <h1><a className='font header-logo' style={{color: 'green'}} href="">italk</a></h1>
                         </div>

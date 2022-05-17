@@ -4,7 +4,7 @@ import './Question.scss';
 import { Link } from "react-router-dom";
 import { FormattedMessage } from 'react-intl';
 import * as BsIcons from 'react-icons/bs';
-import HomeHeader from '../../../HomePage/HomeHeader';
+import HomeHeader2 from '../../../HomePage/HomeHeader2';
 import Footer from '../../../HomePage/Footer';
 import * as actions from '../../../../store/actions'
 import { LANGUAGES } from '../../../../utils'
@@ -48,34 +48,30 @@ class Question extends Component {
         console.log("check 123456:", allLessonItems)
         return (
             <div>
-                <HomeHeader />
+                <HomeHeader2 />
                 <div className="container">     
                     <div className="row">
-                        <div className="col-3"></div>
+                        <div className="col-4"></div>
                         <div className="col-6">
                             {allQuestions && allQuestions.length > 0
                                 && allQuestions.map((item, index) => {
-                  
-                                    let nameVi = `${item.question}`;
-                                    let nameEn = `${item.lessonName}`;
                                     return(
-                                    <div className="row" key={index}>
-                                  
-                                        <div className="col-6 card-content">
+                                    <div className="row mt-5" key={index}>
+                                        <div className="col-8 card-content">
                                             <p className='c-content'>
-                                                <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/>
+                                                {/* <BsIcons.BsArrowRight style={{fontSize: '20px', marginRight: '5px'}}/> */}
                                                 <div className="question">{item.question}</div>
-                                                <div className="question">{item.answerTrue}</div>
-                                                <div className="question">{item.answerFalse1}</div>
-                                                <div className="question">{item.answerFalse2}</div>
-                                                <div className="question">{item.answerFalse3}</div>
+                                                <div className="answer">{item.answerTrue}</div>
+                                                <div className="answer">{item.answerFalse1}</div>
+                                                <div className="answer">{item.answerFalse2}</div>
+                                                <div className="answer">{item.answerFalse3}</div>
                                             </p>
                                         </div>
                                     </div>  
                                 )
                             })}
                         </div>
-                        <div className="col-3"></div>
+                        <div className="col-2"></div>
                     </div>
                 </div>
             </div>
